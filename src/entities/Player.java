@@ -12,6 +12,11 @@ import static utilities.LoadSave.PLAYER_ATLAS;
 public class Player extends Entity {
     private final int animationSpeed = 25;
     private final float playerSpeed = 2.0f;
+    private final float xDrawOffset = SCALE * 21;
+    private final float yDrawOffset = SCALE * 4;
+    private final float gravity = 0.04f * SCALE;
+    private final float jumpSpeed = - 2.25f * SCALE;
+    private final float fallSpeedAfterCollision = 0.5f * SCALE;
     private BufferedImage[][] animations;
     private int animationTick;
     private int animationIndex;
@@ -19,14 +24,9 @@ public class Player extends Entity {
     private boolean left, up, right, down, jump;
     private boolean moving = false, attacking = false;
     private int[][] levelData;
-    private final float xDrawOffset = SCALE * 21;
-    private final float yDrawOffset = SCALE * 4;
     // Jump / Gravity
     private float airSpeed = 0.0f;
-    private float gravity = 0.04f *SCALE;
-    private float jumpSpeed = -2.25f*SCALE;
-    private float fallSpeedAfterCollision = 0.5f *SCALE;
-    private boolean inAir =false;
+    private boolean inAir = false;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -85,7 +85,7 @@ public class Player extends Entity {
         if(jump) {
             jump();
         }
-        if(! left && ! right && !inAir) return;
+        if(! left && ! right && ! inAir) return;
 
         float xSpeed = 0;
 
@@ -96,16 +96,16 @@ public class Player extends Entity {
             xSpeed += playerSpeed;
         }
 
-        if(!inAir) {
-            if(!IsEntityOnFloor(hitbox, levelData)) {
+        if(! inAir) {
+            if(! IsEntityOnFloor(hitbox, levelData)) {
                 inAir = true;
             }
         }
 
         if(inAir) {
-            if(CanMoveHere(hitbox.x, hitbox.y+airSpeed, hitbox.width, hitbox.height, levelData)){
+            if(CanMoveHere(hitbox.x, hitbox.y + airSpeed, hitbox.width, hitbox.height, levelData)) {
                 hitbox.y += airSpeed;
-                airSpeed+=gravity;
+                airSpeed += gravity;
                 updateXPosition(xSpeed);
             } else {
                 hitbox.y = GetEntityYPositionUnderRoofOrAboveFloor(hitbox, airSpeed);
@@ -130,7 +130,7 @@ public class Player extends Entity {
 
     private void resetInAir() {
         inAir = false;
-        airSpeed=0;
+        airSpeed = 0;
     }
 
     private void updateXPosition(float xSpeed) {

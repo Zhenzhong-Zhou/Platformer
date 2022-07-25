@@ -38,10 +38,10 @@ public class HelpMethods {
             // Right
             int tileXPosition = currentTile * TILES_SIZE;
             int xOffset = (int) (TILES_SIZE - hitbox.width);
-            return tileXPosition+xOffset-1;
+            return tileXPosition + xOffset - 1;
         } else {
             // Left
-            return currentTile*TILES_SIZE;
+            return currentTile * TILES_SIZE;
         }
     }
 
@@ -51,16 +51,16 @@ public class HelpMethods {
             // Falling
             int tileYPosition = currentTile * TILES_SIZE;
             int yOffset = (int) (TILES_SIZE - hitbox.height);
-            return tileYPosition+yOffset-1;
+            return tileYPosition + yOffset - 1;
         } else {
             // Jumping
-            return currentTile*TILES_SIZE;
+            return currentTile * TILES_SIZE;
         }
     }
 
     public static boolean IsEntityOnFloor(Rectangle2D.Float hitbox, int[][] levelData) {
         // Check the pixel below bottom left and bottom right
-        if(IsSolid(hitbox.x, hitbox.y+ hitbox.height+1, levelData)) {
+        if(IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, levelData)) {
             return ! IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, levelData);
         }
         return true;
