@@ -1,13 +1,12 @@
 package entities;
 
-import utilities.LoadSave;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static main.Game.SCALE;
 import static utilities.Constants.PlayerActions.*;
 import static utilities.HelpMethods.*;
+import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PLAYER_ATLAS;
 
 public class Player extends Entity {
@@ -24,7 +23,7 @@ public class Player extends Entity {
     private final float yDrawOffset = SCALE * 4;
     // Jump / Gravity
     private float airSpeed = 0.0f;
-    private float gravity = 0.4f *SCALE;
+    private float gravity = 0.04f *SCALE;
     private float jumpSpeed = -2.25f*SCALE;
     private float fallSpeedAfterCollision = 0.5f *SCALE;
     private boolean inAir =false;
@@ -32,7 +31,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x, y, SCALE * 20, SCALE * 28);
+        initHitbox(x, y, SCALE * 20, SCALE * 27);
     }
 
     public void update() {
@@ -143,7 +142,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
-        BufferedImage image = LoadSave.GetSpriteAtlas(PLAYER_ATLAS);
+        BufferedImage image = GetSpriteAtlas(PLAYER_ATLAS);
 
         animations = new BufferedImage[9][6];
         for(int j = 0; j < animations.length; j++) {
