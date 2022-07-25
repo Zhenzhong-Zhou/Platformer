@@ -5,6 +5,7 @@ import utilities.LoadSave;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static main.Game.SCALE;
 import static utilities.Constants.PlayerActions.*;
 import static utilities.HelpMethods.CanMoveHere;
 import static utilities.LoadSave.PLAYER_ATLAS;
@@ -19,21 +20,23 @@ public class Player extends Entity {
     private boolean left, up, right, down;
     private boolean moving = false, attacking = false;
     private int[][] levelData;
+    private float xDrawOffset = SCALE*21;
+    private float yDrawOffset = SCALE*4;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
+        initHitbox(x, y, SCALE*20, SCALE*28);
     }
 
     public void update() {
         updatePosition();
-        updateHitbox();
         updateAnimationTick();
         setAnimation();
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(animations[playerAction][animationIndex], (int) x, (int) y, width, height, null);
+        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y-yDrawOffset), width, height, null);
         drawHitbox(graphics);
     }
 
@@ -90,9 +93,9 @@ public class Player extends Entity {
             ySpeed = playerSpeed;
         }
 
-        if(CanMoveHere(x+xSpeed, y+ySpeed, width, height, levelData)) {
-            this.x +=xSpeed;
-            this.y+=ySpeed;
+        if(CanMoveHere(hitbox.x+xSpeed, hitbox.y+ySpeed, hitbox.width, hitbox.height, levelData)) {
+            hitbox.x +=xSpeed;
+            hitbox.y+=ySpeed;
             moving = true;
         }
     }
