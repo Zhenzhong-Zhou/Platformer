@@ -105,13 +105,14 @@ public class Scene extends JPanel {
         }
     }
 
-    public void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics);
-
+    public void updateScene() {
         updateAnimationTick();
         setAnimation();
         updatePosition();
+    }
 
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
         graphics.drawImage(animations[playerAction][animationIndex], (int) xDelta, (int) yDelta, 256, 160, null);
     }
 }

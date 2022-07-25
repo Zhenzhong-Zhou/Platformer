@@ -19,6 +19,10 @@ public class Game implements Runnable {
         thread.start();
     }
 
+    public void update() {
+        scene.updateScene();
+    }
+
     @Override
     public void run() {
         double timePerFrame = 1000000000.0 / FPS_SET;
@@ -39,7 +43,7 @@ public class Game implements Runnable {
             deltaFrames += (currentTime - previousTime) / timePerFrame;
             previousTime = currentTime;
             if(deltaUpdates >= 1) {
-                // update();
+                update();
                 updates++;
                 deltaUpdates--;
             }
