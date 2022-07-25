@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilities.Constants.PlayerActions.*;
+import static utilities.LoadSave.PLAYER_ATLAS;
 
 public class Player extends Entity {
     private BufferedImage[][] animations;
@@ -88,7 +89,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
-        BufferedImage image = LoadSave.GetPlayerAtlas();
+        BufferedImage image = LoadSave.GetSpriteAtlas(PLAYER_ATLAS);
 
         animations = new BufferedImage[9][6];
         for(int j = 0; j < animations.length; j++) {

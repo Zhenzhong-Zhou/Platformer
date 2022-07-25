@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class LoadSave {
-    public static BufferedImage GetPlayerAtlas() {
+    public static final String PLAYER_ATLAS = "player_sprites.png";
+
+    public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;
-        InputStream is = LoadSave.class.getResourceAsStream("/player_sprites.png");
+        InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
         try {
             assert is != null;
             image = ImageIO.read(is);
