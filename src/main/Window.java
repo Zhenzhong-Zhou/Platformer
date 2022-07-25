@@ -8,6 +8,7 @@ public class Window extends JFrame{
         setTitle("Platformer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         add(scene);
+        setResizable(false);
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
