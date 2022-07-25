@@ -18,8 +18,8 @@ public class Player extends Entity {
     private boolean moving = false, attacking = false;
     private final float playerSpeed = 2.0f;
 
-    public Player(float x, float y) {
-        super(x, y);
+    public Player(float x, float y, int width, int height) {
+        super(x, y, width, height);
         loadAnimations();
     }
 
