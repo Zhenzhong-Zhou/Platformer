@@ -15,7 +15,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Mouse is clicked!");
     }
 
     @Override
@@ -45,6 +44,5 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-//        scene.setRectPos(e.getX(), e.getY());
     }
 }
