@@ -1,10 +1,20 @@
 package states;
 
+import main.Game;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Menu implements StateMethods{
+import static main.Game.GAME_WIDTH;
+import static states.GameStates.PLAY;
+import static states.GameStates.gameState;
+
+public class Menu extends State implements StateMethods{
+    public Menu(Game game) {
+        super(game);
+    }
+
     @Override
     public void update() {
 
@@ -12,7 +22,8 @@ public class Menu implements StateMethods{
 
     @Override
     public void draw(Graphics graphics) {
-
+        graphics.setColor(Color.PINK);
+        graphics.drawString("MENU", GAME_WIDTH/2, 200);
     }
 
     @Override
@@ -37,7 +48,9 @@ public class Menu implements StateMethods{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+            gameState = PLAY;
+        }
     }
 
     @Override

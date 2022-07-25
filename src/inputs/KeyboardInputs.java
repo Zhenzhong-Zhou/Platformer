@@ -5,6 +5,8 @@ import main.Scene;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static states.GameStates.gameState;
+
 public class KeyboardInputs implements KeyListener {
     private final Scene scene;
 
@@ -19,46 +21,30 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_W -> {
-                scene.getGame().getPlayer().setUp(true);
+        switch(gameState) {
+            case MENU -> {
+                scene.getGame().getMenu().keyPressed(e);
             }
-            case KeyEvent.VK_A -> {
-                scene.getGame().getPlayer().setLeft(true);
-            }
-            case KeyEvent.VK_S -> {
-                scene.getGame().getPlayer().setDown(true);
-            }
-            case KeyEvent.VK_D -> {
-                scene.getGame().getPlayer().setRight(true);
-            }
-            case KeyEvent.VK_SPACE -> {
-                scene.getGame().getPlayer().setJump(true);
+            case PLAY -> {
+                scene.getGame().getPlay().keyPressed(e);
             }
             default -> {
+
             }
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_W -> {
-                scene.getGame().getPlayer().setUp(false);
+        switch(gameState) {
+            case MENU -> {
+                scene.getGame().getMenu().keyReleased(e);
             }
-            case KeyEvent.VK_A -> {
-                scene.getGame().getPlayer().setLeft(false);
-            }
-            case KeyEvent.VK_S -> {
-                scene.getGame().getPlayer().setDown(false);
-            }
-            case KeyEvent.VK_D -> {
-                scene.getGame().getPlayer().setRight(false);
-            }
-            case KeyEvent.VK_SPACE -> {
-                scene.getGame().getPlayer().setJump(false);
+            case PLAY -> {
+                scene.getGame().getPlay().keyReleased(e);
             }
             default -> {
+
             }
         }
     }

@@ -1,11 +1,11 @@
 package main;
 
-import entities.Player;
-import levels.LevelManager;
-import states.GameStates;
+import states.Menu;
+import states.Play;
 
 import java.awt.*;
 
+import static states.GameStates.PLAY;
 import static states.GameStates.gameState;
 
 public class Game implements Runnable {
@@ -21,8 +21,8 @@ public class Game implements Runnable {
     private final Window window;
     private final Scene scene;
     private Thread thread;
-    private Player player;
-    private LevelManager levelManager;
+    private Menu menu;
+    private Play play;
 
     public Game() {
         initClasses();
@@ -36,9 +36,8 @@ public class Game implements Runnable {
     }
 
     private void initClasses() {
-        levelManager = new LevelManager(this);
-        player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
-        player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
+        menu = new Menu(this);
+        play = new Play(this);
     }
 
     private void start() {
@@ -47,16 +46,12 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        player.update();
-        levelManager.update();
-
         switch(gameState) {
             case MENU -> {
-
+                menu.update();
             }
             case PLAY -> {
-                levelManager.update();
-                player.update();
+                play.update();
             }
             default -> {
 
@@ -67,11 +62,10 @@ public class Game implements Runnable {
     public void render(Graphics graphics) {
         switch(gameState) {
             case MENU -> {
-
+                menu.draw(graphics);
             }
             case PLAY -> {
-                levelManager.draw(graphics);
-                player.render(graphics);
+                play.draw(graphics);
             }
             default -> {
 
@@ -120,10 +114,16 @@ public class Game implements Runnable {
     }
 
     public void windowFocusLost() {
-        player.resetDirectionBoolean();
+        if(gameState == PLAY) {
+            play.getPlayer().resetDirectionBoolean();
+        }
     }
 
-    public Player getPlayer() {
-        return player;
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Play getPlay() {
+        return play;
     }
 }
