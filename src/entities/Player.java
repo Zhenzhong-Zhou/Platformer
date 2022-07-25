@@ -17,6 +17,7 @@ public class Player extends Entity {
     private int playerAction = IDLE;
     private boolean left, up, right, down;
     private boolean moving = false, attacking = false;
+    private int[][] levelData;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -25,12 +26,14 @@ public class Player extends Entity {
 
     public void update() {
         updatePosition();
+        updateHitbox();
         updateAnimationTick();
         setAnimation();
     }
 
     public void render(Graphics graphics) {
         graphics.drawImage(animations[playerAction][animationIndex], (int) x, (int) y, width, height, null);
+        drawHitbox(graphics);
     }
 
     private void updateAnimationTick() {
@@ -98,6 +101,10 @@ public class Player extends Entity {
             }
         }
     }
+
+//    public void loadLevelData(int[][] levelData) {
+//        this.levelData= levelData;
+//    }
 
     public void resetDirectionBoolean() {
         left = false;
