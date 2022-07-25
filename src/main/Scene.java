@@ -13,11 +13,14 @@ import java.io.InputStream;
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
-    private BufferedImage image, subImage;
+    private BufferedImage image;
+    private BufferedImage[][] animations;
+    private int animationTick, animationIndex, animationSpeed = 15;
 
     public Scene() {
         mouseInputs = new MouseInputs(this);
         importImage();
+        loadAnimations();
         setSceneSize();
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
@@ -41,6 +44,15 @@ public class Scene extends JPanel {
         }
     }
 
+    private void loadAnimations() {
+        animations = new BufferedImage[9][6];
+        for(int j = 0; j < animations.length; j++) {
+            for(int i = 0; i < animations[j].length; i++) {
+                animations[j][i] = image.getSubimage(i*64, j*40, 64, 40);
+            }
+        }
+    }
+
     private void setSceneSize() {
         Dimension size = new Dimension(1280, 800);
         setPreferredSize(size);
@@ -59,10 +71,22 @@ public class Scene extends JPanel {
         this.yDelta = y;
     }
 
+    private void updateAnimationTick() {
+        animationTick++;
+        if(animationTick >= animationSpeed) {
+            animationTick = 0;
+            animationIndex++;
+            if(animationIndex >= 6) {
+                animationIndex = 0;
+            }
+        }
+    }
+
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        subImage = image.getSubimage(64, 8*40, 64, 40);
-//        graphics.drawImage(image.getSubimage(0, 0, 64, 40), 0, 0, null);
-        graphics.drawImage(subImage, (int) xDelta, (int) yDelta, 128, 80, null);
+
+        updateAnimationTick();
+
+        graphics.drawImage(animations[1][animationIndex], (int) xDelta, (int) yDelta, 128, 80, null);
     }
 }
