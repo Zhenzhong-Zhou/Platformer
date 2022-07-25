@@ -2,18 +2,14 @@ package main;
 
 import javax.swing.*;
 
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
-public class Window {
-    private final JFrame jFrame;
+public class Window extends JFrame{
 
     public Window(Scene scene) {
-        jFrame = new JFrame();
-        jFrame.setSize(400, 400);
-        jFrame.setTitle("Platformer");
-        jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        jFrame.add(scene);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setVisible(true);
+        setTitle("Platformer");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        add(scene);
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 }
