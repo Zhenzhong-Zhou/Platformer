@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 import static main.Game.GAME_WIDTH;
 import static states.GameStates.PLAY;
-import static states.GameStates.gameState;
+import static states.GameStates.gameStates;
 
 public class Menu extends State implements StateMethods{
     public Menu(Game game) {
@@ -49,7 +49,7 @@ public class Menu extends State implements StateMethods{
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-            gameState = PLAY;
+            gameStates = PLAY;
         }
     }
 

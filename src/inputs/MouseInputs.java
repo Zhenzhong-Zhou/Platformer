@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import static states.GameStates.gameState;
+import static states.GameStates.gameStates;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
     private final Scene scene;
@@ -17,7 +17,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        switch(gameState) {
+        switch(gameStates) {
             case MENU -> {
                 scene.getGame().getMenu().mouseClicked(e);
             }

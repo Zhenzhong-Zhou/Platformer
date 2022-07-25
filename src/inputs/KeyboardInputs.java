@@ -5,7 +5,7 @@ import main.Scene;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import static states.GameStates.gameState;
+import static states.GameStates.gameStates;
 
 public class KeyboardInputs implements KeyListener {
     private final Scene scene;
@@ -21,7 +21,7 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(gameState) {
+        switch(gameStates) {
             case MENU -> {
                 scene.getGame().getMenu().keyPressed(e);
             }
@@ -36,7 +36,7 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        switch(gameState) {
+        switch(gameStates) {
             case MENU -> {
                 scene.getGame().getMenu().keyReleased(e);
             }

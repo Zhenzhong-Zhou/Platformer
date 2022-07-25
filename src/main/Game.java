@@ -6,7 +6,7 @@ import states.Play;
 import java.awt.*;
 
 import static states.GameStates.PLAY;
-import static states.GameStates.gameState;
+import static states.GameStates.gameStates;
 
 public class Game implements Runnable {
     public final static int TILES_DEFAULT_SIZE = 32;
@@ -46,7 +46,7 @@ public class Game implements Runnable {
     }
 
     public void update() {
-        switch(gameState) {
+        switch(gameStates) {
             case MENU -> {
                 menu.update();
             }
@@ -60,7 +60,7 @@ public class Game implements Runnable {
     }
 
     public void render(Graphics graphics) {
-        switch(gameState) {
+        switch(gameStates) {
             case MENU -> {
                 menu.draw(graphics);
             }
@@ -114,7 +114,7 @@ public class Game implements Runnable {
     }
 
     public void windowFocusLost() {
-        if(gameState == PLAY) {
+        if(gameStates == PLAY) {
             play.getPlayer().resetDirectionBoolean();
         }
     }
