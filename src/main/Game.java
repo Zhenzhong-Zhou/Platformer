@@ -7,5 +7,6 @@ public class Game {
     public Game() {
         scene = new Scene();
         window = new Window(scene);
+        scene.requestFocus();
     }
 }
