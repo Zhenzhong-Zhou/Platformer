@@ -64,10 +64,10 @@ public class Player extends Entity{
     private void updatePosition() {
         if(moving) {
             switch(playerDirection) {
-                case LEFT -> x -= 5;
-                case UP -> y -= 5;
-                case RIGHT -> x += 5;
-                case DOWN -> y += 5;
+                case LEFT -> x -= 1;
+                case UP -> y -= 1;
+                case RIGHT -> x += 1;
+                case DOWN -> y += 1;
                 default -> {
                 }
             }
