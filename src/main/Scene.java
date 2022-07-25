@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static utilities.Constants.Directions.*;
-import static utilities.Constants.Player.*;
+import static utilities.Constants.PlayerActions.*;
 
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
@@ -95,20 +95,12 @@ public class Scene extends JPanel {
     private void updatePosition() {
         if(moving) {
             switch(playerDirection) {
-                case LEFT:
-                    xDelta-=5;
-                    break;
-                case UP:
-                    yDelta-=5;
-                    break;
-                case RIGHT:
-                    xDelta+=5;
-                    break;
-                case DOWN:
-                    yDelta+=5;
-                    break;
-                default:
-                    break;
+                case LEFT -> xDelta -= 5;
+                case UP -> yDelta -= 5;
+                case RIGHT -> xDelta += 5;
+                case DOWN -> yDelta += 5;
+                default -> {
+                }
             }
         }
     }
