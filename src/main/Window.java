@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-public class Window extends JFrame{
+public class Window extends JFrame {
 
     public Window(Scene scene) {
         setTitle("Platformer");

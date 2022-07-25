@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
-    private Game game;
+    private final Game game;
 
     public Scene(Game game) {
         mouseInputs = new MouseInputs(this);

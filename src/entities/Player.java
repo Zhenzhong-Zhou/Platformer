@@ -8,13 +8,15 @@ import java.io.InputStream;
 
 import static utilities.Constants.PlayerActions.*;
 
-public class Player extends Entity{
+public class Player extends Entity {
     private BufferedImage[][] animations;
-    private int animationTick, animationIndex, animationSpeed = 25;
+    private int animationTick;
+    private int animationIndex;
+    private final int animationSpeed = 25;
     private int playerAction = IDLE;
     private boolean left, up, right, down;
     private boolean moving = false, attacking = false;
-    private float playerSpeed = 2.0f;
+    private final float playerSpeed = 2.0f;
 
     public Player(float x, float y) {
         super(x, y);
@@ -69,19 +71,19 @@ public class Player extends Entity{
     private void updatePosition() {
         moving = false;
 
-        if(left && !right) {
-            x-=playerSpeed;
+        if(left && ! right) {
+            x -= playerSpeed;
             moving = true;
-        } else if(right && !left) {
-            x+=playerSpeed;
+        } else if(right && ! left) {
+            x += playerSpeed;
             moving = true;
         }
 
-        if(up && !down) {
-            y-=playerSpeed;
+        if(up && ! down) {
+            y -= playerSpeed;
             moving = true;
-        } else if(down  && !up) {
-            y+=playerSpeed;
+        } else if(down && ! up) {
+            y += playerSpeed;
             moving = true;
         }
     }
@@ -94,7 +96,7 @@ public class Player extends Entity{
             animations = new BufferedImage[9][6];
             for(int j = 0; j < animations.length; j++) {
                 for(int i = 0; i < animations[j].length; i++) {
-                    animations[j][i] = image.getSubimage(i*64, j*40, 64, 40);
+                    animations[j][i] = image.getSubimage(i * 64, j * 40, 64, 40);
                 }
             }
         } catch(IOException e) {
