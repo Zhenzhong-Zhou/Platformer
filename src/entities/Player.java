@@ -22,9 +22,9 @@ public class Player extends Entity{
     }
 
     public void update() {
+        updatePosition();
         updateAnimationTick();
         setAnimation();
-        updatePosition();
     }
 
     public void render(Graphics graphics) {
