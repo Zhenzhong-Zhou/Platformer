@@ -2,8 +2,11 @@ package main;
 
 import entities.Player;
 import levels.LevelManager;
+import states.GameStates;
 
 import java.awt.*;
+
+import static states.GameStates.gameState;
 
 public class Game implements Runnable {
     public final static int TILES_DEFAULT_SIZE = 32;
@@ -46,11 +49,34 @@ public class Game implements Runnable {
     public void update() {
         player.update();
         levelManager.update();
+
+        switch(gameState) {
+            case MENU -> {
+
+            }
+            case PLAY -> {
+                levelManager.update();
+                player.update();
+            }
+            default -> {
+
+            }
+        }
     }
 
     public void render(Graphics graphics) {
-        levelManager.draw(graphics);
-        player.render(graphics);
+        switch(gameState) {
+            case MENU -> {
+
+            }
+            case PLAY -> {
+                levelManager.draw(graphics);
+                player.render(graphics);
+            }
+            default -> {
+
+            }
+        }
     }
 
     @Override
