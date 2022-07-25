@@ -26,6 +26,7 @@ public class Game implements Runnable {
 
         scene = new Scene(this);
         window = new Window(scene);
+        scene.setFocusable(true);
         scene.requestFocus();
 
         start();
