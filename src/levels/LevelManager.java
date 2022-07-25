@@ -10,8 +10,8 @@ import static utilities.LoadSave.*;
 
 public class LevelManager {
     private final Game game;
-    private BufferedImage[] levelSprite;
     private final Level levelDefault;
+    private BufferedImage[] levelSprite;
 
     public LevelManager(Game game) {
         this.game = game;

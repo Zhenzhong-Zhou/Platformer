@@ -20,13 +20,13 @@ public class Player extends Entity {
     private boolean left, up, right, down;
     private boolean moving = false, attacking = false;
     private int[][] levelData;
-    private float xDrawOffset = SCALE*21;
-    private float yDrawOffset = SCALE*4;
+    private final float xDrawOffset = SCALE * 21;
+    private final float yDrawOffset = SCALE * 4;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x, y, SCALE*20, SCALE*28);
+        initHitbox(x, y, SCALE * 20, SCALE * 28);
     }
 
     public void update() {
@@ -36,7 +36,7 @@ public class Player extends Entity {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y-yDrawOffset), width, height, null);
+        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
         drawHitbox(graphics);
     }
 
@@ -77,9 +77,9 @@ public class Player extends Entity {
 
     private void updatePosition() {
         moving = false;
-        if(!left && !right &&!up&&!down) return;
+        if(! left && ! right && ! up && ! down) return;
 
-        float xSpeed =0, ySpeed =0;
+        float xSpeed = 0, ySpeed = 0;
 
         if(left && ! right) {
             xSpeed = - playerSpeed;
@@ -93,9 +93,9 @@ public class Player extends Entity {
             ySpeed = playerSpeed;
         }
 
-        if(CanMoveHere(hitbox.x+xSpeed, hitbox.y+ySpeed, hitbox.width, hitbox.height, levelData)) {
-            hitbox.x +=xSpeed;
-            hitbox.y+=ySpeed;
+        if(CanMoveHere(hitbox.x + xSpeed, hitbox.y + ySpeed, hitbox.width, hitbox.height, levelData)) {
+            hitbox.x += xSpeed;
+            hitbox.y += ySpeed;
             moving = true;
         }
     }
@@ -112,7 +112,7 @@ public class Player extends Entity {
     }
 
     public void loadLevelData(int[][] levelData) {
-        this.levelData= levelData;
+        this.levelData = levelData;
     }
 
     public void resetDirectionBoolean() {

@@ -15,10 +15,10 @@ public class HelpMethods {
     }
 
     private static boolean IsSolid(float x, float y, int[][] levelData) {
-        if(x <0 || x>=GAME_WIDTH){
+        if(x < 0 || x >= GAME_WIDTH) {
             return false;
         }
-        if(y<0|| y>= GAME_HEIGHT) {
+        if(y < 0 || y >= GAME_HEIGHT) {
             return false;
         }
 
