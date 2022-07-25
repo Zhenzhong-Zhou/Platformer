@@ -8,9 +8,11 @@ import java.awt.*;
 
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
+    private Game game;
 
-    public Scene() {
+    public Scene(Game game) {
         mouseInputs = new MouseInputs(this);
+        this.game = game;
         setSceneSize();
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
@@ -27,5 +29,10 @@ public class Scene extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
+        game.render(graphics);
+    }
+
+    public Game getGame() {
+        return game;
     }
 }
