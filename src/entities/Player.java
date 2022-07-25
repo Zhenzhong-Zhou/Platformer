@@ -9,14 +9,14 @@ import static utilities.Constants.PlayerActions.*;
 import static utilities.LoadSave.PLAYER_ATLAS;
 
 public class Player extends Entity {
+    private final int animationSpeed = 25;
+    private final float playerSpeed = 2.0f;
     private BufferedImage[][] animations;
     private int animationTick;
     private int animationIndex;
-    private final int animationSpeed = 25;
     private int playerAction = IDLE;
     private boolean left, up, right, down;
     private boolean moving = false, attacking = false;
-    private final float playerSpeed = 2.0f;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);

@@ -37,12 +37,12 @@ public class LoadSave {
         int[][] levelData = new int[TILES_IN_HEIGHT][TILES_IN_WIDTH];
         BufferedImage image = GetSpriteAtlas(LEVEL_DEFAULT_DATA);
 
-        for(int j =0; j<image.getHeight(); j++) {
-            for(int i=0; i< image.getWidth();i++) {
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
                 Color color = new Color(image.getRGB(i, j));
                 int value = color.getRed();
-                if(value>=48) {
-                    value=0;
+                if(value >= 48) {
+                    value = 0;
                 }
                 levelData[j][i] = value;
             }
