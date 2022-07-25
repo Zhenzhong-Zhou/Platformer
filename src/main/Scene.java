@@ -31,6 +31,13 @@ public class Scene extends JPanel {
             image = ImageIO.read(is);
         } catch(IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                assert is != null;
+                is.close();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
