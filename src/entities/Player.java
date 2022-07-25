@@ -10,7 +10,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PLAYER_ATLAS;
 
 public class Player extends Entity {
-    private final int animationSpeed = 25;
+    private int animationTick, animationIndex, animationSpeed = 25;
     private final float playerSpeed = 2.0f;
     private final float xDrawOffset = SCALE * 21;
     private final float yDrawOffset = SCALE * 4;
@@ -18,8 +18,6 @@ public class Player extends Entity {
     private final float jumpSpeed = - 2.25f * SCALE;
     private final float fallSpeedAfterCollision = 0.5f * SCALE;
     private BufferedImage[][] animations;
-    private int animationTick;
-    private int animationIndex;
     private int playerAction = IDLE;
     private boolean left, up, right, down, jump;
     private boolean moving = false, attacking = false;
@@ -162,6 +160,9 @@ public class Player extends Entity {
 
     public void loadLevelData(int[][] levelData) {
         this.levelData = levelData;
+        if(!IsEntityOnFloor(hitbox, levelData)) {
+            inAir = true;
+        }
     }
 
     public void resetDirectionBoolean() {
