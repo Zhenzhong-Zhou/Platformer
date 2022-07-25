@@ -30,7 +30,7 @@ public class Player extends Entity {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawImage(animations[playerAction][animationIndex], (int) x, (int) y, 256, 160, null);
+        graphics.drawImage(animations[playerAction][animationIndex], (int) x, (int) y, width, height, null);
     }
 
     private void updateAnimationTick() {
