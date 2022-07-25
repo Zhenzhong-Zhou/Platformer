@@ -12,7 +12,7 @@ import static main.Game.SCALE;
 import static states.GameStates.MENU;
 import static states.GameStates.gameStates;
 
-public class Play extends State implements StateMethods{
+public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
 
