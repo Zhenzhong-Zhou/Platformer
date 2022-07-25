@@ -45,7 +45,6 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        scene.setRectPos(e.getX(), e.getY());
-        System.out.println("Mouse is moved!");
+//        scene.setRectPos(e.getX(), e.getY());
     }
 }

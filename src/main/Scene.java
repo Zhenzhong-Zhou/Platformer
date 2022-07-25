@@ -42,12 +42,6 @@ public class Scene extends JPanel {
         updateRectangle();
         graphics.setColor(color);
         graphics.fillRect((int) xDelta, (int) yDelta, 200, 100);
-        frames++;
-        if(System.currentTimeMillis() - lastCheck >= 1000) {
-            lastCheck = System.currentTimeMillis();
-            System.out.println("FPS: " + frames);
-            frames = 0;
-        }
     }
 
     private void updateRectangle() {
