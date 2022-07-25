@@ -43,7 +43,7 @@ public class LevelManager {
 
     }
 
-//    public Level getCurrentLevel() {
-//        return levelDefault;
-//    }
+    public Level getCurrentLevel() {
+        return levelDefault;
+    }
 }

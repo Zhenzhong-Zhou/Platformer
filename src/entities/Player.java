@@ -102,9 +102,9 @@ public class Player extends Entity {
         }
     }
 
-//    public void loadLevelData(int[][] levelData) {
-//        this.levelData= levelData;
-//    }
+    public void loadLevelData(int[][] levelData) {
+        this.levelData= levelData;
+    }
 
     public void resetDirectionBoolean() {
         left = false;
