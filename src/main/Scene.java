@@ -11,8 +11,6 @@ public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
     private float xDir = 1f, yDir = 0.03f;
-    private final int frames = 0;
-    private final long lastCheck = 0;
     private Color color = new Color(150, 20, 90);
     private final Random random;
 
