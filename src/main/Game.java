@@ -23,8 +23,6 @@ public class Game implements Runnable {
     public void run() {
         double timePerFrame = 1000000000.0 / FPS_SET;
         double timePerUpdate = 1000000000.0 / UPS_SET;
-        long lastFrame = System.nanoTime();
-        long now = System.nanoTime();
         long previousTime = System.nanoTime();
 
         int frames = 0;
@@ -32,22 +30,24 @@ public class Game implements Runnable {
         long lastCheck = System.currentTimeMillis();
 
         double deltaUpdates = 0;
+        double deltaFrames = 0;
 
         // noinspection InfiniteLoopStatement
         while(true) {
-            now = System.nanoTime();
             long currentTime = System.nanoTime();
             deltaUpdates += (currentTime - previousTime) / timePerUpdate;
+            deltaFrames += (currentTime - previousTime) / timePerFrame;
             previousTime = currentTime;
             if(deltaUpdates >= 1) {
                 // update();
                 updates++;
                 deltaUpdates--;
             }
-            if(now - lastFrame >= timePerFrame) {
+
+            if(deltaFrames >= 1) {
                 scene.repaint();
-                lastFrame = now;
                 frames++;
+                deltaFrames--;
             }
 
             if(System.currentTimeMillis() - lastCheck >= 1000) {
