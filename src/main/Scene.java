@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static utilities.Constants.Player.GetSpriteAmount;
-import static utilities.Constants.Player.IDLE;
+import static utilities.Constants.Directions.*;
+import static utilities.Constants.Player.*;
 
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
@@ -20,6 +20,8 @@ public class Scene extends JPanel {
     private BufferedImage[][] animations;
     private int animationTick, animationIndex, animationSpeed = 15;
     private int playerAction = IDLE;
+    private int playerDirection = -1;
+    private boolean moving = false;
 
     public Scene() {
         mouseInputs = new MouseInputs(this);
@@ -62,17 +64,13 @@ public class Scene extends JPanel {
         setPreferredSize(size);
     }
 
-    public void changeXDelta(int value) {
-        this.xDelta += value;
+    public void setDirection(int direction) {
+        this.playerDirection = direction;
+        moving = true;
     }
 
-    public void changeYDelta(int value) {
-        this.yDelta += value;
-    }
-
-    public void setRectPos(int x, int y) {
-        this.xDelta = x;
-        this.yDelta = y;
+    public void setMoving(boolean moving) {
+        this.moving = moving;
     }
 
     private void updateAnimationTick() {
@@ -86,10 +84,41 @@ public class Scene extends JPanel {
         }
     }
 
+    private void setAnimation() {
+        if(moving) {
+            playerAction = RUNNING;
+        } else {
+            playerAction = IDLE;
+        }
+    }
+
+    private void updatePosition() {
+        if(moving) {
+            switch(playerDirection) {
+                case LEFT:
+                    xDelta-=5;
+                    break;
+                case UP:
+                    yDelta-=5;
+                    break;
+                case RIGHT:
+                    xDelta+=5;
+                    break;
+                case DOWN:
+                    yDelta+=5;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
 
         updateAnimationTick();
+        setAnimation();
+        updatePosition();
 
         graphics.drawImage(animations[playerAction][animationIndex], (int) xDelta, (int) yDelta, 256, 160, null);
     }

@@ -5,6 +5,8 @@ import main.Scene;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static utilities.Constants.Directions.*;
+
 public class KeyboardInputs implements KeyListener {
     private final Scene scene;
 
@@ -21,19 +23,19 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_W:
-                scene.changeYDelta(- 5);
+                scene.setDirection(UP);
                 System.out.println("W is pressed!");
                 break;
             case KeyEvent.VK_A:
-                scene.changeXDelta(- 5);
+                scene.setDirection(LEFT);
                 System.out.println("A is pressed!");
                 break;
             case KeyEvent.VK_S:
-                scene.changeYDelta(+ 5);
+                scene.setDirection(DOWN);
                 System.out.println("S is pressed!");
                 break;
             case KeyEvent.VK_D:
-                scene.changeXDelta(+ 5);
+                scene.setDirection(RIGHT);
                 System.out.println("D is pressed!");
                 break;
             default:
@@ -43,6 +45,15 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_W:
+            case KeyEvent.VK_A:
+            case KeyEvent.VK_S:
+            case KeyEvent.VK_D:
+                scene.setMoving(false);
+                break;
+            default:
+                break;
+        }
     }
 }
