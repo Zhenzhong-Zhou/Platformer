@@ -5,20 +5,38 @@ import main.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utilities.LoadSave.GetSpriteAtlas;
-import static utilities.LoadSave.LEVEL_ATLAS;
+import static main.Game.*;
+import static utilities.LoadSave.*;
 
 public class LevelManager {
     private Game game;
-    private BufferedImage levelSprite;
+    private BufferedImage[] levelSprite;
+    private Level levelDefault;
 
     public LevelManager(Game game) {
         this.game = game;
-        levelSprite = GetSpriteAtlas(LEVEL_ATLAS);
+        importOutsideSprites();
+        levelDefault = new Level(GetLevelData());
+    }
+
+    private void importOutsideSprites() {
+        BufferedImage image = GetSpriteAtlas(LEVEL_ATLAS);
+        levelSprite = new BufferedImage[48];
+        for(int j = 0; j < 4; j++) {
+            for(int i = 0; i< 12; i++) {
+                int index = j*12+i;
+                levelSprite[index] = image.getSubimage(i*32,j*32,32,32);
+            }
+        }
     }
 
     public void draw(Graphics graphics) {
-        graphics.drawImage(levelSprite,0, 0, null);
+        for(int j=0; j<TILES_IN_HEIGHT; j++) {
+            for(int i=0; i<TILES_IN_WIDTH; i++) {
+                int index = levelDefault.getSpriteIndex(i,j);
+                graphics.drawImage(levelSprite[index],TILES_SIZE*i, TILES_SIZE*j, TILES_SIZE, TILES_SIZE, null);
+            }
+        }
     }
 
     public void update() {
