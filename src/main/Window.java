@@ -5,7 +5,7 @@ import javax.swing.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Window {
-    private JFrame jFrame;
+    private final JFrame jFrame;
 
     public Window(Scene scene) {
         jFrame = new JFrame();

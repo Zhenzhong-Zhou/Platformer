@@ -1,10 +1,10 @@
 package main;
 
-public class Game implements Runnable{
-    private Window window;
-    private Scene scene;
-    private Thread thread;
+public class Game implements Runnable {
     private final int FPS_SET = 120;
+    private final Window window;
+    private final Scene scene;
+    private Thread thread;
 
     public Game() {
         scene = new Scene();

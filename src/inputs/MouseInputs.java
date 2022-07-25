@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
-    private Scene scene;
+    private final Scene scene;
 
     public MouseInputs(Scene scene) {
         this.scene = scene;

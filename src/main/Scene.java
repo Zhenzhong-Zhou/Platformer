@@ -8,13 +8,13 @@ import java.awt.*;
 import java.util.Random;
 
 public class Scene extends JPanel {
-    private MouseInputs mouseInputs;
+    private final MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
     private float xDir = 1f, yDir = 0.03f;
-    private int frames = 0;
-    private long lastCheck = 0;
-    private Color color =new Color(150,20,90);
-    private Random random;
+    private final int frames = 0;
+    private final long lastCheck = 0;
+    private Color color = new Color(150, 20, 90);
+    private final Random random;
 
     public Scene() {
         random = new Random();
@@ -45,14 +45,14 @@ public class Scene extends JPanel {
     }
 
     private void updateRectangle() {
-        xDelta+=xDir;
+        xDelta += xDir;
         if(xDelta > 400 || xDelta < 0) {
-            xDir*=-1;
+            xDir *= - 1;
             color = getRandColor();
         }
-        yDelta+=yDir;
+        yDelta += yDir;
         if(yDelta > 400 || yDelta < 0) {
-            yDir*=-1;
+            yDir *= - 1;
             color = getRandColor();
         }
     }
@@ -61,6 +61,6 @@ public class Scene extends JPanel {
         int r = random.nextInt(255);
         int g = random.nextInt(255);
         int b = random.nextInt(255);
-        return new Color(r, g,b);
+        return new Color(r, g, b);
     }
 }
