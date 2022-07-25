@@ -9,6 +9,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static main.Game.SCALE;
+import static states.GameStates.MENU;
+import static states.GameStates.gameStates;
 
 public class Play extends State implements StateMethods{
     private Player player;
@@ -70,6 +72,9 @@ public class Play extends State implements StateMethods{
             }
             case KeyEvent.VK_SPACE -> {
                 player.setJump(true);
+            }
+            case KeyEvent.VK_BACK_SPACE -> {
+                gameStates = MENU;
             }
             default -> {
             }
