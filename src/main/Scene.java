@@ -5,17 +5,12 @@ import inputs.MouseInputs;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class Scene extends JPanel {
     private final MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
-    private float xDir = 1f, yDir = 0.03f;
-    private Color color = new Color(150, 20, 90);
-    private final Random random;
 
     public Scene() {
-        random = new Random();
         mouseInputs = new MouseInputs(this);
         setSceneSize();
         addKeyListener(new KeyboardInputs(this));
@@ -43,28 +38,5 @@ public class Scene extends JPanel {
 
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        updateRectangle();
-        graphics.setColor(color);
-        graphics.fillRect((int) xDelta, (int) yDelta, 200, 100);
-    }
-
-    private void updateRectangle() {
-        xDelta += xDir;
-        if(xDelta > 400 || xDelta < 0) {
-            xDir *= - 1;
-            color = getRandColor();
-        }
-        yDelta += yDir;
-        if(yDelta > 400 || yDelta < 0) {
-            yDir *= - 1;
-            color = getRandColor();
-        }
-    }
-
-    private Color getRandColor() {
-        int r = random.nextInt(255);
-        int g = random.nextInt(255);
-        int b = random.nextInt(255);
-        return new Color(r, g, b);
     }
 }
