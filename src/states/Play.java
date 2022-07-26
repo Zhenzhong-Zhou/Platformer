@@ -15,6 +15,7 @@ import static states.GameStates.gameStates;
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private boolean paused;
 
     public Play(Game game) {
         super(game);
