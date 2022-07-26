@@ -70,6 +70,8 @@ public class Play extends State implements StateMethods {
         player.render(graphics, xLevelOffset);
 
         if(paused) {
+            graphics.setColor(new Color(0,0,0,150));
+            graphics.fillRect(0,0,GAME_WIDTH, GAME_HEIGHT);
             pauseOverlay.draw(graphics);
         }
     }

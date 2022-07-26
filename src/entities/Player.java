@@ -31,7 +31,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x, y, SCALE * 20, SCALE * 27); // (int) (SCALE * 20)
+        initHitbox(x, y, (int) (SCALE * 20), (int) (SCALE * 27)); // (int) (SCALE * 20)
     }
 
     public void update() {
@@ -93,7 +93,10 @@ public class Player extends Entity {
         if(jump) {
             jump();
         }
-        if(! left && ! right && ! inAir) return;
+
+        if(!inAir) {
+            if((!left && !right)||(right && left)) return;
+        }
 
         float xSpeed = 0;
 
