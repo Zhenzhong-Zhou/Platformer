@@ -114,6 +114,8 @@ public class PauseOverlay {
             replayButton.setMousePressed(true);
         }else if(isSelectedButton(e, menuButton)) {
             menuButton.setMousePressed(true);
+        }else if(isSelectedButton(e, volumeButtons)) {
+            volumeButtons.setMousePressed(true);
         }
     }
 
@@ -146,6 +148,7 @@ public class PauseOverlay {
         resumeButton.restBooleans();
         replayButton.restBooleans();
         menuButton.restBooleans();
+        volumeButtons.restBooleans();
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -154,6 +157,7 @@ public class PauseOverlay {
         resumeButton.setMouseHover(false);
         replayButton.setMouseHover(false);
         menuButton.setMouseHover(false);
+        volumeButtons.setMouseHover(false);
 
         if(isSelectedButton(e, musicButton)) {
             musicButton.setMouseHover(true);
@@ -165,6 +169,8 @@ public class PauseOverlay {
             replayButton.setMouseHover(true);
         }else if(isSelectedButton(e, menuButton)) {
             menuButton.setMouseHover(true);
+        }else if(isSelectedButton(e, volumeButtons)) {
+            volumeButtons.setMouseHover(true);
         }
     }
 
