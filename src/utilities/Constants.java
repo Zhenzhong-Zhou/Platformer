@@ -3,6 +3,12 @@ package utilities;
 import static main.Game.SCALE;
 
 public class Constants {
+    public static class Environment {
+        public static final int BIG_CLOUDS_DEFAULT_WIDTH = 448;
+        public static final int BIG_CLOUDS_DEFAULT_HEIGHT = 101;
+        public static final int BIG_CLOUDS_WIDTH = (int) (BIG_CLOUDS_DEFAULT_WIDTH * SCALE);
+        public static final int BIG_CLOUDS_HEIGHT = (int) (BIG_CLOUDS_DEFAULT_HEIGHT * SCALE);
+    }
     public static class GUI {
         public static class Buttons {
             public static final int BUTTON_DEFAULT_WIDTH = 140;
