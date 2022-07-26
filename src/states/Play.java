@@ -17,12 +17,6 @@ import static utilities.Constants.Environment.*;
 import static utilities.LoadSave.*;
 
 public class Play extends State implements StateMethods {
-    private Player player;
-    private LevelManager levelManager;
-    private EnemyManager enemyManager;
-    private PauseOverlay pauseOverlay;
-    private boolean paused = false;
-    private int xLevelOffset;
     private final int leftBorder = (int) (GAME_WIDTH * 0.2);
     private final int rightBorder = (int) (GAME_WIDTH * 0.8);
     private final int levelTileWidth = GetLevelData()[0].length;
@@ -33,6 +27,12 @@ public class Play extends State implements StateMethods {
     private final BufferedImage smallCloudsImage;
     private final int[] smallCloudsPosition;
     private final Random random = new Random();
+    private Player player;
+    private LevelManager levelManager;
+    private EnemyManager enemyManager;
+    private PauseOverlay pauseOverlay;
+    private boolean paused = false;
+    private int xLevelOffset;
 
     public Play(Game game) {
         super(game);

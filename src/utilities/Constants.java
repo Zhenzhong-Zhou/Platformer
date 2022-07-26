@@ -42,6 +42,7 @@ public class Constants {
             return 0;
         }
     }
+
     public static class Environment {
         // Big Clouds
         public static final int BIG_CLOUDS_DEFAULT_WIDTH = 448;

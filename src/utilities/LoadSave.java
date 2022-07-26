@@ -64,7 +64,7 @@ public class LoadSave {
                 Color color = new Color(image.getRGB(i, j));
                 int value = color.getGreen();
                 if(value == CRAB) {
-                    crabArrayList.add(new Crab(TILES_SIZE*i, TILES_SIZE*j));
+                    crabArrayList.add(new Crab(TILES_SIZE * i, TILES_SIZE * j));
                 }
             }
         }

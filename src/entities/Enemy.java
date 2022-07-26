@@ -2,9 +2,12 @@ package entities;
 
 import static utilities.Constants.EnemyConstants.GetSpriteAmount;
 
-public abstract class Enemy extends Entity{
-    private int animationIndex, enemyStates, enemyType;
-    private int animationTick, animationSpeed = 25;
+public abstract class Enemy extends Entity {
+    private int animationIndex;
+    private int enemyStates;
+    private final int enemyType;
+    private int animationTick;
+    private final int animationSpeed = 25;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);

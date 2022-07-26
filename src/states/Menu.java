@@ -14,8 +14,8 @@ import static utilities.LoadSave.*;
 
 public class Menu extends State implements StateMethods {
     private final MenuButtons[] buttons = new MenuButtons[3];
-    private BufferedImage backgroundImage;
     private final BufferedImage backgroundMenu;
+    private BufferedImage backgroundImage;
     private int menuX, menuY, menuWidth, menuHeight;
 
     public Menu(Game game) {
