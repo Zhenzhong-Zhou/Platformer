@@ -15,6 +15,8 @@ public class VolumeButtons extends PauseButtons {
 
     public VolumeButtons(int x, int y, int width, int height) {
         super(x + width/2, y, VOLUME_WIDTH, height);
+        this.x =x;
+        this.width= width;
         buttonX = x +width/2;
         loadImages();
     }
