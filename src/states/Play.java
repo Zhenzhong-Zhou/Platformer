@@ -1,6 +1,7 @@
 package states;
 
 import entities.Player;
+import gui.PauseOverlay;
 import levels.LevelManager;
 import main.Game;
 
@@ -15,6 +16,7 @@ import static states.GameStates.gameStates;
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
+    private PauseOverlay pauseOverlay;
     private boolean paused;
 
     public Play(Game game) {
@@ -26,6 +28,7 @@ public class Play extends State implements StateMethods {
         levelManager = new LevelManager(game);
         player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
+        pauseOverlay = new PauseOverlay();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class Play extends State implements StateMethods {
     public void draw(Graphics graphics) {
         levelManager.draw(graphics);
         player.render(graphics);
+        pauseOverlay.draw(graphics);
     }
 
     @Override
