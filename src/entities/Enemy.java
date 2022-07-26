@@ -1,6 +1,12 @@
 package entities;
 
-import static utilities.Constants.EnemyConstants.GetSpriteAmount;
+import java.awt.geom.Rectangle2D;
+
+import static main.Game.SCALE;
+import static utilities.Constants.Directions.LEFT;
+import static utilities.Constants.Directions.RIGHT;
+import static utilities.Constants.EnemyConstants.*;
+import static utilities.HelpMethods.*;
 
 public abstract class Enemy extends Entity {
     private int animationIndex;
@@ -8,6 +14,12 @@ public abstract class Enemy extends Entity {
     private final int enemyType;
     private int animationTick;
     private final int animationSpeed = 25;
+    private boolean firstUpdate = true;
+    private boolean inAir;
+    private float fallSpeed;
+    private float gravity = SCALE*0.04f;
+    private int walkDirection = LEFT;
+    private float walkSpeed = 0.35f * SCALE;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -32,7 +44,57 @@ public abstract class Enemy extends Entity {
     }
 
     public void updateMove(int[][] levelData) {
-        // Patrol
+        if(firstUpdate) {
+            if(!IsEntityOnFloor(hitbox, levelData)) {
+                inAir = true;
+            }
+            firstUpdate = false;
+        }
+
+        if(inAir) {
+            if(CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, levelData)) {
+                hitbox.y+= fallSpeed;
+                fallSpeed += gravity;
+            } else {
+                inAir = false;
+                hitbox.y = GetEntityYPositionUnderRoofOrAboveFloor(hitbox, fallSpeed);
+            }
+        } else {
+            // Patrol
+            switch(enemyStates) {
+                case IDLE -> {
+                    enemyStates = RUN;
+                }
+                case RUN -> {
+                    float xSpeed = 0;
+
+                    if(walkDirection == LEFT) {
+                        xSpeed = -walkSpeed;
+                    }else {
+                        xSpeed = walkSpeed;
+                    }
+
+                    if(CanMoveHere(hitbox.x +xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+                        if(IsFloor(hitbox, xSpeed, levelData)) {
+                            hitbox.x += xSpeed;
+                            return;
+                        }
+                    }
+                    changeWalkDirection();
+                }
+                default -> {
+
+                }
+            }
+        }
+    }
+
+    private void changeWalkDirection() {
+        if(walkDirection == LEFT) {
+            walkDirection = RIGHT;
+        } else {
+            walkDirection = LEFT;
+        }
     }
 
     public int getAnimationIndex() {

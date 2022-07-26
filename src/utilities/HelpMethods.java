@@ -67,4 +67,8 @@ public class HelpMethods {
         }
         return true;
     }
+
+    public static boolean IsFloor(Rectangle2D.Float hitbox, float xSpeed, int[][] levelData) {
+        return !IsSolid(hitbox.x - xSpeed, hitbox.y + hitbox.width + xSpeed, levelData);
+    }
 }
