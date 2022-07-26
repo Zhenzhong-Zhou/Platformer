@@ -4,18 +4,25 @@ import static main.Game.SCALE;
 
 public class Constants {
     public static class EnemyConstants {
+        // Enemy Types
         public static final int CRAB = 0;
 
+        // Crab States
         public static final int IDLE = 0;
         public static final int RUN = 1;
         public static final int HIT = 2;
         public static final int ATTACK = 3;
         public static final int DEAD = 4;
 
+        // Crab Sizes
         public static final int CRAB_DEFAULT_WIDTH = 72;
         public static final int CRAB_DEFAULT_HEIGHT = 32;
         public static final int CRAB_WIDTH = (int) (CRAB_DEFAULT_WIDTH * SCALE);
         public static final int CRAB_HEIGHT = (int) (CRAB_DEFAULT_HEIGHT * SCALE);
+
+        // Crab Hitbox Sizes
+        public static final int CRAB_DRAW_OFFSET_X = (int) (26 * SCALE);
+        public static final int CRAB_DRAW_OFFSET_Y = (int) (9 * SCALE);
 
         public static int GetSpriteAmount(int enemy_type, int enemy_state) {
             switch(enemy_type) {
