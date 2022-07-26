@@ -4,7 +4,7 @@ import static main.Game.SCALE;
 
 public class Constants {
     public static class EnemyConstants {
-        public static final int CRABBY = 0;
+        public static final int CRAB = 0;
 
         public static final int IDLE = 0;
         public static final int RUN = 1;
@@ -19,7 +19,7 @@ public class Constants {
 
         public static int GetSpriteAmount(int enemy_type, int enemy_state) {
             switch(enemy_type) {
-                case CRABBY -> {
+                case CRAB -> {
                     switch(enemy_state) {
                         case IDLE -> {
                             return 9;

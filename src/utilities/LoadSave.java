@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 import static main.Game.TILES_SIZE;
-import static utilities.Constants.EnemyConstants.CRABBY;
+import static utilities.Constants.EnemyConstants.CRAB;
 
 public class LoadSave {
     // Entities
@@ -63,7 +63,7 @@ public class LoadSave {
             for(int i = 0; i < image.getWidth(); i++) {
                 Color color = new Color(image.getRGB(i, j));
                 int value = color.getGreen();
-                if(value == CRABBY) {
+                if(value == CRAB) {
                     crabArrayList.add(new Crab(TILES_SIZE*i, TILES_SIZE*j));
                 }
             }
