@@ -9,13 +9,20 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static main.Game.SCALE;
+import static main.Game.*;
+import static utilities.LoadSave.GetLevelData;
 
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private PauseOverlay pauseOverlay;
     private boolean paused = false;
+    private int xLevelOffset;
+    private int leftBorder = (int) (GAME_WIDTH * 0.2);
+    private int rightBorder = (int) (GAME_WIDTH * 0.8);
+    private int levelTileWidth = GetLevelData()[0].length;
+    private int maxTilesOffset = levelTileWidth - TILES_IN_WIDTH;
+    private int maxLevelOffsetX = maxTilesOffset * TILES_SIZE;
 
     public Play(Game game) {
         super(game);
@@ -34,15 +41,33 @@ public class Play extends State implements StateMethods {
         if(! paused) {
             levelManager.update();
             player.update();
+            checkCloseToBorder();
         } else {
             pauseOverlay.update();
         }
     }
 
+    private void checkCloseToBorder() {
+        int playerX = (int) player.getHitbox().x;
+        int difference = playerX - xLevelOffset;
+
+        if(difference > rightBorder) {
+            xLevelOffset += difference-rightBorder;
+        } else if(difference<leftBorder) {
+            xLevelOffset += difference - leftBorder;
+        }
+
+        if(xLevelOffset > maxLevelOffsetX) {
+            xLevelOffset = maxLevelOffsetX;
+        } else if(xLevelOffset < 0) {
+            xLevelOffset = 0;
+        }
+    }
+
     @Override
     public void draw(Graphics graphics) {
-        levelManager.draw(graphics);
-        player.render(graphics);
+        levelManager.draw(graphics, xLevelOffset);
+        player.render(graphics, xLevelOffset);
 
         if(paused) {
             pauseOverlay.draw(graphics);

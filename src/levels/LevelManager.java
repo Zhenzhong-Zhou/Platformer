@@ -30,11 +30,11 @@ public class LevelManager {
         }
     }
 
-    public void draw(Graphics graphics) {
+    public void draw(Graphics graphics, int levelOffset) {
         for(int j = 0; j < TILES_IN_HEIGHT; j++) {
-            for(int i = 0; i < TILES_IN_WIDTH; i++) {
+            for(int i = 0; i < levelDefault.getLevelData()[0].length; i++) {
                 int index = levelDefault.getSpriteIndex(i, j);
-                graphics.drawImage(levelSprite[index], TILES_SIZE * i, TILES_SIZE * j, TILES_SIZE, TILES_SIZE, null);
+                graphics.drawImage(levelSprite[index], TILES_SIZE * i-levelOffset, TILES_SIZE * j, TILES_SIZE, TILES_SIZE, null);
             }
         }
     }

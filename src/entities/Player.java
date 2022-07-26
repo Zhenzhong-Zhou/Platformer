@@ -40,8 +40,8 @@ public class Player extends Entity {
         setAnimation();
     }
 
-    public void render(Graphics graphics) {
-        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset), (int) (hitbox.y - yDrawOffset), width, height, null);
+    public void render(Graphics graphics, int levelOffset) {
+        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset)-levelOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
         drawHitbox(graphics);
     }
 
