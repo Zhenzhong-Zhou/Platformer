@@ -15,7 +15,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.MENU_BACKGROUND;
 
 public class Menu extends State implements StateMethods {
-    private MenuButton[] buttons = new MenuButton[3];
+    private final MenuButton[] buttons = new MenuButton[3];
     private BufferedImage backgroundImage;
     private int menuX, menuY, menuWidth, menuHeight;
 
@@ -29,14 +29,14 @@ public class Menu extends State implements StateMethods {
         backgroundImage = GetSpriteAtlas(MENU_BACKGROUND);
         menuWidth = (int) (backgroundImage.getWidth() * SCALE);
         menuHeight = (int) (backgroundImage.getHeight() * SCALE);
-        menuX = GAME_WIDTH/2 - menuWidth/2;
-        menuY=(int) (SCALE*45);
+        menuX = GAME_WIDTH / 2 - menuWidth / 2;
+        menuY = (int) (SCALE * 45);
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(GAME_WIDTH/2, (int) (SCALE * 150), 0, PLAY);
-        buttons[1] = new MenuButton(GAME_WIDTH/2, (int) (SCALE * 220), 1, OPTIONS);
-        buttons[2] = new MenuButton(GAME_WIDTH/2, (int) (SCALE * 290), 2, QUIT);
+        buttons[0] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 150), 0, PLAY);
+        buttons[1] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 220), 1, OPTIONS);
+        buttons[2] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 290), 2, QUIT);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void mouseReleased(MouseEvent e) {
         for(MenuButton menuButton : buttons) {
-            if(isSelectedButton(e ,menuButton)) {
+            if(isSelectedButton(e, menuButton)) {
                 if(menuButton.isMousePressed()) {
                     menuButton.setGameStates();
                     break;

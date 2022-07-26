@@ -16,9 +16,9 @@ public class Player extends Entity {
     private final float gravity = 0.04f * SCALE;
     private final float jumpSpeed = - 2.25f * SCALE;
     private final float fallSpeedAfterCollision = 0.5f * SCALE;
+    private final int animationSpeed = 25;
     private int animationTick;
     private int animationIndex;
-    private final int animationSpeed = 25;
     private BufferedImage[][] animations;
     private int playerAction = IDLE;
     private boolean left, up, right, down, jump;

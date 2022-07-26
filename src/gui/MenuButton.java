@@ -10,9 +10,12 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.MENU_BUTTONS;
 
 public class MenuButton {
-    private int xPosition, yPosition, rowIndex, index;
-    private int xOffsetCenter = BUTTON_WIDTH / 2;
-    private GameStates gameStates;
+    private final int xPosition;
+    private final int yPosition;
+    private final int rowIndex;
+    private int index;
+    private final int xOffsetCenter = BUTTON_WIDTH / 2;
+    private final GameStates gameStates;
     private BufferedImage[] images;
     private boolean mouseHover, mousePressed;
     private Rectangle bounds;
@@ -35,13 +38,13 @@ public class MenuButton {
         images = new BufferedImage[3];
         BufferedImage temp = GetSpriteAtlas(MENU_BUTTONS);
 
-        for(int i=0;i<images.length;i++){
+        for(int i = 0; i < images.length; i++) {
             images[i] = temp.getSubimage(BUTTON_DEFAULT_WIDTH * i, BUTTON_DEFAULT_HEIGHT * rowIndex, BUTTON_DEFAULT_WIDTH, BUTTON_DEFAULT_HEIGHT);
         }
     }
 
     public void draw(Graphics graphics) {
-        graphics.drawImage(images[index], xPosition-xOffsetCenter, yPosition, BUTTON_WIDTH, BUTTON_HEIGHT, null);
+        graphics.drawImage(images[index], xPosition - xOffsetCenter, yPosition, BUTTON_WIDTH, BUTTON_HEIGHT, null);
     }
 
     public void update() {
@@ -81,6 +84,6 @@ public class MenuButton {
 
     public void resetBooleans() {
         mouseHover = false;
-        mousePressed= false;
+        mousePressed = false;
     }
 }
