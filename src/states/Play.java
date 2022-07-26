@@ -15,7 +15,7 @@ public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private PauseOverlay pauseOverlay;
-    private boolean paused = true;
+    private boolean paused = false;
 
     public Play(Game game) {
         super(game);
@@ -31,16 +31,22 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        levelManager.update();
-        player.update();
-        pauseOverlay.update();
+        if(!paused) {
+            levelManager.update();
+            player.update();
+        } else {
+            pauseOverlay.update();
+        }
     }
 
     @Override
     public void draw(Graphics graphics) {
         levelManager.draw(graphics);
         player.render(graphics);
-        pauseOverlay.draw(graphics);
+
+        if(paused) {
+            pauseOverlay.draw(graphics);
+        }
     }
 
     @Override
@@ -82,6 +88,9 @@ public class Play extends State implements StateMethods {
             }
             case KeyEvent.VK_SPACE -> {
                 player.setJump(true);
+            }
+            case KeyEvent.VK_ESCAPE -> {
+                paused = !paused;
             }
             default -> {
             }
