@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 public class PauseButtons {
     protected int x, y, width, height;

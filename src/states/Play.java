@@ -31,7 +31,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        if(!paused) {
+        if(! paused) {
             levelManager.update();
             player.update();
         } else {
@@ -96,7 +96,7 @@ public class Play extends State implements StateMethods {
                 player.setJump(true);
             }
             case KeyEvent.VK_ESCAPE -> {
-                paused = !paused;
+                paused = ! paused;
             }
             default -> {
             }

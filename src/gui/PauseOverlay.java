@@ -15,7 +15,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
 public class PauseOverlay {
-    private Play play;
+    private final Play play;
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgW, bgH;
     private SoundButtons musicButton, sfxButton;
@@ -112,11 +112,11 @@ public class PauseOverlay {
             sfxButton.setMousePressed(true);
         } else if(isSelectedButton(e, resumeButton)) {
             resumeButton.setMousePressed(true);
-        }else if(isSelectedButton(e, replayButton)) {
+        } else if(isSelectedButton(e, replayButton)) {
             replayButton.setMousePressed(true);
-        }else if(isSelectedButton(e, menuButton)) {
+        } else if(isSelectedButton(e, menuButton)) {
             menuButton.setMousePressed(true);
-        }else if(isSelectedButton(e, volumeButtons)) {
+        } else if(isSelectedButton(e, volumeButtons)) {
             volumeButtons.setMousePressed(true);
         }
     }
@@ -130,15 +130,15 @@ public class PauseOverlay {
             if(sfxButton.isMousePressed()) {
                 sfxButton.setMuted(sfxButton.isMuted());
             }
-        }else if(isSelectedButton(e, resumeButton)) {
+        } else if(isSelectedButton(e, resumeButton)) {
             if(resumeButton.isMousePressed()) {
                 play.resume();
             }
-        }else if(isSelectedButton(e, replayButton)) {
+        } else if(isSelectedButton(e, replayButton)) {
             if(replayButton.isMousePressed()) {
                 System.out.println("Replay Game!");
             }
-        }else if(isSelectedButton(e, menuButton)) {
+        } else if(isSelectedButton(e, menuButton)) {
             if(menuButton.isMousePressed()) {
                 gameStates = MENU;
                 play.resume();
@@ -165,13 +165,13 @@ public class PauseOverlay {
             musicButton.setMouseHover(true);
         } else if(isSelectedButton(e, sfxButton)) {
             sfxButton.setMouseHover(true);
-        }else if(isSelectedButton(e, resumeButton)) {
+        } else if(isSelectedButton(e, resumeButton)) {
             resumeButton.setMouseHover(true);
-        }else if(isSelectedButton(e, replayButton)) {
+        } else if(isSelectedButton(e, replayButton)) {
             replayButton.setMouseHover(true);
-        }else if(isSelectedButton(e, menuButton)) {
+        } else if(isSelectedButton(e, menuButton)) {
             menuButton.setMouseHover(true);
-        }else if(isSelectedButton(e, volumeButtons)) {
+        } else if(isSelectedButton(e, volumeButtons)) {
             volumeButtons.setMouseHover(true);
         }
     }

@@ -10,7 +10,8 @@ import static utilities.LoadSave.UTIL_BUTTONS;
 
 public class UtilButtons extends PauseButtons {
     private BufferedImage[] images;
-    private int rowIndex, index;
+    private final int rowIndex;
+    private int index;
     private boolean mouseHover, mousePressed;
 
     public UtilButtons(int x, int y, int width, int height, int rowIndex) {
@@ -23,7 +24,7 @@ public class UtilButtons extends PauseButtons {
         BufferedImage temp = GetSpriteAtlas(UTIL_BUTTONS);
         images = new BufferedImage[3];
 
-        for(int i =0; i< images.length;i++) {
+        for(int i = 0; i < images.length; i++) {
             images[i] = temp.getSubimage(UTIL_DEFAULT_SIZE * i, UTIL_DEFAULT_SIZE * rowIndex, UTIL_DEFAULT_SIZE, UTIL_DEFAULT_SIZE);
         }
     }
