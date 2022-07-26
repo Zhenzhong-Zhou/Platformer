@@ -22,9 +22,9 @@ public class SoundButton extends PauseButton {
         BufferedImage temp = GetSpriteAtlas(SOUND_BUTTONS);
         soundImages = new BufferedImage[2][3];
 
-        for(int j =0; j<soundImages.length;j++) {
-            for(int i=0; i<soundImages[j].length; i++) {
-                soundImages[j][i] = temp.getSubimage(SOUND_DEFAULT_SIZE*i, SOUND_DEFAULT_SIZE*j, SOUND_DEFAULT_SIZE, SOUND_DEFAULT_SIZE);
+        for(int j = 0; j < soundImages.length; j++) {
+            for(int i = 0; i < soundImages[j].length; i++) {
+                soundImages[j][i] = temp.getSubimage(SOUND_DEFAULT_SIZE * i, SOUND_DEFAULT_SIZE * j, SOUND_DEFAULT_SIZE, SOUND_DEFAULT_SIZE);
             }
         }
     }

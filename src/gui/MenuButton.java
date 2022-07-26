@@ -13,9 +13,9 @@ public class MenuButton {
     private final int xPosition;
     private final int yPosition;
     private final int rowIndex;
-    private int index;
     private final int xOffsetCenter = BUTTON_WIDTH / 2;
     private final GameStates gameStates;
+    private int index;
     private BufferedImage[] images;
     private boolean mouseHover, mousePressed;
     private Rectangle bounds;

@@ -10,14 +10,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import static main.Game.SCALE;
-import static states.GameStates.MENU;
-import static states.GameStates.gameStates;
 
 public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private PauseOverlay pauseOverlay;
-    private boolean paused = true;
+    private final boolean paused = true;
 
     public Play(Game game) {
         super(game);

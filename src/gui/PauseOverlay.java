@@ -21,19 +21,19 @@ public class PauseOverlay {
     }
 
     private void createSoundButtons() {
-        int soundX = (int)(SCALE*450);
-        int musicY = (int)(SCALE*140);
-        int sfxY = (int) (SCALE*186);
+        int soundX = (int) (SCALE * 450);
+        int musicY = (int) (SCALE * 140);
+        int sfxY = (int) (SCALE * 186);
 
         musicButton = new SoundButton(soundX, musicY, SOUND_SIZE, SOUND_SIZE);
-        sfxButton= new SoundButton(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
+        sfxButton = new SoundButton(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
     }
 
     private void loadBackground() {
         backgroundImage = GetSpriteAtlas(PAUSE_BACKGROUND);
-        bgW = (int) (backgroundImage.getWidth()*SCALE);
-        bgH = (int) (backgroundImage.getHeight()*SCALE);
-        bgX = GAME_WIDTH/2 - bgW/2;
+        bgW = (int) (backgroundImage.getWidth() * SCALE);
+        bgH = (int) (backgroundImage.getHeight() * SCALE);
+        bgX = GAME_WIDTH / 2 - bgW / 2;
         bgY = (int) (SCALE * 25);
     }
 
@@ -70,11 +70,11 @@ public class PauseOverlay {
     public void mouseReleased(MouseEvent e) {
         if(isSelectedButton(e, musicButton)) {
             if(musicButton.isMousePressed()) {
-                musicButton.setMuted(!musicButton.isMuted());
+                musicButton.setMuted(! musicButton.isMuted());
             }
         } else if(isSelectedButton(e, sfxButton)) {
             if(sfxButton.isMousePressed()) {
-                sfxButton.setMuted(!sfxButton.isMuted());
+                sfxButton.setMuted(! sfxButton.isMuted());
             }
         }
     }
