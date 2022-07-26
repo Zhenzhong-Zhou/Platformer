@@ -6,17 +6,31 @@ import main.Game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 import static states.GameStates.*;
+import static utilities.LoadSave.GetSpriteAtlas;
+import static utilities.LoadSave.MENU_BACKGROUND;
 
 public class Menu extends State implements StateMethods {
     private MenuButton[] buttons = new MenuButton[3];
+    private BufferedImage backgroundImage;
+    private int menuX, menuY, menuWidth, menuHeight;
 
     public Menu(Game game) {
         super(game);
         loadButtons();
+        loadBackground();
+    }
+
+    private void loadBackground() {
+        backgroundImage = GetSpriteAtlas(MENU_BACKGROUND);
+        menuWidth = (int) (backgroundImage.getWidth() * SCALE);
+        menuHeight = (int) (backgroundImage.getHeight() * SCALE);
+        menuX = GAME_WIDTH/2 - menuWidth/2;
+        menuY=(int) (SCALE*45);
     }
 
     private void loadButtons() {
@@ -34,6 +48,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics graphics) {
+        graphics.drawImage(backgroundImage, menuX, menuY, menuWidth, menuHeight, null);
         for(MenuButton menuButton : buttons) {
             menuButton.draw(graphics);
         }
