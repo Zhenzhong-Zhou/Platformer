@@ -108,7 +108,7 @@ public class Player extends Entity {
         }
 
         if(! inAir) {
-            if(! IsEntityOnFloor(hitbox, levelData)) {
+            if(IsEntityOnFloor(hitbox, levelData)) {
                 inAir = true;
             }
         }
@@ -165,7 +165,7 @@ public class Player extends Entity {
 
     public void loadLevelData(int[][] levelData) {
         this.levelData = levelData;
-        if(! IsEntityOnFloor(hitbox, levelData)) {
+        if(IsEntityOnFloor(hitbox, levelData)) {
             inAir = true;
         }
     }

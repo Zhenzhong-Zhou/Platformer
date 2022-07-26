@@ -1,7 +1,5 @@
 package entities;
 
-import java.awt.geom.Rectangle2D;
-
 import static main.Game.SCALE;
 import static utilities.Constants.Directions.LEFT;
 import static utilities.Constants.Directions.RIGHT;
@@ -45,7 +43,7 @@ public abstract class Enemy extends Entity {
 
     public void updateMove(int[][] levelData) {
         if(firstUpdate) {
-            if(!IsEntityOnFloor(hitbox, levelData)) {
+            if(IsEntityOnFloor(hitbox, levelData)) {
                 inAir = true;
             }
             firstUpdate = false;
