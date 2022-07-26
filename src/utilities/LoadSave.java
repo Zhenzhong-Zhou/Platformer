@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class LoadSave {
     // Entities
     public static final String PLAYER_ATLAS = "entities/player_sprites.png";
-    public static final String ENEMY_ATLAS = "entities/crabby_sprite.png";
+    public static final String CRAB_ATLAS = "entities/crabby_sprite.png";
 
     // Environment
     public static final String LEVEL_ATLAS = "environment/outside_sprites.png";
