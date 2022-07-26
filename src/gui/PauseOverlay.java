@@ -96,7 +96,9 @@ public class PauseOverlay {
     }
 
     public void mouseDragged(MouseEvent e) {
-
+        if(volumeButtons.isMousePressed()) {
+            volumeButtons.changeX(e.getX());
+        }
     }
 
     public void mouseClicked(MouseEvent e) {
