@@ -12,10 +12,20 @@ public class Constants {
         }
 
         public static class PauseButtons {
+            // Sound Buttons
             public static final int SOUND_DEFAULT_SIZE = 42;
             public static final int SOUND_SIZE = (int) (SOUND_DEFAULT_SIZE * SCALE);
+            // Util Buttons
             public static final int UTIL_DEFAULT_SIZE = 56;
             public static final int UTIL_SIZE = (int) (UTIL_DEFAULT_SIZE * SCALE);
+            // Volume Buttons
+            public static final int VOLUME_DEFAULT_WIDTH = 28;
+            public static final int VOLUME_DEFAULT_HEIGHT = 44;
+            public static final int VOLUME_WIDTH = (int) (VOLUME_DEFAULT_WIDTH * SCALE);
+            public static final int VOLUME_HEIGHT = (int) (VOLUME_DEFAULT_HEIGHT * SCALE);
+            // Volume Sliders
+            public static final int SLIDER_DEFAULT_WIDTH = 215;
+            public static final int SLIDER_WIDTH = (int) (SLIDER_DEFAULT_WIDTH * SCALE);
         }
     }
 

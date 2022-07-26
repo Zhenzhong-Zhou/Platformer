@@ -10,8 +10,7 @@ import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 import static states.GameStates.MENU;
 import static states.GameStates.gameStates;
-import static utilities.Constants.GUI.PauseButtons.SOUND_SIZE;
-import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
+import static utilities.Constants.GUI.PauseButtons.*;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
@@ -21,12 +20,20 @@ public class PauseOverlay {
     private int bgX, bgY, bgW, bgH;
     private SoundButtons musicButton, sfxButton;
     private UtilButtons resumeButton, replayButton, menuButton;
+    private VolumeButtons volumeButtons;
 
     public PauseOverlay(Play play) {
         this.play = play;
         loadBackground();
         createSoundButtons();
         createUtilButtons();
+        createVolumeButtons();
+    }
+
+    private void createVolumeButtons() {
+        int vX = (int) (SCALE * 309);
+        int vY = (int) (SCALE * 278);
+        volumeButtons = new VolumeButtons(vX, vY, SLIDER_WIDTH, VOLUME_HEIGHT);
     }
 
     private void createUtilButtons() {
@@ -58,11 +65,17 @@ public class PauseOverlay {
     }
 
     public void update() {
+        // Sound Buttons
         musicButton.update();
         sfxButton.update();
+
+        // Util Buttons
         resumeButton.update();
         replayButton.update();
         menuButton.update();
+
+        // Volume Buttons
+        volumeButtons.update();
     }
 
     public void draw(Graphics graphics) {
@@ -77,6 +90,9 @@ public class PauseOverlay {
         resumeButton.draw(graphics);
         replayButton.draw(graphics);
         menuButton.draw(graphics);
+
+        // Volume Buttons
+        volumeButtons.draw(graphics);
     }
 
     public void mouseDragged(MouseEvent e) {
