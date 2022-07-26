@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 import static utilities.Constants.GUI.PauseButtons.SOUND_SIZE;
+import static utilities.Constants.GUI.PauseButtons.URM_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
@@ -14,10 +15,23 @@ public class PauseOverlay {
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgW, bgH;
     private SoundButton musicButton, sfxButton;
+    private UrmButtons resumeButton, replayButton, menuButton;
 
     public PauseOverlay() {
         loadBackground();
         createSoundButtons();
+        createUtilButtons();
+    }
+
+    private void createUtilButtons() {
+        int resumeX = (int) (SCALE * 462);
+        int replayX = (int) (SCALE * 387);
+        int menuX = (int) (SCALE * 313);
+        int bY = (int) (SCALE * 325);
+
+        resumeButton = new UrmButtons(resumeX, bY, URM_SIZE, URM_SIZE, 0);
+        replayButton = new UrmButtons(replayX, bY, URM_SIZE, URM_SIZE, 1);
+        menuButton = new UrmButtons(menuX, bY, URM_SIZE, URM_SIZE, 2);
     }
 
     private void createSoundButtons() {
@@ -40,6 +54,9 @@ public class PauseOverlay {
     public void update() {
         musicButton.update();
         sfxButton.update();
+        resumeButton.update();
+        replayButton.update();
+        menuButton.update();
     }
 
     public void draw(Graphics graphics) {
@@ -49,6 +66,11 @@ public class PauseOverlay {
         // Sound Buttons
         musicButton.draw(graphics);
         sfxButton.draw(graphics);
+
+        // UtilButtons
+        resumeButton.draw(graphics);
+        replayButton.draw(graphics);
+        menuButton.draw(graphics);
     }
 
     public void mouseDragged(MouseEvent e) {
