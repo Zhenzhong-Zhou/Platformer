@@ -3,6 +3,45 @@ package utilities;
 import static main.Game.SCALE;
 
 public class Constants {
+    public static class EnemyConstants {
+        public static final int CRABBY = 0;
+
+        public static final int IDLE = 0;
+        public static final int RUN = 1;
+        public static final int HIT = 2;
+        public static final int ATTACK = 3;
+        public static final int DEAD = 4;
+
+        public static final int CRAB_DEFAULT_WIDTH = 72;
+        public static final int CRAB_DEFAULT_HEIGHT = 32;
+        public static final int CRAB_WIDTH = (int) (CRAB_DEFAULT_WIDTH * SCALE);
+        public static final int CRAB_HEIGHT = (int) (CRAB_DEFAULT_HEIGHT * SCALE);
+
+        public static int GetSpriteAmount(int enemy_type, int enemy_state) {
+            switch(enemy_type) {
+                case CRABBY -> {
+                    switch(enemy_state) {
+                        case IDLE -> {
+                            return 9;
+                        }
+                        case RUN -> {
+                            return 6;
+                        }
+                        case ATTACK -> {
+                            return 7;
+                        }
+                        case HIT -> {
+                            return 4;
+                        }
+                        case DEAD -> {
+                            return 5;
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+    }
     public static class Environment {
         // Big Clouds
         public static final int BIG_CLOUDS_DEFAULT_WIDTH = 448;
