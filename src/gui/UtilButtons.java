@@ -9,8 +9,8 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.UTIL_BUTTONS;
 
 public class UtilButtons extends PauseButtons {
-    private BufferedImage[] images;
     private final int rowIndex;
+    private BufferedImage[] images;
     private int index;
     private boolean mouseHover, mousePressed;
 

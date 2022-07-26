@@ -15,6 +15,7 @@ public class Constants {
         public static final int SMALL_CLOUDS_WIDTH = (int) (SMALL_CLOUDS_DEFAULT_WIDTH * SCALE);
         public static final int SMALL_CLOUDS_HEIGHT = (int) (SMALL_CLOUDS_DEFAULT_HEIGHT * SCALE);
     }
+
     public static class GUI {
         public static class Buttons {
             public static final int BUTTON_DEFAULT_WIDTH = 140;

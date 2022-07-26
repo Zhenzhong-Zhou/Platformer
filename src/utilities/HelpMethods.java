@@ -2,7 +2,8 @@ package utilities;
 
 import java.awt.geom.Rectangle2D;
 
-import static main.Game.*;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.TILES_SIZE;
 
 public class HelpMethods {
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] levelData) {

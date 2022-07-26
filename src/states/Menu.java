@@ -14,7 +14,8 @@ import static utilities.LoadSave.*;
 
 public class Menu extends State implements StateMethods {
     private final MenuButtons[] buttons = new MenuButtons[3];
-    private BufferedImage backgroundImage, backgroundMenu;
+    private BufferedImage backgroundImage;
+    private final BufferedImage backgroundMenu;
     private int menuX, menuY, menuWidth, menuHeight;
 
     public Menu(Game game) {
@@ -47,7 +48,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawImage(backgroundMenu,0,0,GAME_WIDTH, GAME_HEIGHT, null);
+        graphics.drawImage(backgroundMenu, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
         graphics.drawImage(backgroundImage, menuX, menuY, menuWidth, menuHeight, null);
         for(MenuButtons menuButton : buttons) {
             menuButton.draw(graphics);

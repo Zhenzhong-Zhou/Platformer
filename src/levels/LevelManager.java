@@ -5,7 +5,8 @@ import main.Game;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static main.Game.*;
+import static main.Game.TILES_IN_HEIGHT;
+import static main.Game.TILES_SIZE;
 import static utilities.LoadSave.*;
 
 public class LevelManager {
@@ -34,7 +35,7 @@ public class LevelManager {
         for(int j = 0; j < TILES_IN_HEIGHT; j++) {
             for(int i = 0; i < levelDefault.getLevelData()[0].length; i++) {
                 int index = levelDefault.getSpriteIndex(i, j);
-                graphics.drawImage(levelSprite[index], TILES_SIZE * i-levelOffset, TILES_SIZE * j, TILES_SIZE, TILES_SIZE, null);
+                graphics.drawImage(levelSprite[index], TILES_SIZE * i - levelOffset, TILES_SIZE * j, TILES_SIZE, TILES_SIZE, null);
             }
         }
     }

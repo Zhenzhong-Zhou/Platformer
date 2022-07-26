@@ -8,13 +8,13 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.VOLUME_BUTTONS;
 
 public class VolumeButtons extends PauseButtons {
+    private final int minX;
+    private final int maxX;
     private BufferedImage[] images;
     private BufferedImage slider;
     private int index;
     private boolean mouseHover, mousePressed;
     private int buttonX;
-    private final int minX;
-    private final int maxX;
 
     public VolumeButtons(int x, int y, int width, int height) {
         super(x + width / 2, y, VOLUME_WIDTH, height);

@@ -21,14 +21,16 @@ public class Play extends State implements StateMethods {
     private PauseOverlay pauseOverlay;
     private boolean paused = false;
     private int xLevelOffset;
-    private int leftBorder = (int) (GAME_WIDTH * 0.2);
-    private int rightBorder = (int) (GAME_WIDTH * 0.8);
-    private int levelTileWidth = GetLevelData()[0].length;
-    private int maxTilesOffset = levelTileWidth - TILES_IN_WIDTH;
-    private int maxLevelOffsetX = maxTilesOffset * TILES_SIZE;
-    private BufferedImage backgroundImage, bigCloudsImage, smallCloudsImage;
-    private int[] smallCloudsPosition;
-    private Random random = new Random();
+    private final int leftBorder = (int) (GAME_WIDTH * 0.2);
+    private final int rightBorder = (int) (GAME_WIDTH * 0.8);
+    private final int levelTileWidth = GetLevelData()[0].length;
+    private final int maxTilesOffset = levelTileWidth - TILES_IN_WIDTH;
+    private final int maxLevelOffsetX = maxTilesOffset * TILES_SIZE;
+    private final BufferedImage backgroundImage;
+    private final BufferedImage bigCloudsImage;
+    private final BufferedImage smallCloudsImage;
+    private final int[] smallCloudsPosition;
+    private final Random random = new Random();
 
     public Play(Game game) {
         super(game);
@@ -37,8 +39,8 @@ public class Play extends State implements StateMethods {
         bigCloudsImage = GetSpriteAtlas(BIG_CLOUDS);
         smallCloudsImage = GetSpriteAtlas(SMALL_CLOUDS);
         smallCloudsPosition = new int[8];
-        for(int i= 0 ; i< smallCloudsPosition.length;i++) {
-            smallCloudsPosition[i] = (int) (SCALE*90) + random.nextInt((int) (SCALE*100));
+        for(int i = 0; i < smallCloudsPosition.length; i++) {
+            smallCloudsPosition[i] = (int) (SCALE * 90) + random.nextInt((int) (SCALE * 100));
         }
     }
 
@@ -65,8 +67,8 @@ public class Play extends State implements StateMethods {
         int difference = playerX - xLevelOffset;
 
         if(difference > rightBorder) {
-            xLevelOffset += difference-rightBorder;
-        } else if(difference<leftBorder) {
+            xLevelOffset += difference - rightBorder;
+        } else if(difference < leftBorder) {
             xLevelOffset += difference - leftBorder;
         }
 
@@ -85,19 +87,19 @@ public class Play extends State implements StateMethods {
         player.render(graphics, xLevelOffset);
 
         if(paused) {
-            graphics.setColor(new Color(0,0,0,150));
-            graphics.fillRect(0,0,GAME_WIDTH, GAME_HEIGHT);
+            graphics.setColor(new Color(0, 0, 0, 150));
+            graphics.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
             pauseOverlay.draw(graphics);
         }
     }
 
     private void drawClouds(Graphics graphics) {
-        for(int i =0; i<3; i++) {
-            graphics.drawImage(bigCloudsImage,BIG_CLOUDS_WIDTH*i-(int) (xLevelOffset*0.3), (int) (SCALE*204), BIG_CLOUDS_WIDTH, BIG_CLOUDS_HEIGHT,null);
+        for(int i = 0; i < 3; i++) {
+            graphics.drawImage(bigCloudsImage, BIG_CLOUDS_WIDTH * i - (int) (xLevelOffset * 0.3), (int) (SCALE * 204), BIG_CLOUDS_WIDTH, BIG_CLOUDS_HEIGHT, null);
         }
 
-        for(int i =0; i<smallCloudsPosition.length;i++) {
-            graphics.drawImage(smallCloudsImage, SMALL_CLOUDS_WIDTH*4*i-(int) (xLevelOffset*0.7), smallCloudsPosition[i], SMALL_CLOUDS_WIDTH, SMALL_CLOUDS_HEIGHT, null);
+        for(int i = 0; i < smallCloudsPosition.length; i++) {
+            graphics.drawImage(smallCloudsImage, SMALL_CLOUDS_WIDTH * 4 * i - (int) (xLevelOffset * 0.7), smallCloudsPosition[i], SMALL_CLOUDS_WIDTH, SMALL_CLOUDS_HEIGHT, null);
         }
     }
 
