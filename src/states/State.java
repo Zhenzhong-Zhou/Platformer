@@ -1,6 +1,6 @@
 package states;
 
-import gui.MenuButton;
+import gui.MenuButtons;
 import main.Game;
 
 import java.awt.event.MouseEvent;
@@ -12,7 +12,7 @@ public class State {
         this.game = game;
     }
 
-    public boolean isSelectedButton(MouseEvent e, MenuButton menuButton) {
+    public boolean isSelectedButton(MouseEvent e, MenuButtons menuButton) {
         return menuButton.getBounds().contains(e.getX(), e.getY());
     }
 

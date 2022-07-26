@@ -9,7 +9,7 @@ import static utilities.Constants.GUI.Buttons.*;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.MENU_BUTTONS;
 
-public class MenuButton {
+public class MenuButtons {
     private final int xPosition;
     private final int yPosition;
     private final int rowIndex;
@@ -20,7 +20,7 @@ public class MenuButton {
     private boolean mouseHover, mousePressed;
     private Rectangle bounds;
 
-    public MenuButton(int xPosition, int yPosition, int rowIndex, GameStates gameStates) {
+    public MenuButtons(int xPosition, int yPosition, int rowIndex, GameStates gameStates) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.rowIndex = rowIndex;

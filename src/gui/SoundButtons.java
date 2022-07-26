@@ -7,13 +7,13 @@ import static utilities.Constants.GUI.PauseButtons.SOUND_DEFAULT_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.SOUND_BUTTONS;
 
-public class SoundButton extends PauseButton {
+public class SoundButtons extends PauseButtons {
     private BufferedImage[][] soundImages;
     private boolean mouseHover, mousePressed;
     private boolean muted;
     private int rowIndex, columnIndex;
 
-    public SoundButton(int x, int y, int width, int height) {
+    public SoundButtons(int x, int y, int width, int height) {
         super(x, y, width, height);
         loadSoundImages();
     }

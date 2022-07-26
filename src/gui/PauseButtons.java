@@ -2,11 +2,11 @@ package gui;
 
 import java.awt.Rectangle;
 
-public class PauseButton {
+public class PauseButtons {
     protected int x, y, width, height;
     protected Rectangle bounds;
 
-    public PauseButton(int x, int y, int width, int height) {
+    public PauseButtons(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;

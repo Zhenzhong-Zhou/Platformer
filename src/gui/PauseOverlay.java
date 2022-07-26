@@ -14,8 +14,8 @@ import static utilities.LoadSave.PAUSE_BACKGROUND;
 public class PauseOverlay {
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgW, bgH;
-    private SoundButton musicButton, sfxButton;
-    private UrmButtons resumeButton, replayButton, menuButton;
+    private SoundButtons musicButton, sfxButton;
+    private UtilButtons resumeButton, replayButton, menuButton;
 
     public PauseOverlay() {
         loadBackground();
@@ -29,9 +29,9 @@ public class PauseOverlay {
         int menuX = (int) (SCALE * 313);
         int bY = (int) (SCALE * 325);
 
-        resumeButton = new UrmButtons(resumeX, bY, URM_SIZE, URM_SIZE, 0);
-        replayButton = new UrmButtons(replayX, bY, URM_SIZE, URM_SIZE, 1);
-        menuButton = new UrmButtons(menuX, bY, URM_SIZE, URM_SIZE, 2);
+        resumeButton = new UtilButtons(resumeX, bY, URM_SIZE, URM_SIZE, 0);
+        replayButton = new UtilButtons(replayX, bY, URM_SIZE, URM_SIZE, 1);
+        menuButton = new UtilButtons(menuX, bY, URM_SIZE, URM_SIZE, 2);
     }
 
     private void createSoundButtons() {
@@ -39,8 +39,8 @@ public class PauseOverlay {
         int musicY = (int) (SCALE * 140);
         int sfxY = (int) (SCALE * 186);
 
-        musicButton = new SoundButton(soundX, musicY, SOUND_SIZE, SOUND_SIZE);
-        sfxButton = new SoundButton(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
+        musicButton = new SoundButtons(soundX, musicY, SOUND_SIZE, SOUND_SIZE);
+        sfxButton = new SoundButtons(soundX, sfxY, SOUND_SIZE, SOUND_SIZE);
     }
 
     private void loadBackground() {
@@ -115,7 +115,7 @@ public class PauseOverlay {
         }
     }
 
-    private boolean isSelectedButton(MouseEvent e, PauseButton pauseButton) {
+    private boolean isSelectedButton(MouseEvent e, PauseButtons pauseButton) {
         return pauseButton.getBounds().contains(e.getX(), e.getY());
     }
 }

@@ -1,6 +1,6 @@
 package states;
 
-import gui.MenuButton;
+import gui.MenuButtons;
 import main.Game;
 
 import java.awt.*;
@@ -15,7 +15,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.MENU_BACKGROUND;
 
 public class Menu extends State implements StateMethods {
-    private final MenuButton[] buttons = new MenuButton[3];
+    private final MenuButtons[] buttons = new MenuButtons[3];
     private BufferedImage backgroundImage;
     private int menuX, menuY, menuWidth, menuHeight;
 
@@ -34,14 +34,14 @@ public class Menu extends State implements StateMethods {
     }
 
     private void loadButtons() {
-        buttons[0] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 150), 0, PLAY);
-        buttons[1] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 220), 1, OPTIONS);
-        buttons[2] = new MenuButton(GAME_WIDTH / 2, (int) (SCALE * 290), 2, QUIT);
+        buttons[0] = new MenuButtons(GAME_WIDTH / 2, (int) (SCALE * 150), 0, PLAY);
+        buttons[1] = new MenuButtons(GAME_WIDTH / 2, (int) (SCALE * 220), 1, OPTIONS);
+        buttons[2] = new MenuButtons(GAME_WIDTH / 2, (int) (SCALE * 290), 2, QUIT);
     }
 
     @Override
     public void update() {
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             menuButton.update();
         }
     }
@@ -49,7 +49,7 @@ public class Menu extends State implements StateMethods {
     @Override
     public void draw(Graphics graphics) {
         graphics.drawImage(backgroundImage, menuX, menuY, menuWidth, menuHeight, null);
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             menuButton.draw(graphics);
         }
     }
@@ -61,7 +61,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             if(isSelectedButton(e, menuButton)) {
                 menuButton.setMousePressed(true);
                 break;
@@ -71,7 +71,7 @@ public class Menu extends State implements StateMethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             if(isSelectedButton(e, menuButton)) {
                 if(menuButton.isMousePressed()) {
                     menuButton.setGameStates();
@@ -83,18 +83,18 @@ public class Menu extends State implements StateMethods {
     }
 
     private void restButtons() {
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             menuButton.resetBooleans();
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             menuButton.setMouseHover(false);
         }
 
-        for(MenuButton menuButton : buttons) {
+        for(MenuButtons menuButton : buttons) {
             if(isSelectedButton(e, menuButton)) {
                 menuButton.setMouseHover(true);
                 break;

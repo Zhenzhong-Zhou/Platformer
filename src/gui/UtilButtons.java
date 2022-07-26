@@ -8,12 +8,12 @@ import static utilities.Constants.GUI.PauseButtons.URM_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.URM_BUTTONS;
 
-public class UrmButtons extends PauseButton {
+public class UtilButtons extends PauseButtons {
     private BufferedImage[] images;
     private int rowIndex, index;
     private boolean mouseOver, mousePressed;
 
-    public UrmButtons(int x, int y, int width, int height, int rowIndex) {
+    public UtilButtons(int x, int y, int width, int height, int rowIndex) {
         super(x, y, width, height);
         this.rowIndex = rowIndex;
         loadImages();
