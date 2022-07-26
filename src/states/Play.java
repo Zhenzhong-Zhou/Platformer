@@ -8,9 +8,10 @@ import main.Game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import static main.Game.*;
-import static utilities.LoadSave.GetLevelData;
+import static utilities.LoadSave.*;
 
 public class Play extends State implements StateMethods {
     private Player player;
@@ -23,10 +24,12 @@ public class Play extends State implements StateMethods {
     private int levelTileWidth = GetLevelData()[0].length;
     private int maxTilesOffset = levelTileWidth - TILES_IN_WIDTH;
     private int maxLevelOffsetX = maxTilesOffset * TILES_SIZE;
+    private BufferedImage backgroundImage;
 
     public Play(Game game) {
         super(game);
         initClasses();
+        backgroundImage = GetSpriteAtlas(PLAY_BG_IMAGE);
     }
 
     private void initClasses() {
@@ -66,6 +69,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void draw(Graphics graphics) {
+        graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
         levelManager.draw(graphics, xLevelOffset);
         player.render(graphics, xLevelOffset);
 
