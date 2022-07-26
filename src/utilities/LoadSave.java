@@ -12,7 +12,8 @@ import static main.Game.TILES_IN_WIDTH;
 public class LoadSave {
     public static final String PLAYER_ATLAS = "player_sprites.png";
     public static final String LEVEL_ATLAS = "outside_sprites.png";
-    public static final String LEVEL_DEFAULT_DATA = "level_one_data.png";
+//    public static final String LEVEL_DEFAULT_DATA = "level_one_data.png";
+    public static final String LEVEL_DEFAULT_DATA = "level_one_data_long.png";
     public static final String MENU_BUTTONS = "button_atlas.png";
     public static final String MENU_BACKGROUND = "menu_background.png";
     public static final String PAUSE_BACKGROUND = "pause_background.png";
@@ -40,8 +41,8 @@ public class LoadSave {
     }
 
     public static int[][] GetLevelData() {
-        int[][] levelData = new int[TILES_IN_HEIGHT][TILES_IN_WIDTH];
         BufferedImage image = GetSpriteAtlas(LEVEL_DEFAULT_DATA);
+        int[][] levelData = new int[image.getHeight()][image.getWidth()];
 
         for(int j = 0; j < image.getHeight(); j++) {
             for(int i = 0; i < image.getWidth(); i++) {
