@@ -14,8 +14,8 @@ public class Constants {
         public static class PauseButtons {
             public static final int SOUND_DEFAULT_SIZE = 42;
             public static final int SOUND_SIZE = (int) (SOUND_DEFAULT_SIZE * SCALE);
-            public static final int URM_DEFAULT_SIZE = 56;
-            public static final int URM_SIZE = (int) (URM_DEFAULT_SIZE * SCALE);
+            public static final int UTIL_DEFAULT_SIZE = 56;
+            public static final int UTIL_SIZE = (int) (UTIL_DEFAULT_SIZE * SCALE);
         }
     }
 

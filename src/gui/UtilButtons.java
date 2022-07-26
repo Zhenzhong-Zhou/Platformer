@@ -3,10 +3,10 @@ package gui;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utilities.Constants.GUI.PauseButtons.URM_DEFAULT_SIZE;
-import static utilities.Constants.GUI.PauseButtons.URM_SIZE;
+import static utilities.Constants.GUI.PauseButtons.UTIL_DEFAULT_SIZE;
+import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
-import static utilities.LoadSave.URM_BUTTONS;
+import static utilities.LoadSave.UTIL_BUTTONS;
 
 public class UtilButtons extends PauseButtons {
     private BufferedImage[] images;
@@ -20,11 +20,11 @@ public class UtilButtons extends PauseButtons {
     }
 
     private void loadImages() {
-        BufferedImage temp = GetSpriteAtlas(URM_BUTTONS);
+        BufferedImage temp = GetSpriteAtlas(UTIL_BUTTONS);
         images = new BufferedImage[3];
 
         for(int i =0; i< images.length;i++) {
-            images[i] = temp.getSubimage(URM_DEFAULT_SIZE * i, URM_DEFAULT_SIZE * rowIndex, URM_DEFAULT_SIZE, URM_DEFAULT_SIZE);
+            images[i] = temp.getSubimage(UTIL_DEFAULT_SIZE * i, UTIL_DEFAULT_SIZE * rowIndex, UTIL_DEFAULT_SIZE, UTIL_DEFAULT_SIZE);
         }
     }
 
@@ -39,7 +39,7 @@ public class UtilButtons extends PauseButtons {
     }
 
     public void draw(Graphics graphics) {
-        graphics.drawImage(images[index], x, y, URM_SIZE, URM_SIZE, null);
+        graphics.drawImage(images[index], x, y, UTIL_SIZE, UTIL_SIZE, null);
     }
 
     public void restBooleans() {

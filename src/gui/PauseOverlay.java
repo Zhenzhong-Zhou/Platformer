@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 import static utilities.Constants.GUI.PauseButtons.SOUND_SIZE;
-import static utilities.Constants.GUI.PauseButtons.URM_SIZE;
+import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
@@ -29,9 +29,9 @@ public class PauseOverlay {
         int menuX = (int) (SCALE * 313);
         int bY = (int) (SCALE * 325);
 
-        resumeButton = new UtilButtons(resumeX, bY, URM_SIZE, URM_SIZE, 0);
-        replayButton = new UtilButtons(replayX, bY, URM_SIZE, URM_SIZE, 1);
-        menuButton = new UtilButtons(menuX, bY, URM_SIZE, URM_SIZE, 2);
+        resumeButton = new UtilButtons(resumeX, bY, UTIL_SIZE, UTIL_SIZE, 0);
+        replayButton = new UtilButtons(replayX, bY, UTIL_SIZE, UTIL_SIZE, 1);
+        menuButton = new UtilButtons(menuX, bY, UTIL_SIZE, UTIL_SIZE, 2);
     }
 
     private void createSoundButtons() {
