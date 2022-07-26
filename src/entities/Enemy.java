@@ -1,5 +1,7 @@
 package entities;
 
+import static utilities.Constants.EnemyConstants.GetSpriteAmount;
+
 public abstract class Enemy extends Entity{
     private int animationIndex, enemyStates, enemyType;
     private int animationTick, animationSpeed = 25;
@@ -15,7 +17,7 @@ public abstract class Enemy extends Entity{
         if(animationTick >= animationSpeed) {
             animationTick = 0;
             animationIndex++;
-            if(animationIndex >= 9999) {
+            if(animationIndex >= GetSpriteAmount(enemyType, enemyStates)) {
                 animationIndex = 0;
             }
         }
