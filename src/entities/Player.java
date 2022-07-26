@@ -10,7 +10,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PLAYER_ATLAS;
 
 public class Player extends Entity {
-    private final float playerSpeed = 2.0f;
+    private final float playerSpeed = 1.0f * SCALE;
     private final float xDrawOffset = SCALE * 21;
     private final float yDrawOffset = SCALE * 4;
     private final float gravity = 0.04f * SCALE;
@@ -31,7 +31,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x, y, SCALE * 20, SCALE * 27);
+        initHitbox(x, y, SCALE * 20, SCALE * 27); // (int) (SCALE * 20)
     }
 
     public void update() {
