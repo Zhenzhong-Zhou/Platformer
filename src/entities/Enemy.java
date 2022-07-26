@@ -7,17 +7,17 @@ import static utilities.Constants.EnemyConstants.*;
 import static utilities.HelpMethods.*;
 
 public abstract class Enemy extends Entity {
+    private final int enemyType;
+    private final int animationSpeed = 25;
     private int animationIndex;
     private int enemyStates;
-    private final int enemyType;
     private int animationTick;
-    private final int animationSpeed = 25;
     private boolean firstUpdate = true;
     private boolean inAir;
     private float fallSpeed;
-    private float gravity = SCALE*0.04f;
+    private final float gravity = SCALE * 0.04f;
     private int walkDirection = LEFT;
-    private float walkSpeed = 0.35f * SCALE;
+    private final float walkSpeed = 0.35f * SCALE;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -51,7 +51,7 @@ public abstract class Enemy extends Entity {
 
         if(inAir) {
             if(CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, levelData)) {
-                hitbox.y+= fallSpeed;
+                hitbox.y += fallSpeed;
                 fallSpeed += gravity;
             } else {
                 inAir = false;
@@ -67,12 +67,12 @@ public abstract class Enemy extends Entity {
                     float xSpeed = 0;
 
                     if(walkDirection == LEFT) {
-                        xSpeed = -walkSpeed;
-                    }else {
+                        xSpeed = - walkSpeed;
+                    } else {
                         xSpeed = walkSpeed;
                     }
 
-                    if(CanMoveHere(hitbox.x +xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+                    if(CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
                         if(IsFloor(hitbox, xSpeed, levelData)) {
                             hitbox.x += xSpeed;
                             return;
