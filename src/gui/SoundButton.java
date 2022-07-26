@@ -45,6 +45,11 @@ public class SoundButton extends PauseButton {
         }
     }
 
+    public void resetBooleans() {
+        mouseHover = false;
+        mousePressed = false;
+    }
+
     public void draw(Graphics graphics) {
         graphics.drawImage(soundImages[rowIndex][columnIndex], x, y, width, height, null);
     }
