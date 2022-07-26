@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.*;
+import java.awt.Rectangle;
 
 public class PauseButton {
     protected int x, y, width, height;
@@ -16,7 +16,7 @@ public class PauseButton {
     }
 
     private void createBounds() {
-        bounds = new Rectangle();
+        bounds = new Rectangle(x, y, width, height);
     }
 
     public int getX() {
