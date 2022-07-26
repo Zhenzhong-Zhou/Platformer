@@ -78,9 +78,6 @@ public class Play extends State implements StateMethods {
             case KeyEvent.VK_SPACE -> {
                 player.setJump(true);
             }
-            case KeyEvent.VK_BACK_SPACE -> {
-                gameStates = MENU;
-            }
             default -> {
             }
         }
