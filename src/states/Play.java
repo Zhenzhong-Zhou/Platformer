@@ -15,7 +15,7 @@ public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private PauseOverlay pauseOverlay;
-    private final boolean paused = true;
+    private boolean paused = true;
 
     public Play(Game game) {
         super(game);
@@ -26,7 +26,7 @@ public class Play extends State implements StateMethods {
         levelManager = new LevelManager(game);
         player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
-        pauseOverlay = new PauseOverlay();
+        pauseOverlay = new PauseOverlay(this);
     }
 
     @Override
@@ -103,6 +103,10 @@ public class Play extends State implements StateMethods {
             default -> {
             }
         }
+    }
+
+    public void resume() {
+        paused = false;
     }
 
     public void windowFocusLost() {

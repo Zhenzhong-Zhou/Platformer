@@ -1,23 +1,29 @@
 package gui;
 
+import states.Play;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
+import static states.GameStates.MENU;
+import static states.GameStates.gameStates;
 import static utilities.Constants.GUI.PauseButtons.SOUND_SIZE;
 import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
 public class PauseOverlay {
+    private Play play;
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgW, bgH;
     private SoundButtons musicButton, sfxButton;
     private UtilButtons resumeButton, replayButton, menuButton;
 
-    public PauseOverlay() {
+    public PauseOverlay(Play play) {
+        this.play = play;
         loadBackground();
         createSoundButtons();
         createUtilButtons();
@@ -86,6 +92,12 @@ public class PauseOverlay {
             musicButton.setMousePressed(true);
         } else if(isSelectedButton(e, sfxButton)) {
             sfxButton.setMousePressed(true);
+        } else if(isSelectedButton(e, resumeButton)) {
+            resumeButton.setMousePressed(true);
+        }else if(isSelectedButton(e, replayButton)) {
+            replayButton.setMousePressed(true);
+        }else if(isSelectedButton(e, menuButton)) {
+            menuButton.setMousePressed(true);
         }
     }
 
@@ -98,20 +110,44 @@ public class PauseOverlay {
             if(sfxButton.isMousePressed()) {
                 sfxButton.setMuted(sfxButton.isMuted());
             }
+        }else if(isSelectedButton(e, resumeButton)) {
+            if(resumeButton.isMousePressed()) {
+                play.resume();
+            }
+        }else if(isSelectedButton(e, replayButton)) {
+            if(replayButton.isMousePressed()) {
+                System.out.println("Replay Game!");
+            }
+        }else if(isSelectedButton(e, menuButton)) {
+            if(menuButton.isMousePressed()) {
+                gameStates = MENU;
+            }
         }
 
         musicButton.resetBooleans();
         sfxButton.resetBooleans();
+        resumeButton.restBooleans();
+        replayButton.restBooleans();
+        menuButton.restBooleans();
     }
 
     public void mouseMoved(MouseEvent e) {
         musicButton.setMouseHover(false);
         sfxButton.setMouseHover(false);
+        resumeButton.setMouseHover(false);
+        replayButton.setMouseHover(false);
+        menuButton.setMouseHover(false);
 
         if(isSelectedButton(e, musicButton)) {
             musicButton.setMouseHover(true);
         } else if(isSelectedButton(e, sfxButton)) {
             sfxButton.setMouseHover(true);
+        }else if(isSelectedButton(e, resumeButton)) {
+            resumeButton.setMouseHover(true);
+        }else if(isSelectedButton(e, replayButton)) {
+            replayButton.setMouseHover(true);
+        }else if(isSelectedButton(e, menuButton)) {
+            menuButton.setMouseHover(true);
         }
     }
 

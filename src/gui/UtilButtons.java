@@ -11,7 +11,7 @@ import static utilities.LoadSave.UTIL_BUTTONS;
 public class UtilButtons extends PauseButtons {
     private BufferedImage[] images;
     private int rowIndex, index;
-    private boolean mouseOver, mousePressed;
+    private boolean mouseHover, mousePressed;
 
     public UtilButtons(int x, int y, int width, int height, int rowIndex) {
         super(x, y, width, height);
@@ -30,7 +30,7 @@ public class UtilButtons extends PauseButtons {
 
     public void update() {
         index = 0;
-        if(mouseOver) {
+        if(mouseHover) {
             index = 1;
         }
         if(mousePressed) {
@@ -43,16 +43,16 @@ public class UtilButtons extends PauseButtons {
     }
 
     public void restBooleans() {
-        mouseOver = false;
+        mouseHover = false;
         mousePressed = false;
     }
 
-    public boolean isMouseOver() {
-        return mouseOver;
+    public boolean isMouseHover() {
+        return mouseHover;
     }
 
-    public void setMouseOver(boolean mouseOver) {
-        this.mouseOver = mouseOver;
+    public void setMouseHover(boolean mouseHover) {
+        this.mouseHover = mouseHover;
     }
 
     public boolean isMousePressed() {
