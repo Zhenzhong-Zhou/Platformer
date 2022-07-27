@@ -100,11 +100,13 @@ public class Play extends State implements StateMethods {
 
     private void drawClouds(Graphics graphics) {
         for(int i = 0; i < 3; i++) {
-            graphics.drawImage(bigCloudsImage, BIG_CLOUDS_WIDTH * i - (int) (xLevelOffset * 0.3), (int) (SCALE * 204), BIG_CLOUDS_WIDTH, BIG_CLOUDS_HEIGHT, null);
+            graphics.drawImage(bigCloudsImage, BIG_CLOUDS_WIDTH * i - (int) (xLevelOffset * 0.3),
+                    (int) (SCALE * 204), BIG_CLOUDS_WIDTH, BIG_CLOUDS_HEIGHT, null);
         }
 
         for(int i = 0; i < smallCloudsPosition.length; i++) {
-            graphics.drawImage(smallCloudsImage, SMALL_CLOUDS_WIDTH * 4 * i - (int) (xLevelOffset * 0.7), smallCloudsPosition[i], SMALL_CLOUDS_WIDTH, SMALL_CLOUDS_HEIGHT, null);
+            graphics.drawImage(smallCloudsImage, SMALL_CLOUDS_WIDTH * 4 * i - (int) (xLevelOffset * 0.7),
+                    smallCloudsPosition[i], SMALL_CLOUDS_WIDTH, SMALL_CLOUDS_HEIGHT, null);
         }
     }
 
@@ -189,5 +191,9 @@ public class Play extends State implements StateMethods {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void resetAll() {
+        //TODO: reset
     }
 }
