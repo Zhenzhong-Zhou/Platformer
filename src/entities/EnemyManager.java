@@ -40,6 +40,7 @@ public class EnemyManager {
             graphics.drawImage(crabArray[crab.getEnemyStates()][crab.getAnimationIndex()],
                     (int) crab.getHitbox().x - xLevelOffset - CRAB_DRAW_OFFSET_X,
                     (int) crab.getHitbox().y - CRAB_DRAW_OFFSET_Y, CRAB_WIDTH, CRAB_HEIGHT, null);
+            crab.drawHitbox(graphics, xLevelOffset);
         }
     }
 
