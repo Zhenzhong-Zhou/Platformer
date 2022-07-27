@@ -3,6 +3,7 @@ package entities;
 import states.Play;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -27,7 +28,9 @@ public class EnemyManager {
 
     public void update(int[][] levelData, Player player) {
         for(Crab crab : crabs) {
-            crab.update(levelData, player);
+            if(crab.isActive()) {
+                crab.update(levelData, player);
+            }
         }
     }
 
@@ -37,11 +40,23 @@ public class EnemyManager {
 
     private void drawCrabs(Graphics graphics, int xLevelOffset) {
         for(Crab crab : crabs) {
-            graphics.drawImage(crabArray[crab.getEnemyStates()][crab.getAnimationIndex()],
-                    (int) crab.getHitbox().x - xLevelOffset - CRAB_DRAW_OFFSET_X + crab.flipX(),
-                    (int) crab.getHitbox().y - CRAB_DRAW_OFFSET_Y, CRAB_WIDTH * crab.flipW(), CRAB_HEIGHT, null);
-            crab.drawHitbox(graphics, xLevelOffset);
-            crab.drawAttackBox(graphics, xLevelOffset);
+            if(crab.isActive()) {
+                graphics.drawImage(crabArray[crab.getEnemyStates()][crab.getAnimationIndex()],
+                        (int) crab.getHitbox().x - xLevelOffset - CRAB_DRAW_OFFSET_X + crab.flipX(),
+                        (int) crab.getHitbox().y - CRAB_DRAW_OFFSET_Y, CRAB_WIDTH * crab.flipW(), CRAB_HEIGHT, null);
+                crab.drawHitbox(graphics, xLevelOffset);
+                crab.drawAttackBox(graphics, xLevelOffset);
+            }
+        }
+    }
+
+    public void checkEnemyHit(Rectangle2D.Float attackBox) {
+        for(Crab crab : crabs) {
+            if(crab.isActive()) {
+                if(attackBox.intersects(crab.getHitbox())) {
+                    crab.hurt(10);
+                }
+            }
         }
     }
 

@@ -25,6 +25,7 @@ public abstract class Enemy extends Entity {
     protected float attackRange = TILES_SIZE;
     protected int maxHealth;
     protected int currentHealth;
+    protected boolean active = true;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -106,6 +107,15 @@ public abstract class Enemy extends Entity {
         animationIndex = 0;
     }
 
+    public void hurt(int amount) {
+        currentHealth -= amount;
+        if(currentHealth<=0){
+            setEnemyStates(DEAD);
+        }else {
+            setEnemyStates(HIT);
+        }
+    }
+
     protected void updateAnimationTick() {
         animationTick++;
         if(animationTick >= animationSpeed) {
@@ -113,8 +123,9 @@ public abstract class Enemy extends Entity {
             animationIndex++;
             if(animationIndex >= GetSpriteAmount(enemyType, enemyStates)) {
                 animationIndex = 0;
-                if(enemyStates == ATTACK) {
-                    enemyStates = IDLE;
+                switch(enemyStates) {
+                    case ATTACK, HIT -> enemyStates = IDLE;
+                    case DEAD -> active = false;
                 }
             }
         }
@@ -134,5 +145,9 @@ public abstract class Enemy extends Entity {
 
     public int getEnemyStates() {
         return enemyStates;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 }
