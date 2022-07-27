@@ -39,6 +39,7 @@ public class Play extends State implements StateMethods {
     private boolean paused = false;
     private int xLevelOffset;
     private boolean gameOver;
+    private boolean finishedLevel = true;
 
     public Play(Game game) {
         super(game);
@@ -64,13 +65,15 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        if(! paused && ! gameOver) {
+        if(paused) {
+            pauseOverlay.update();
+        } else if(finishedLevel) {
+            finishedOverlay.update();
+        } else if(!gameOver){
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
             checkCloseToBorder();
-        } else {
-            pauseOverlay.update();
         }
     }
 
@@ -105,8 +108,9 @@ public class Play extends State implements StateMethods {
             pauseOverlay.draw(graphics);
         } else if(gameOver) {
             deathOverlay.draw(graphics);
+        } else if(finishedLevel) {
+            finishedOverlay.draw(graphics);
         }
-        finishedOverlay.draw(graphics);
     }
 
     private void drawClouds(Graphics graphics) {
@@ -143,6 +147,8 @@ public class Play extends State implements StateMethods {
         if(! gameOver) {
             if(paused) {
                 pauseOverlay.mousePressed(e);
+            } else if(finishedLevel) {
+                finishedOverlay.mousePressed(e);
             }
         }
     }
@@ -152,6 +158,8 @@ public class Play extends State implements StateMethods {
         if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseReleased(e);
+            }else if(finishedLevel) {
+                finishedOverlay.mouseReleased(e);
             }
         }
     }
@@ -161,6 +169,8 @@ public class Play extends State implements StateMethods {
         if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseMoved(e);
+            }else if(finishedLevel) {
+                finishedOverlay.mouseMoved(e);
             }
         }
     }

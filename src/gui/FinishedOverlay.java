@@ -41,7 +41,8 @@ public class FinishedOverlay {
     }
 
     public void update() {
-
+        nextButton.update();
+        menuButton.update();
     }
 
     public void draw(Graphics graphics) {
@@ -50,15 +51,40 @@ public class FinishedOverlay {
         menuButton.draw(graphics);
     }
 
-    public void mouseMoved(MouseEvent e) {
+    private boolean isSelectedButton(UtilButtons utilButtons, MouseEvent e) {
+        return utilButtons.getBounds().contains(e.getX(), e.getY());
+    }
 
+    public void mouseMoved(MouseEvent e) {
+        nextButton.setMouseHover(false);
+        menuButton.setMouseHover(false);
+
+        if(isSelectedButton(nextButton, e)) {
+            nextButton.setMouseHover(true);
+        } else if(isSelectedButton(menuButton, e)) {
+            menuButton.setMouseHover(true);
+        }
     }
 
     public void mousePressed(MouseEvent e) {
-
+        if(isSelectedButton(nextButton, e)) {
+            nextButton.setMousePressed(true);
+        } else if(isSelectedButton(menuButton, e)) {
+            menuButton.setMousePressed(true);
+        }
     }
 
     public void mouseReleased(MouseEvent e) {
-
+        if(isSelectedButton(nextButton, e)) {
+            if(nextButton.isMousePressed()) {
+                System.out.println("NEXT!");
+            }
+        } else if(isSelectedButton(menuButton, e)) {
+            if(menuButton.isMousePressed()) {
+                System.out.println("MENU!");
+            }
+        }
+        nextButton.restBooleans();
+        menuButton.restBooleans();
     }
 }
