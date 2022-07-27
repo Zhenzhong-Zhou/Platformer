@@ -4,6 +4,7 @@ import static main.Game.SCALE;
 import static utilities.Constants.Directions.LEFT;
 import static utilities.Constants.Directions.RIGHT;
 import static utilities.Constants.EnemyConstants.*;
+import static utilities.HelpMethods.*;
 
 public abstract class Enemy extends Entity {
     protected final int enemyType;
@@ -22,6 +23,41 @@ public abstract class Enemy extends Entity {
         super(x, y, width, height);
         this.enemyType = enemyType;
         initHitbox(x, y, width, height);
+    }
+
+    protected void firstUpdateCheck(int[][] levelData) {
+        if(IsEntityOnFloor(hitbox, levelData)) {
+            inAir = true;
+        }
+        firstUpdate = false;
+    }
+
+    protected void updateInAirCheck(int[][] levelData) {
+        if(CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, levelData)) {
+            hitbox.y += fallSpeed;
+            fallSpeed += gravity;
+        } else {
+            inAir = false;
+            hitbox.y = GetEntityYPositionUnderRoofOrAboveFloor(hitbox, fallSpeed);
+        }
+    }
+
+    protected void patrol(int[][] levelData) {
+        float xSpeed = 0;
+
+        if(walkDirection == LEFT) {
+            xSpeed = - walkSpeed;
+        } else {
+            xSpeed = walkSpeed;
+        }
+
+        if(CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
+            if(IsFloor(hitbox, xSpeed, levelData)) {
+                hitbox.x += xSpeed;
+                return;
+            }
+        }
+        changeWalkDirection();
     }
 
     protected void updateAnimationTick() {
@@ -47,15 +83,7 @@ public abstract class Enemy extends Entity {
         return animationIndex;
     }
 
-    public void setAnimationIndex(int animationIndex) {
-        this.animationIndex = animationIndex;
-    }
-
     public int getEnemyStates() {
         return enemyStates;
-    }
-
-    public void setEnemyStates(int enemyStates) {
-        this.enemyStates = enemyStates;
     }
 }
