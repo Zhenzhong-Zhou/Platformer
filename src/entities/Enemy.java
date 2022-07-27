@@ -18,12 +18,10 @@ public abstract class Enemy extends Entity {
     protected int tileY;
     protected float attackRange = TILES_SIZE;
     protected boolean active = true;
-    protected boolean attackChecked;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
         this.enemyType = enemyType;
-        initHitbox(x, y, width, height);
         maxHealth = GetMaxHealth(enemyType);
         currentHealth = maxHealth;
         walkSpeed = 0.35f * SCALE;
@@ -130,10 +128,6 @@ public abstract class Enemy extends Entity {
         } else {
             walkDirection = LEFT;
         }
-    }
-
-    public int getAnimationIndex() {
-        return animationIndex;
     }
 
     protected void setEnemyStates(int enemyStates) {

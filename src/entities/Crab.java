@@ -12,7 +12,7 @@ public class Crab extends Enemy {
 
     public Crab(float x, float y) {
         super(x, y, CRAB_WIDTH, CRAB_HEIGHT, CRAB);
-        initHitbox(x, y, (int) (SCALE * 22), (int) (SCALE * 19));
+        initHitbox(22, 19);
         initAttackBox();
     }
 
@@ -69,11 +69,6 @@ public class Crab extends Enemy {
                 }
             }
         }
-    }
-
-    public void drawAttackBox(Graphics graphics, int xLevelOffset) {
-        graphics.setColor(Color.RED);
-        graphics.drawRect((int) (attackBox.x - xLevelOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
     }
 
     public int flipX() {

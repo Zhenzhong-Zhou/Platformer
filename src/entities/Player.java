@@ -28,7 +28,6 @@ public class Player extends Entity {
     private int healthWidth = HP_BAR_WIDTH;
     private int flipX = 0;
     private int flipW = 1;
-    private boolean attackChecked;
 
     public Player(float x, float y, int width, int height, Play play) {
         super(x, y, width, height);
@@ -38,7 +37,7 @@ public class Player extends Entity {
         this.currentHealth = maxHealth;
         this.walkSpeed = 0.9f * SCALE;
         loadAnimations();
-        initHitbox(x, y, (int) (SCALE * 20), (int) (SCALE * 27)); // (int) (SCALE * 20)
+        initHitbox(20, 27);
         initAttackBox();
     }
 
@@ -96,11 +95,6 @@ public class Player extends Entity {
                 width * flipW, height, null);
         drawAttackBox(graphics, levelOffset);
         drawHitbox(graphics, levelOffset);
-    }
-
-    private void drawAttackBox(Graphics graphics, int levelOffset) {
-        graphics.setColor(Color.BLACK);
-        graphics.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
     }
 
     private void drawStatusBar(Graphics graphics) {
