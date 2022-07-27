@@ -30,14 +30,14 @@ public class Player extends Entity {
     private float airSpeed = 0.0f;
     private boolean inAir = false;
     private BufferedImage statusBarImage;
-    private int maxHealth = 100;
+    private final int maxHealth = 100;
     private int currentHealth = maxHealth;
     private int healthWidth = HP_BAR_WIDTH;
     private Rectangle2D.Float attackBox;
     private int flipX = 0;
     private int flipW = 1;
     private boolean attackChecked;
-    private Play play;
+    private final Play play;
 
     public Player(float x, float y, int width, int height, Play play) {
         super(x, y, width, height);
@@ -48,12 +48,12 @@ public class Player extends Entity {
     }
 
     private void initAttackBox() {
-        attackBox = new Rectangle2D.Float(x, y, (int)(SCALE*20), (int)(SCALE*20));
+        attackBox = new Rectangle2D.Float(x, y, (int) (SCALE * 20), (int) (SCALE * 20));
     }
 
     public void update() {
         updateHealthBar();
-        if(currentHealth <=0) {
+        if(currentHealth <= 0) {
             play.setGameOver(true);
             return;
         }
@@ -76,29 +76,29 @@ public class Player extends Entity {
 
     private void updateAttackBox() {
         if(right) {
-            attackBox.x =hitbox.x + hitbox.width+(int)(SCALE *10);
-        }else if(left){
-            attackBox.x =hitbox.x - hitbox.width-(int)(SCALE *10);
+            attackBox.x = hitbox.x + hitbox.width + (int) (SCALE * 10);
+        } else if(left) {
+            attackBox.x = hitbox.x - hitbox.width - (int) (SCALE * 10);
         }
-        attackBox.y = hitbox.y +(SCALE*10);
+        attackBox.y = hitbox.y + (SCALE * 10);
     }
 
     private void updateHealthBar() {
-        healthWidth = (int) ((currentHealth / (float) maxHealth)*HP_BAR_WIDTH);
+        healthWidth = (int) ((currentHealth / (float) maxHealth) * HP_BAR_WIDTH);
     }
 
     public void render(Graphics graphics, int levelOffset) {
         drawStatusBar(graphics);
         graphics.drawImage(animations[playerAction][animationIndex],
-                (int) (hitbox.x - xDrawOffset) - levelOffset +flipX, (int) (hitbox.y - yDrawOffset),
-                width*flipW, height, null);
+                (int) (hitbox.x - xDrawOffset) - levelOffset + flipX, (int) (hitbox.y - yDrawOffset),
+                width * flipW, height, null);
         drawAttackBox(graphics, levelOffset);
         drawHitbox(graphics, levelOffset);
     }
 
     private void drawAttackBox(Graphics graphics, int levelOffset) {
         graphics.setColor(Color.BLACK);
-        graphics.drawRect((int)attackBox.x-levelOffset, (int)attackBox.y, (int)attackBox.width, (int)attackBox.height);
+        graphics.drawRect((int) attackBox.x - levelOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
     }
 
     private void drawStatusBar(Graphics graphics) {
@@ -140,7 +140,7 @@ public class Player extends Entity {
 
         if(attacking) {
             playerAction = ATTACK;
-            if(startAnimation!=ATTACK) {
+            if(startAnimation != ATTACK) {
                 animationIndex = 1;
                 animationTick = 0;
                 return;
@@ -172,7 +172,7 @@ public class Player extends Entity {
         if(left) {
             xSpeed -= playerSpeed;
             flipX = width;
-            flipW = -1;
+            flipW = - 1;
         }
         if(right) {
             xSpeed += playerSpeed;
@@ -227,7 +227,7 @@ public class Player extends Entity {
 
     public void changeHealth(int value) {
         currentHealth += value;
-        if(currentHealth<=0) {
+        if(currentHealth <= 0) {
             currentHealth = 0;
             // Game Over
             // gameOver();
@@ -303,7 +303,7 @@ public class Player extends Entity {
     }
 
     public void resetAll() {
-        resetDirectionBoolean();;
+        resetDirectionBoolean();
         inAir = false;
         attacking = false;
         moving = false;

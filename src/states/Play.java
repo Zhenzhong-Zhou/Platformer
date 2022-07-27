@@ -61,7 +61,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        if(! paused && !gameOver) {
+        if(! paused && ! gameOver) {
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
@@ -118,7 +118,7 @@ public class Play extends State implements StateMethods {
     }
 
     public void mouseDragged(MouseEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseDragged(e);
             }
@@ -127,7 +127,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             if(e.getButton() == MouseEvent.BUTTON1) {
                 player.setAttacking(true);
             }
@@ -136,7 +136,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             if(paused) {
                 pauseOverlay.mousePressed(e);
             }
@@ -145,7 +145,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseReleased(e);
             }
@@ -154,7 +154,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseMoved(e);
             }
@@ -187,7 +187,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(!gameOver) {
+        if(! gameOver) {
             switch(e.getKeyCode()) {
                 case KeyEvent.VK_A -> {
                     player.setLeft(false);

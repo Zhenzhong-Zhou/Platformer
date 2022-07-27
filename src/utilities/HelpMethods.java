@@ -7,9 +7,9 @@ import static main.Game.TILES_SIZE;
 
 public class HelpMethods {
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] levelData) {
-        if (!IsSolid(x, y, levelData)) {
-            if (!IsSolid(x + width, y + height, levelData)) {
-                if (!IsSolid(x + width, y, levelData)) {
+        if(! IsSolid(x, y, levelData)) {
+            if(! IsSolid(x + width, y + height, levelData)) {
+                if(! IsSolid(x + width, y, levelData)) {
                     return ! IsSolid(x, y + height, levelData);
                 }
             }
@@ -29,7 +29,7 @@ public class HelpMethods {
         float xIndex = x / TILES_SIZE;
         float yIndex = y / TILES_SIZE;
 
-        return IsTileSolid((int) xIndex,(int) yIndex, levelData);
+        return IsTileSolid((int) xIndex, (int) yIndex, levelData);
     }
 
     public static boolean IsTileSolid(int xTile, int yTile, int[][] levelData) {
@@ -76,11 +76,11 @@ public class HelpMethods {
     }
 
     public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] levelData) {
-        for(int i =0; i< xEnd - xStart;i++) {
-            if(IsTileSolid(xStart+i, y, levelData)) {
+        for(int i = 0; i < xEnd - xStart; i++) {
+            if(IsTileSolid(xStart + i, y, levelData)) {
                 return false;
             }
-            if(!IsTileSolid(xStart+i,y+1 , levelData)) {
+            if(! IsTileSolid(xStart + i, y + 1, levelData)) {
                 return false;
             }
         }
@@ -92,9 +92,9 @@ public class HelpMethods {
         int secondTileX = (int) (secondHitbox.x / TILES_SIZE);
 
         if(firstTileX > secondTileX) {
-            return IsAllTilesWalkable(secondTileX, firstTileX,tileY,levelData);
-        }else {
-            return IsAllTilesWalkable(firstTileX, secondTileX,tileY,levelData);
+            return IsAllTilesWalkable(secondTileX, firstTileX, tileY, levelData);
+        } else {
+            return IsAllTilesWalkable(firstTileX, secondTileX, tileY, levelData);
         }
     }
 }

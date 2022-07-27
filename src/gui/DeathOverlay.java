@@ -11,7 +11,7 @@ import static main.Game.GAME_WIDTH;
 import static states.GameStates.MENU;
 
 public class DeathOverlay {
-    private Play play;
+    private final Play play;
 
     public DeathOverlay(Play play) {
         this.play = play;
@@ -27,7 +27,7 @@ public class DeathOverlay {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             play.resetAll();
             GameStates.gameStates = MENU;
         }

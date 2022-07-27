@@ -18,8 +18,8 @@ public class Crab extends Enemy {
     }
 
     private void initAttackBox() {
-        attackBox = new Rectangle2D.Float(x,y,(int)(SCALE*82),(int) (SCALE * 19));
-        attackBoxOffsetX = (int) (SCALE*30);
+        attackBox = new Rectangle2D.Float(x, y, (int) (SCALE * 82), (int) (SCALE * 19));
+        attackBoxOffsetX = (int) (SCALE * 30);
     }
 
     public void update(int[][] levelData, Player player) {
@@ -59,7 +59,7 @@ public class Crab extends Enemy {
                     if(animationIndex == 0) {
                         attackChecked = false;
                     }
-                    if(animationIndex == 3 && !attackChecked) {
+                    if(animationIndex == 3 && ! attackChecked) {
                         checkPlayerHit(attackBox, player);
                     }
                 }
@@ -75,21 +75,21 @@ public class Crab extends Enemy {
 
     public void drawAttackBox(Graphics graphics, int xLevelOffset) {
         graphics.setColor(Color.RED);
-        graphics.drawRect((int)(attackBox.x-xLevelOffset), (int)attackBox.y, (int)attackBox.width, (int)attackBox.height);
+        graphics.drawRect((int) (attackBox.x - xLevelOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
     }
 
     public int flipX() {
         if(walkDirection == RIGHT) {
             return width;
-        }else {
+        } else {
             return 0;
         }
     }
 
     public int flipW() {
         if(walkDirection == RIGHT) {
-            return -1;
-        }else {
+            return - 1;
+        } else {
             return 1;
         }
     }
