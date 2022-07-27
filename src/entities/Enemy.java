@@ -4,20 +4,19 @@ import static main.Game.SCALE;
 import static utilities.Constants.Directions.LEFT;
 import static utilities.Constants.Directions.RIGHT;
 import static utilities.Constants.EnemyConstants.*;
-import static utilities.HelpMethods.*;
 
 public abstract class Enemy extends Entity {
-    private final int enemyType;
-    private final int animationSpeed = 25;
-    private int animationIndex;
-    private int enemyStates;
-    private int animationTick;
-    private boolean firstUpdate = true;
-    private boolean inAir;
-    private float fallSpeed;
-    private final float gravity = SCALE * 0.04f;
-    private int walkDirection = LEFT;
-    private final float walkSpeed = 0.35f * SCALE;
+    protected final int enemyType;
+    protected final int animationSpeed = 25;
+    protected int animationIndex;
+    protected int enemyStates;
+    protected int animationTick;
+    protected boolean firstUpdate = true;
+    protected boolean inAir;
+    protected float fallSpeed;
+    protected final float gravity = SCALE * 0.04f;
+    protected int walkDirection = LEFT;
+    protected final float walkSpeed = 0.35f * SCALE;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -25,7 +24,7 @@ public abstract class Enemy extends Entity {
         initHitbox(x, y, width, height);
     }
 
-    private void updateAnimationTick() {
+    protected void updateAnimationTick() {
         animationTick++;
         if(animationTick >= animationSpeed) {
             animationTick = 0;
@@ -36,58 +35,7 @@ public abstract class Enemy extends Entity {
         }
     }
 
-    public void update(int[][] levelData) {
-        updateMove(levelData);
-        updateAnimationTick();
-    }
-
-    public void updateMove(int[][] levelData) {
-        if(firstUpdate) {
-            if(IsEntityOnFloor(hitbox, levelData)) {
-                inAir = true;
-            }
-            firstUpdate = false;
-        }
-
-        if(inAir) {
-            if(CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, levelData)) {
-                hitbox.y += fallSpeed;
-                fallSpeed += gravity;
-            } else {
-                inAir = false;
-                hitbox.y = GetEntityYPositionUnderRoofOrAboveFloor(hitbox, fallSpeed);
-            }
-        } else {
-            // Patrol
-            switch(enemyStates) {
-                case IDLE -> {
-                    enemyStates = RUN;
-                }
-                case RUN -> {
-                    float xSpeed = 0;
-
-                    if(walkDirection == LEFT) {
-                        xSpeed = - walkSpeed;
-                    } else {
-                        xSpeed = walkSpeed;
-                    }
-
-                    if(CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, levelData)) {
-                        if(IsFloor(hitbox, xSpeed, levelData)) {
-                            hitbox.x += xSpeed;
-                            return;
-                        }
-                    }
-                    changeWalkDirection();
-                }
-                default -> {
-
-                }
-            }
-        }
-    }
-
-    private void changeWalkDirection() {
+    protected void changeWalkDirection() {
         if(walkDirection == LEFT) {
             walkDirection = RIGHT;
         } else {
