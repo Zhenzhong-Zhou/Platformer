@@ -23,11 +23,15 @@ public abstract class Enemy extends Entity {
     protected final float walkSpeed = 0.35f * SCALE;
     protected int tileY;
     protected float attackRange = TILES_SIZE;
+    protected int maxHealth;
+    protected int currentHealth;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
         this.enemyType = enemyType;
         initHitbox(x, y, width, height);
+        maxHealth = GetMaxHealth(enemyType);
+        currentHealth = maxHealth;
     }
 
     protected void firstUpdateCheck(int[][] levelData) {
