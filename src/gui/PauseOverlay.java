@@ -136,7 +136,8 @@ public class PauseOverlay {
             }
         } else if(isSelectedButton(e, replayButton)) {
             if(replayButton.isMousePressed()) {
-                System.out.println("Replay Game!");
+                play.resetAll();
+                play.resume();
             }
         } else if(isSelectedButton(e, menuButton)) {
             if(menuButton.isMousePressed()) {
