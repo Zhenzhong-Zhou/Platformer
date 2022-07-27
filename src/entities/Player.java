@@ -1,5 +1,7 @@
 package entities;
 
+import states.Play;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -34,9 +36,12 @@ public class Player extends Entity {
     private Rectangle2D.Float attackBox;
     private int flipX = 0;
     private int flipW = 1;
+    private boolean attackChecked;
+    private Play play;
 
-    public Player(float x, float y, int width, int height) {
+    public Player(float x, float y, int width, int height, Play play) {
         super(x, y, width, height);
+        this.play = play;
         loadAnimations();
         initHitbox(x, y, (int) (SCALE * 20), (int) (SCALE * 27)); // (int) (SCALE * 20)
         initAttackBox();
@@ -50,8 +55,19 @@ public class Player extends Entity {
         updateHealthBar();
         updateAttackBox();
         updatePosition();
+        if(attacking) {
+            checkAttack();
+        }
         updateAnimationTick();
         setAnimation();
+    }
+
+    private void checkAttack() {
+        if(attackChecked || animationIndex != 1) {
+            return;
+        }
+        attackChecked = true;
+        play.checkEnemyHit(attackBox);
     }
 
     private void updateAttackBox() {
@@ -96,6 +112,7 @@ public class Player extends Entity {
             if(animationIndex >= GetSpriteAmount(playerAction)) {
                 animationIndex = 0;
                 attacking = false;
+                attackChecked = false;
             }
         }
     }
@@ -119,6 +136,11 @@ public class Player extends Entity {
 
         if(attacking) {
             playerAction = ATTACK;
+            if(startAnimation!=ATTACK) {
+                animationIndex = 1;
+                animationTick = 0;
+                return;
+            }
         }
 
         if(startAnimation != playerAction) {

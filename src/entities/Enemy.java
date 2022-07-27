@@ -26,6 +26,7 @@ public abstract class Enemy extends Entity {
     protected int maxHealth;
     protected int currentHealth;
     protected boolean active = true;
+    protected boolean attackChecked;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -114,6 +115,13 @@ public abstract class Enemy extends Entity {
         }else {
             setEnemyStates(HIT);
         }
+    }
+
+    protected void checkPlayerHit(Rectangle2D.Float attackBox, Player player) {
+        if(attackBox.intersects(player.hitbox)) {
+            player.changeHealth(-GetEnemyDamageCheck(enemyType));
+        }
+        attackChecked = true;
     }
 
     protected void updateAnimationTick() {

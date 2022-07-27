@@ -9,6 +9,7 @@ import main.Game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -49,7 +50,7 @@ public class Play extends State implements StateMethods {
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
-        player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE));
+        player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE), this);
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
         pauseOverlay = new PauseOverlay(this);
     }
@@ -195,5 +196,9 @@ public class Play extends State implements StateMethods {
 
     public void resetAll() {
         //TODO: reset
+    }
+
+    public void checkEnemyHit(Rectangle2D.Float attackBox) {
+        enemyManager.checkEnemyHit(attackBox);
     }
 }
