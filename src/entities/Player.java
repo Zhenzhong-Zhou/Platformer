@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 
 import static main.Game.SCALE;
 import static utilities.Constants.PlayerActions.*;
+import static utilities.Constants.PlayerStatusBar.*;
 import static utilities.HelpMethods.*;
-import static utilities.LoadSave.GetSpriteAtlas;
-import static utilities.LoadSave.PLAYER_ATLAS;
+import static utilities.LoadSave.*;
 
 public class Player extends Entity {
     private final float playerSpeed = 1.0f * SCALE;
@@ -24,9 +24,13 @@ public class Player extends Entity {
     private boolean left, up, right, down, jump;
     private boolean moving = false, attacking = false;
     private int[][] levelData;
-    // Jump / Gravity
     private float airSpeed = 0.0f;
     private boolean inAir = false;
+    private BufferedImage statusBarImage;
+
+    private int maxHealth = 10;
+    private int currentHealth = maxHealth;
+    private int healthWidth = HP_BAR_WIDTH;
 
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
@@ -41,8 +45,16 @@ public class Player extends Entity {
     }
 
     public void render(Graphics graphics, int levelOffset) {
-        graphics.drawImage(animations[playerAction][animationIndex], (int) (hitbox.x - xDrawOffset) - levelOffset, (int) (hitbox.y - yDrawOffset), width, height, null);
+        drawStatusBar(graphics);
+        graphics.drawImage(animations[playerAction][animationIndex],
+                (int) (hitbox.x - xDrawOffset) - levelOffset, (int) (hitbox.y - yDrawOffset),
+                width, height, null);
         drawHitbox(graphics, levelOffset);
+    }
+
+    private void drawStatusBar(Graphics graphics) {
+        graphics.drawImage(statusBarImage, STATUS_BAR_X, STATUS_BAR_Y,
+                STATUS_BAR_WIDTH, STATUS_BAR_HEIGHT, null);
     }
 
     private void updateAnimationTick() {
@@ -153,6 +165,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
+        statusBarImage = GetSpriteAtlas(PLAYER_STATUS_BAR);
         BufferedImage image = GetSpriteAtlas(PLAYER_ATLAS);
 
         animations = new BufferedImage[9][6];

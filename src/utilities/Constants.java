@@ -3,6 +3,28 @@ package utilities;
 import static main.Game.SCALE;
 
 public class Constants {
+    public static class PlayerStatusBar {
+        public static final int STATUS_BAR_DEFAULT_WIDTH = 192;
+        public static final int STATUS_BAR_DEFAULT_HEIGHT = 58;
+        public static final int STATUS_BAR_WIDTH = (int) (STATUS_BAR_DEFAULT_WIDTH * SCALE);
+        public static final int STATUS_BAR_HEIGHT = (int) (STATUS_BAR_DEFAULT_HEIGHT * SCALE);
+
+        public static final int STATUS_BAR_DEFAULT_X = 10;
+        public static final int STATUS_BAR_DEFAULT_Y = 10;
+        public static final int STATUS_BAR_X = (int) (STATUS_BAR_DEFAULT_X * SCALE);
+        public static final int STATUS_BAR_Y = (int) (STATUS_BAR_DEFAULT_Y * SCALE);
+
+        public static final int HP_BAR_DEFAULT_WIDTH = 150;
+        public static final int HP_BAR_DEFAULT_HEIGHT = 4;
+        public static final int HP_BAR_WIDTH = (int) (HP_BAR_DEFAULT_WIDTH * SCALE);
+        public static final int HP_BAR_HEIGHT = (int) (HP_BAR_DEFAULT_HEIGHT * SCALE);
+
+        public static final int HP_BAR_DEFAULT_X_START = 34;
+        public static final int HP_BAR_DEFAULT_Y_START = 14;
+        public static final int HP_BAR_X_START = (int) (HP_BAR_DEFAULT_X_START * SCALE);
+        public static final int HP_BAR_Y_START = (int) (HP_BAR_DEFAULT_Y_START * SCALE);
+    }
+
     public static class EnemyConstants {
         // Enemy Types
         public static final int CRAB = 0;

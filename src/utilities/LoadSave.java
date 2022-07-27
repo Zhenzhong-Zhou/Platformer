@@ -15,6 +15,7 @@ import static utilities.Constants.EnemyConstants.CRAB;
 public class LoadSave {
     // Entities
     public static final String PLAYER_ATLAS = "entities/player_sprites.png";
+    public static final String PLAYER_STATUS_BAR = "entities/health_power_bar.png";
     public static final String CRAB_ATLAS = "entities/crabby_sprite.png";
 
     // Environment
@@ -24,7 +25,6 @@ public class LoadSave {
     public static final String SMALL_CLOUDS = "environment/small_clouds.png";
 
     // Level
-    //    public static final String LEVEL_DEFAULT_DATA = "level_one_data.png";
     public static final String LEVEL_DEFAULT_DATA = "level/level_one_data_long.png";
 
     // GUI
