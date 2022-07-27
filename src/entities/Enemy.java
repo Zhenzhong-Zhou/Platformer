@@ -1,6 +1,9 @@
 package entities;
 
+import java.awt.geom.Rectangle2D;
+
 import static main.Game.SCALE;
+import static main.Game.TILES_SIZE;
 import static utilities.Constants.Directions.LEFT;
 import static utilities.Constants.Directions.RIGHT;
 import static utilities.Constants.EnemyConstants.*;
@@ -18,6 +21,8 @@ public abstract class Enemy extends Entity {
     protected final float gravity = SCALE * 0.04f;
     protected int walkDirection = LEFT;
     protected final float walkSpeed = 0.35f * SCALE;
+    protected int tileY;
+    protected float attackRange = TILES_SIZE;
 
     public Enemy(float x, float y, int width, int height, int enemyType) {
         super(x, y, width, height);
@@ -39,6 +44,7 @@ public abstract class Enemy extends Entity {
         } else {
             inAir = false;
             hitbox.y = GetEntityYPositionUnderRoofOrAboveFloor(hitbox, fallSpeed);
+            tileY = (int) (hitbox.y/TILES_SIZE);
         }
     }
 
@@ -60,6 +66,36 @@ public abstract class Enemy extends Entity {
         changeWalkDirection();
     }
 
+    protected void turnTowardPlayer(Player player) {
+        if(player.hitbox.x> hitbox.x) {
+            walkDirection = RIGHT;
+        }else {
+            walkDirection =LEFT;
+        }
+    }
+
+    protected boolean canSeePlayer(int[][] levelData, Player player) {
+        int playerTileY = (int) (player.getHitbox().y / TILES_SIZE);
+        if(playerTileY == tileY) {
+            if(isPlayerInRange(player)) {
+                if(IsSightClear(levelData, hitbox, player.hitbox, tileY)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    protected boolean isPlayerInRange(Player player) {
+        int absValue = (int) Math.abs(player.hitbox.x - hitbox.x);
+        return absValue <= attackRange * 5;
+    }
+
+    protected boolean isPlayerCloseForAttack(Player player) {
+        int absValue = (int) Math.abs(player.hitbox.x - hitbox.x);
+        return absValue <= attackRange;
+    }
+
     protected void setEnemyStates(int enemyStates) {
         this.enemyStates = enemyStates;
         animationTick = 0;
@@ -73,6 +109,9 @@ public abstract class Enemy extends Entity {
             animationIndex++;
             if(animationIndex >= GetSpriteAmount(enemyType, enemyStates)) {
                 animationIndex = 0;
+                if(enemyStates == ATTACK) {
+                    enemyStates = IDLE;
+                }
             }
         }
     }

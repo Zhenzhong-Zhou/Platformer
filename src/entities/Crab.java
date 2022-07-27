@@ -9,12 +9,12 @@ public class Crab extends Enemy {
         initHitbox(x, y, (int) (SCALE * 22), (int) (SCALE * 19));
     }
 
-    public void update(int[][] levelData) {
-        updateMove(levelData);
+    public void update(int[][] levelData, Player player) {
+        updateMove(levelData, player);
         updateAnimationTick();
     }
 
-    public void updateMove(int[][] levelData) {
+    public void updateMove(int[][] levelData, Player player) {
         if(firstUpdate) {
             firstUpdateCheck(levelData);
         }
@@ -28,6 +28,12 @@ public class Crab extends Enemy {
                 }
                 case RUN -> {
                     // Patrol
+                    if(canSeePlayer(levelData, player)) {
+                        turnTowardPlayer(player);
+                    }
+                    if(isPlayerCloseForAttack(player)) {
+                        setEnemyStates(ATTACK);
+                    }
                     patrol(levelData);
                 }
                 default -> {
