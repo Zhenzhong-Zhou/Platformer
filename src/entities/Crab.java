@@ -49,9 +49,9 @@ public class Crab extends Enemy {
                     // Patrol
                     if(canSeePlayer(levelData, player)) {
                         turnTowardPlayer(player);
-                    }
-                    if(isPlayerCloseForAttack(player)) {
-                        setEnemyStates(ATTACK);
+                        if(isPlayerCloseForAttack(player)) {
+                            setEnemyStates(ATTACK);
+                        }
                     }
                     patrol(levelData);
                 }
