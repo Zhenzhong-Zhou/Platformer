@@ -12,7 +12,7 @@ public abstract class Entity {
     protected int animationTick, animationIndex;
     protected int state;
     protected float airSpeed;
-    protected boolean inAir=false;
+    protected boolean inAir = false;
     protected int maxHealth;
     protected int currentHealth;
     protected Rectangle2D.Float attackBox;

@@ -1,6 +1,5 @@
 package entities;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 import static main.Game.SCALE;
