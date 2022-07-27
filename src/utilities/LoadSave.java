@@ -1,19 +1,12 @@
 package utilities;
 
-import entities.Crab;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-
-import static main.Game.TILES_SIZE;
-import static utilities.Constants.EnemyConstants.CRAB;
 
 public class LoadSave {
     // Entities
@@ -26,9 +19,6 @@ public class LoadSave {
     public static final String PLAY_BG_IMAGE = "environment/playing_bg_img.png";
     public static final String BIG_CLOUDS = "environment/big_clouds.png";
     public static final String SMALL_CLOUDS = "environment/small_clouds.png";
-
-    // Level
-    public static final String LEVEL_DEFAULT_DATA = "level/level_one_data_long.png";
 
     // GUI
     public static final String MENU_BUTTONS = "gui/menu/button_atlas.png";
@@ -91,38 +81,5 @@ public class LoadSave {
             }
         }
         return images;
-    }
-
-    public static ArrayList<Crab> GetCrabs() {
-        BufferedImage image = GetSpriteAtlas(LEVEL_DEFAULT_DATA);
-        ArrayList<Crab> crabArrayList = new ArrayList<>();
-
-        for(int j = 0; j < image.getHeight(); j++) {
-            for(int i = 0; i < image.getWidth(); i++) {
-                Color color = new Color(image.getRGB(i, j));
-                int value = color.getGreen();
-                if(value == CRAB) {
-                    crabArrayList.add(new Crab(TILES_SIZE * i, TILES_SIZE * j));
-                }
-            }
-        }
-        return crabArrayList;
-    }
-
-    public static int[][] GetLevelData() {
-        BufferedImage image = GetSpriteAtlas(LEVEL_DEFAULT_DATA);
-        int[][] levelData = new int[image.getHeight()][image.getWidth()];
-
-        for(int j = 0; j < image.getHeight(); j++) {
-            for(int i = 0; i < image.getWidth(); i++) {
-                Color color = new Color(image.getRGB(i, j));
-                int value = color.getRed();
-                if(value >= 48) {
-                    value = 0;
-                }
-                levelData[j][i] = value;
-            }
-        }
-        return levelData;
     }
 }
