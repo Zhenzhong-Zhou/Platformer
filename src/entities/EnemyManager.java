@@ -47,7 +47,7 @@ public class EnemyManager {
     private void drawCrabs(Graphics graphics, int xLevelOffset) {
         for(Crab crab : crabs) {
             if(crab.isActive()) {
-                graphics.drawImage(crabArray[crab.getEnemyStates()][crab.getAnimationIndex()],
+                graphics.drawImage(crabArray[crab.getStates()][crab.getAnimationIndex()],
                         (int) crab.getHitbox().x - xLevelOffset - CRAB_DRAW_OFFSET_X + crab.flipX(),
                         (int) crab.getHitbox().y - CRAB_DRAW_OFFSET_Y, CRAB_WIDTH * crab.flipW(), CRAB_HEIGHT, null);
                 crab.drawHitbox(graphics, xLevelOffset);

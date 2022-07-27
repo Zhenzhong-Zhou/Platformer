@@ -3,10 +3,20 @@ package entities;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
+import static main.Game.SCALE;
+
 public abstract class Entity {
     protected float x, y;
     protected int width, height;
     protected Rectangle2D.Float hitbox;
+    protected int animationTick, animationIndex;
+    protected int state;
+    protected float airSpeed;
+    protected boolean inAir=false;
+    protected int maxHealth;
+    protected int currentHealth;
+    protected Rectangle2D.Float attackBox;
+    protected float walkSpeed = 0.9f * SCALE;
 
     public Entity(float x, float y, int width, int height) {
         this.x = x;
@@ -27,5 +37,9 @@ public abstract class Entity {
 
     public Rectangle2D.Float getHitbox() {
         return hitbox;
+    }
+
+    public int getStates() {
+        return state;
     }
 }

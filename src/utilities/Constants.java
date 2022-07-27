@@ -3,6 +3,8 @@ package utilities;
 import static main.Game.SCALE;
 
 public class Constants {
+    public static final float GRAVITY = 0.04f * SCALE;
+    public static final float ANIMATE_SPEED = 25;
     public static class PlayerStatusBar {
         public static final int STATUS_BAR_DEFAULT_WIDTH = 192;
         public static final int STATUS_BAR_DEFAULT_HEIGHT = 58;

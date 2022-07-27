@@ -8,7 +8,6 @@ import static utilities.Constants.Directions.RIGHT;
 import static utilities.Constants.EnemyConstants.*;
 
 public class Crab extends Enemy {
-    private Rectangle2D.Float attackBox;
     private int attackBoxOffsetX;
 
     public Crab(float x, float y) {
@@ -41,7 +40,7 @@ public class Crab extends Enemy {
         if(inAir) {
             updateInAirCheck(levelData);
         } else {
-            switch(enemyStates) {
+            switch(state) {
                 case IDLE -> {
                     setEnemyStates(RUN);
                 }
