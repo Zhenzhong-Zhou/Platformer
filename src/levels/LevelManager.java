@@ -14,7 +14,7 @@ import static utilities.LoadSave.*;
 
 public class LevelManager {
     private final Game game;
-    private ArrayList<Level> levels;
+    private final ArrayList<Level> levels;
     private BufferedImage[] levelSprite;
     private int levelIndex = 0;
 
@@ -27,7 +27,7 @@ public class LevelManager {
 
     public void loadNextLevel() {
         levelIndex++;
-        if(levelIndex >=levels.size()) {
+        if(levelIndex >= levels.size()) {
             levelIndex = 0;
             System.out.println("No more levels!");
             GameStates.gameStates = MENU;

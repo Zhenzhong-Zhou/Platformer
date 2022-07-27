@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static utilities.Constants.EnemyConstants.*;
-import static utilities.LoadSave.*;
+import static utilities.LoadSave.CRAB_ATLAS;
+import static utilities.LoadSave.GetSpriteAtlas;
 
 public class EnemyManager {
     private final Play play;
@@ -34,7 +35,7 @@ public class EnemyManager {
                 isAnyActive = true;
             }
         }
-        if(!isAnyActive) {
+        if(! isAnyActive) {
             play.setLevelFinished(true);
         }
     }

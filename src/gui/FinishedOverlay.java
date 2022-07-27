@@ -15,7 +15,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.LEVEL_COMPLETE;
 
 public class FinishedOverlay {
-    private Play play;
+    private final Play play;
     private UtilButtons menuButton, nextButton;
     private BufferedImage image;
     private int bgX, bgY, bgW, bgH;
@@ -36,10 +36,10 @@ public class FinishedOverlay {
 
     private void initImage() {
         image = GetSpriteAtlas(LEVEL_COMPLETE);
-        bgW = (int) (image.getWidth()*SCALE);
-        bgH = (int) (image.getHeight()*SCALE);
-        bgX = GAME_WIDTH/2 - bgW/2;
-        bgY = (int) (75*SCALE);
+        bgW = (int) (image.getWidth() * SCALE);
+        bgH = (int) (image.getHeight() * SCALE);
+        bgX = GAME_WIDTH / 2 - bgW / 2;
+        bgY = (int) (75 * SCALE);
     }
 
     public void update() {

@@ -11,7 +11,7 @@ import static main.Game.TILES_SIZE;
 import static utilities.HelpMethods.*;
 
 public class Level {
-    private BufferedImage image;
+    private final BufferedImage image;
     private int[][] levelData;
     private ArrayList<Crab> crabs;
     private int levelTileWidth;

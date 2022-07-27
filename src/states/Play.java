@@ -22,12 +22,12 @@ import static utilities.LoadSave.*;
 public class Play extends State implements StateMethods {
     private final int leftBorder = (int) (GAME_WIDTH * 0.2);
     private final int rightBorder = (int) (GAME_WIDTH * 0.8);
-    private int maxLevelOffsetX;
     private final BufferedImage backgroundImage;
     private final BufferedImage bigCloudsImage;
     private final BufferedImage smallCloudsImage;
     private final int[] smallCloudsPosition;
     private final Random random = new Random();
+    private int maxLevelOffsetX;
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
@@ -86,7 +86,7 @@ public class Play extends State implements StateMethods {
             pauseOverlay.update();
         } else if(finishedLevel) {
             finishedOverlay.update();
-        } else if(!gameOver){
+        } else if(! gameOver) {
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
@@ -175,7 +175,7 @@ public class Play extends State implements StateMethods {
         if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseReleased(e);
-            }else if(finishedLevel) {
+            } else if(finishedLevel) {
                 finishedOverlay.mouseReleased(e);
             }
         }
@@ -186,7 +186,7 @@ public class Play extends State implements StateMethods {
         if(! gameOver) {
             if(paused) {
                 pauseOverlay.mouseMoved(e);
-            }else if(finishedLevel) {
+            } else if(finishedLevel) {
                 finishedOverlay.mouseMoved(e);
             }
         }

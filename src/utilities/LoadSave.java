@@ -64,7 +64,7 @@ public class LoadSave {
         assert files != null;
         File[] filesSorted = new File[files.length];
 
-        for(int i=0; i<filesSorted.length;i++) {
+        for(int i = 0; i < filesSorted.length; i++) {
             for(File f : files) {
                 if(f.getName().equals((i + 1) + ".png")) {
                     filesSorted[i] = f;
@@ -73,10 +73,10 @@ public class LoadSave {
         }
 
         BufferedImage[] images = new BufferedImage[filesSorted.length];
-        for(int i =0;i<images.length;i++) {
+        for(int i = 0; i < images.length; i++) {
             try {
                 images[i] = ImageIO.read(filesSorted[i]);
-            }catch(IOException e) {
+            } catch(IOException e) {
                 e.printStackTrace();
             }
         }
