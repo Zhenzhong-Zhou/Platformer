@@ -121,8 +121,8 @@ public class Constants {
         public static final int RUN = 1;
         public static final int JUMP = 2;
         public static final int FALL = 3;
-        public static final int HIT = 4;
-        public static final int ATTACK = 5;
+        public static final int ATTACK = 4;
+        public static final int HIT = 5;
         public static final int DEAD = 6;
 
         public static int GetSpriteAmount(int player_action) {
