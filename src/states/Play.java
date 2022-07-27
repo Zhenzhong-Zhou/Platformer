@@ -3,6 +3,7 @@ package states;
 import entities.EnemyManager;
 import entities.Player;
 import gui.DeathOverlay;
+import gui.FinishedOverlay;
 import gui.PauseOverlay;
 import levels.LevelManager;
 import main.Game;
@@ -34,6 +35,7 @@ public class Play extends State implements StateMethods {
     private EnemyManager enemyManager;
     private PauseOverlay pauseOverlay;
     private DeathOverlay deathOverlay;
+    private FinishedOverlay finishedOverlay;
     private boolean paused = false;
     private int xLevelOffset;
     private boolean gameOver;
@@ -57,6 +59,7 @@ public class Play extends State implements StateMethods {
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
         pauseOverlay = new PauseOverlay(this);
         deathOverlay = new DeathOverlay(this);
+        finishedOverlay = new FinishedOverlay(this);
     }
 
     @Override
@@ -103,6 +106,7 @@ public class Play extends State implements StateMethods {
         } else if(gameOver) {
             deathOverlay.draw(graphics);
         }
+        finishedOverlay.draw(graphics);
     }
 
     private void drawClouds(Graphics graphics) {
