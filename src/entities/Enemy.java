@@ -55,7 +55,7 @@ public abstract class Enemy extends Entity {
     }
 
     protected void patrol(int[][] levelData) {
-        float xSpeed = 0;
+        float xSpeed;
 
         if(walkDirection == LEFT) {
             xSpeed = - walkSpeed;

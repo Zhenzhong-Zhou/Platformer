@@ -47,32 +47,18 @@ public class Game implements Runnable {
 
     public void update() {
         switch(gameStates) {
-            case MENU -> {
-                menu.update();
-            }
-            case PLAY -> {
-                play.update();
-            }
-            case OPTIONS, QUIT -> {
-                System.exit(0);
-            }
-            default -> {
-
-            }
+            case MENU -> menu.update();
+            case PLAY -> play.update();
+            case OPTIONS, QUIT -> System.exit(0);
+            default -> {}
         }
     }
 
     public void render(Graphics graphics) {
         switch(gameStates) {
-            case MENU -> {
-                menu.draw(graphics);
-            }
-            case PLAY -> {
-                play.draw(graphics);
-            }
-            default -> {
-
-            }
+            case MENU -> menu.draw(graphics);
+            case PLAY -> play.draw(graphics);
+            default -> {}
         }
     }
 
