@@ -102,7 +102,7 @@ public class Player extends Entity {
         int startAnimation = playerAction;
 
         if(moving) {
-            playerAction = RUNNING;
+            playerAction = RUN;
         } else {
             playerAction = IDLE;
         }
@@ -111,7 +111,7 @@ public class Player extends Entity {
             if(airSpeed < 0) {
                 playerAction = JUMP;
             } else {
-                playerAction = FALLING;
+                playerAction = FALL;
             }
         }
 
@@ -208,7 +208,7 @@ public class Player extends Entity {
         statusBarImage = GetSpriteAtlas(PLAYER_STATUS_BAR);
         BufferedImage image = GetSpriteAtlas(PLAYER_ATLAS);
 
-        animations = new BufferedImage[9][6];
+        animations = new BufferedImage[7][8];
         for(int j = 0; j < animations.length; j++) {
             for(int i = 0; i < animations[j].length; i++) {
                 animations[j][i] = image.getSubimage(i * 64, j * 40, 64, 40);
