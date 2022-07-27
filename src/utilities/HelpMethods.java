@@ -136,4 +136,17 @@ public class HelpMethods {
         }
         return crabArrayList;
     }
+
+    public static Point GetPlayerSpawn(BufferedImage image) {
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getGreen();
+                if(value == 100) {
+                    return new Point(i*TILES_SIZE, j*TILES_SIZE);
+                }
+            }
+        }
+        return new Point(TILES_SIZE, TILES_SIZE);
+    }
 }

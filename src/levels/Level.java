@@ -2,13 +2,13 @@ package levels;
 
 import entities.Crab;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static main.Game.TILES_IN_WIDTH;
 import static main.Game.TILES_SIZE;
-import static utilities.HelpMethods.GetCrabs;
-import static utilities.HelpMethods.GetLevelData;
+import static utilities.HelpMethods.*;
 
 public class Level {
     private BufferedImage image;
@@ -17,12 +17,18 @@ public class Level {
     private int levelTileWidth;
     private int maxTilesOffset;
     private int maxLevelOffsetX;
+    private Point playerSpawn;
 
     public Level(BufferedImage image) {
         this.image = image;
         createLevelData();
         createEnemies();
         calculateOffsets();
+        calculatePlayerSpawn();
+    }
+
+    private void calculatePlayerSpawn() {
+        playerSpawn = GetPlayerSpawn(image);
     }
 
     private void calculateOffsets() {
@@ -53,5 +59,9 @@ public class Level {
 
     public int getMaxLevelOffsetX() {
         return maxLevelOffsetX;
+    }
+
+    public Point getPlayerSpawn() {
+        return playerSpawn;
     }
 }
