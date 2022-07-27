@@ -7,10 +7,10 @@ import static main.Game.TILES_SIZE;
 
 public class HelpMethods {
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] levelData) {
-        if(IsSolid(x, y, levelData)) {
-            if(IsSolid(x + width, y + height, levelData)) {
-                if(IsSolid(x + width, y, levelData)) {
-                    return IsSolid(x, y + height, levelData);
+        if (!IsSolid(x, y, levelData)) {
+            if (!IsSolid(x + width, y + height, levelData)) {
+                if (!IsSolid(x + width, y, levelData)) {
+                    return ! IsSolid(x, y + height, levelData);
                 }
             }
         }
@@ -31,7 +31,7 @@ public class HelpMethods {
 
         int value = levelData[(int) yIndex][(int) xIndex];
 
-        return value == 11;
+        return value != 11;
     }
 
     public static float GetEntityXPositionNextToWall(Rectangle2D.Float hitbox, float xSpeed) {
@@ -69,6 +69,6 @@ public class HelpMethods {
     }
 
     public static boolean IsFloor(Rectangle2D.Float hitbox, float xSpeed, int[][] levelData) {
-        return ! IsSolid(hitbox.x - xSpeed, hitbox.y + hitbox.width + xSpeed, levelData);
+        return IsSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, levelData);
     }
 }
