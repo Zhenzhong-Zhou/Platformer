@@ -50,7 +50,8 @@ public class Game implements Runnable {
             case MENU -> menu.update();
             case PLAY -> play.update();
             case OPTIONS, QUIT -> System.exit(0);
-            default -> {}
+            default -> {
+            }
         }
     }
 
@@ -58,7 +59,8 @@ public class Game implements Runnable {
         switch(gameStates) {
             case MENU -> menu.draw(graphics);
             case PLAY -> play.draw(graphics);
-            default -> {}
+            default -> {
+            }
         }
     }
 

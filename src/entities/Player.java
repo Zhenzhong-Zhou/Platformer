@@ -20,6 +20,8 @@ public class Player extends Entity {
     private final float jumpSpeed = - 2.25f * SCALE;
     private final float fallSpeedAfterCollision = 0.5f * SCALE;
     private final int animationSpeed = 25;
+    private final int maxHealth = 100;
+    private final Play play;
     private int animationTick;
     private int animationIndex;
     private BufferedImage[][] animations;
@@ -30,14 +32,12 @@ public class Player extends Entity {
     private float airSpeed = 0.0f;
     private boolean inAir = false;
     private BufferedImage statusBarImage;
-    private final int maxHealth = 100;
     private int currentHealth = maxHealth;
     private int healthWidth = HP_BAR_WIDTH;
     private Rectangle2D.Float attackBox;
     private int flipX = 0;
     private int flipW = 1;
     private boolean attackChecked;
-    private final Play play;
 
     public Player(float x, float y, int width, int height, Play play) {
         super(x, y, width, height);

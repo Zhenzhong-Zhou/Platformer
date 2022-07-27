@@ -66,7 +66,8 @@ public class Crab extends Enemy {
                 case HIT -> {
 
                 }
-                default -> {}
+                default -> {
+                }
             }
         }
     }

@@ -24,18 +24,18 @@ public class KeyboardInputs implements KeyListener {
         switch(gameStates) {
             case MENU -> scene.getGame().getMenu().keyPressed(e);
             case PLAY -> scene.getGame().getPlay().keyPressed(e);
-            default -> {}
+            default -> {
+            }
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         switch(gameStates) {
-            case MENU ->
-                scene.getGame().getMenu().keyReleased(e);
-            case PLAY ->
-                scene.getGame().getPlay().keyReleased(e);
-            default -> {}
+            case MENU -> scene.getGame().getMenu().keyReleased(e);
+            case PLAY -> scene.getGame().getPlay().keyReleased(e);
+            default -> {
+            }
         }
     }
 }
