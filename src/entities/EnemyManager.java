@@ -1,5 +1,6 @@
 package entities;
 
+import levels.Level;
 import states.Play;
 
 import java.awt.*;
@@ -18,19 +19,23 @@ public class EnemyManager {
     public EnemyManager(Play play) {
         this.play = play;
         loadEnemyImages();
-        addEnemies();
     }
 
-    private void addEnemies() {
-        crabs = GetCrabs();
+    public void loadEnemies(Level level) {
+        crabs = level.getCrabs();
         System.out.println("Size of Crabs: " + crabs.size());
     }
 
     public void update(int[][] levelData, Player player) {
+        boolean isAnyActive = false;
         for(Crab crab : crabs) {
             if(crab.isActive()) {
                 crab.update(levelData, player);
+                isAnyActive = true;
             }
+        }
+        if(!isAnyActive) {
+            play.setLevelFinished(true);
         }
     }
 

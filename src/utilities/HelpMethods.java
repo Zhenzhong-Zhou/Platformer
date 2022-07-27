@@ -1,9 +1,15 @@
 package utilities;
 
+import entities.Crab;
+
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static main.Game.GAME_HEIGHT;
 import static main.Game.TILES_SIZE;
+import static utilities.Constants.EnemyConstants.CRAB;
 
 public class HelpMethods {
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] levelData) {
@@ -100,5 +106,34 @@ public class HelpMethods {
         } else {
             return IsAllTilesWalkable(firstTileX, secondTileX, tileY, levelData);
         }
+    }
+
+    public static int[][] GetLevelData(BufferedImage image) {
+        int[][] levelData = new int[image.getHeight()][image.getWidth()];
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getRed();
+                if(value >= 48) {
+                    value = 0;
+                }
+                levelData[j][i] = value;
+            }
+        }
+        return levelData;
+    }
+
+    public static ArrayList<Crab> GetCrabs(BufferedImage image) {
+        ArrayList<Crab> crabArrayList = new ArrayList<>();
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getGreen();
+                if(value == CRAB) {
+                    crabArrayList.add(new Crab(TILES_SIZE * i, TILES_SIZE * j));
+                }
+            }
+        }
+        return crabArrayList;
     }
 }

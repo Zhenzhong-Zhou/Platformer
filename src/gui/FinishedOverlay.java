@@ -1,5 +1,6 @@
 package gui;
 
+import states.GameStates;
 import states.Play;
 
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
+import static states.GameStates.MENU;
 import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.LEVEL_COMPLETE;
@@ -77,11 +79,12 @@ public class FinishedOverlay {
     public void mouseReleased(MouseEvent e) {
         if(isSelectedButton(nextButton, e)) {
             if(nextButton.isMousePressed()) {
-                System.out.println("NEXT!");
+                play.loadNextLevel();
             }
         } else if(isSelectedButton(menuButton, e)) {
             if(menuButton.isMousePressed()) {
-                System.out.println("MENU!");
+                play.resetAll();
+                GameStates.gameStates = MENU;
             }
         }
         nextButton.restBooleans();

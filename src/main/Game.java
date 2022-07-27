@@ -27,7 +27,6 @@ public class Game implements Runnable {
     private Play play;
 
     public Game() {
-        GetAllLevels();
         initClasses();
 
         scene = new Scene(this);

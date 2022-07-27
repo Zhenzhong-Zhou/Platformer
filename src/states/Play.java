@@ -22,9 +22,7 @@ import static utilities.LoadSave.*;
 public class Play extends State implements StateMethods {
     private final int leftBorder = (int) (GAME_WIDTH * 0.2);
     private final int rightBorder = (int) (GAME_WIDTH * 0.8);
-    private final int levelTileWidth = GetLevelData()[0].length;
-    private final int maxTilesOffset = levelTileWidth - TILES_IN_WIDTH;
-    private final int maxLevelOffsetX = maxTilesOffset * TILES_SIZE;
+    private int maxLevelOffsetX;
     private final BufferedImage backgroundImage;
     private final BufferedImage bigCloudsImage;
     private final BufferedImage smallCloudsImage;
@@ -39,7 +37,7 @@ public class Play extends State implements StateMethods {
     private boolean paused = false;
     private int xLevelOffset;
     private boolean gameOver;
-    private boolean finishedLevel = true;
+    private boolean finishedLevel;
 
     public Play(Game game) {
         super(game);
@@ -51,6 +49,21 @@ public class Play extends State implements StateMethods {
         for(int i = 0; i < smallCloudsPosition.length; i++) {
             smallCloudsPosition[i] = (int) (SCALE * 90) + random.nextInt((int) (SCALE * 100));
         }
+        calculateOffsets();
+        loadStartLevel();
+    }
+
+    public void loadNextLevel() {
+        resetAll();
+        levelManager.loadNextLevel();
+    }
+
+    private void loadStartLevel() {
+        enemyManager.loadEnemies(levelManager.getCurrentLevel());
+    }
+
+    private void calculateOffsets() {
+        maxLevelOffsetX = levelManager.getCurrentLevel().getMaxLevelOffsetX();
     }
 
     private void initClasses() {
@@ -219,6 +232,7 @@ public class Play extends State implements StateMethods {
     public void resetAll() {
         gameOver = false;
         paused = false;
+        finishedLevel = false;
         player.resetAll();
         enemyManager.resetAllEnemies();
     }
@@ -229,5 +243,17 @@ public class Play extends State implements StateMethods {
 
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
+    }
+
+    public void setLevelFinished(boolean levelFinished) {
+        this.finishedLevel = levelFinished;
+    }
+
+    public void setMaxLevelOffsetX(int maxLevelOffsetX) {
+        this.maxLevelOffsetX = maxLevelOffsetX;
+    }
+
+    public EnemyManager getEnemyManager() {
+        return enemyManager;
     }
 }
