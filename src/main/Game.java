@@ -4,9 +4,11 @@ import states.Menu;
 import states.Play;
 
 import java.awt.*;
+import java.net.URISyntaxException;
 
 import static states.GameStates.PLAY;
 import static states.GameStates.gameStates;
+import static utilities.LoadSave.GetAllLevels;
 
 public class Game implements Runnable {
     public final static int TILES_DEFAULT_SIZE = 32;
@@ -25,6 +27,7 @@ public class Game implements Runnable {
     private Play play;
 
     public Game() {
+        GetAllLevels();
         initClasses();
 
         scene = new Scene(this);

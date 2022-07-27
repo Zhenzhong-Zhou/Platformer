@@ -5,8 +5,11 @@ import entities.Crab;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static main.Game.TILES_SIZE;
@@ -54,6 +57,40 @@ public class LoadSave {
             }
         }
         return image;
+    }
+
+    public static BufferedImage[] GetAllLevels() {
+        URL url = LoadSave.class.getResource("/level");
+        File file = null;
+        try {
+            assert url != null;
+            file = new File(url.toURI());
+        } catch(URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        assert file != null;
+        File[] files = file.listFiles();
+        assert files != null;
+        File[] filesSorted = new File[files.length];
+
+        for(int i=0; i<filesSorted.length;i++) {
+            for(File f : files) {
+                if(f.getName().equals((i + 1) + ".png")) {
+                    filesSorted[i] = f;
+                }
+            }
+        }
+
+        BufferedImage[] images = new BufferedImage[filesSorted.length];
+        for(int i =0;i<images.length;i++) {
+            try {
+                images[i] = ImageIO.read(filesSorted[i]);
+            }catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return images;
     }
 
     public static ArrayList<Crab> GetCrabs() {
