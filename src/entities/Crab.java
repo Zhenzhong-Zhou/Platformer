@@ -18,7 +18,7 @@ public class Crab extends Enemy {
 
     public void updateMove(int[][] levelData) {
         if(firstUpdate) {
-            if(!IsEntityOnFloor(hitbox, levelData)) {
+            if(IsEntityOnFloor(hitbox, levelData)) {
                 inAir = true;
             }
             firstUpdate = false;
