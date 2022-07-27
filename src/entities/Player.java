@@ -27,8 +27,7 @@ public class Player extends Entity {
     private float airSpeed = 0.0f;
     private boolean inAir = false;
     private BufferedImage statusBarImage;
-
-    private int maxHealth = 10;
+    private int maxHealth = 100;
     private int currentHealth = maxHealth;
     private int healthWidth = HP_BAR_WIDTH;
 
@@ -39,9 +38,14 @@ public class Player extends Entity {
     }
 
     public void update() {
+        updateHealthBar();
         updatePosition();
         updateAnimationTick();
         setAnimation();
+    }
+
+    private void updateHealthBar() {
+        healthWidth = (int) ((currentHealth / (float) maxHealth)*HP_BAR_WIDTH);
     }
 
     public void render(Graphics graphics, int levelOffset) {
@@ -55,6 +59,8 @@ public class Player extends Entity {
     private void drawStatusBar(Graphics graphics) {
         graphics.drawImage(statusBarImage, STATUS_BAR_X, STATUS_BAR_Y,
                 STATUS_BAR_WIDTH, STATUS_BAR_HEIGHT, null);
+        graphics.setColor(Color.RED);
+        graphics.fillRect(HP_BAR_X_START + STATUS_BAR_X, HP_BAR_Y_START + STATUS_BAR_Y, healthWidth, HP_BAR_HEIGHT);
     }
 
     private void updateAnimationTick() {
@@ -161,6 +167,17 @@ public class Player extends Entity {
             hitbox.x += xSpeed;
         } else {
             hitbox.x = GetEntityXPositionNextToWall(hitbox, xSpeed);
+        }
+    }
+
+    public void changeHealth(int value) {
+        currentHealth += value;
+        if(currentHealth<=0) {
+            currentHealth = 0;
+            // Game Over
+            // gameOver();
+        } else if(currentHealth >= maxHealth) {
+            currentHealth = maxHealth;
         }
     }
 
