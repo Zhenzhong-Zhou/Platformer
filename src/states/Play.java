@@ -61,7 +61,7 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void update() {
-        if(! paused) {
+        if(! paused && !gameOver) {
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
