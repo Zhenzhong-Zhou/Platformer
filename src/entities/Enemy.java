@@ -43,7 +43,7 @@ public abstract class Enemy extends Entity {
 
     public void updateMove(int[][] levelData) {
         if(firstUpdate) {
-            if(!IsEntityOnFloor(hitbox, levelData)) {
+            if(IsEntityOnFloor(hitbox, levelData)) {
                 inAir = true;
             }
             firstUpdate = false;
