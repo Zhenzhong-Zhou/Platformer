@@ -41,6 +41,7 @@ public class EnemyManager {
                     (int) crab.getHitbox().x - xLevelOffset - CRAB_DRAW_OFFSET_X + crab.flipX(),
                     (int) crab.getHitbox().y - CRAB_DRAW_OFFSET_Y, CRAB_WIDTH * crab.flipW(), CRAB_HEIGHT, null);
             crab.drawHitbox(graphics, xLevelOffset);
+            crab.drawAttackBox(graphics, xLevelOffset);
         }
     }
 
