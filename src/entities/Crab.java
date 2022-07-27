@@ -24,7 +24,7 @@ public class Crab extends Enemy {
         } else {
             switch(enemyStates) {
                 case IDLE -> {
-                    enemyStates = RUN;
+                    setEnemyStates(RUN);
                 }
                 case RUN -> {
                     // Patrol
