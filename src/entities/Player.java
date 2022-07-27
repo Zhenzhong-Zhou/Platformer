@@ -301,4 +301,20 @@ public class Player extends Entity {
     public void setJump(boolean jump) {
         this.jump = jump;
     }
+
+    public void resetAll() {
+        resetDirectionBoolean();;
+        inAir = false;
+        attacking = false;
+        moving = false;
+        playerAction = IDLE;
+        currentHealth = maxHealth;
+
+        hitbox.x = x;
+        hitbox.y = y;
+
+        if(IsEntityOnFloor(hitbox, levelData)) {
+            inAir = true;
+        }
+    }
 }

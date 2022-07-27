@@ -217,7 +217,10 @@ public class Play extends State implements StateMethods {
     }
 
     public void resetAll() {
-        //TODO: reset
+        gameOver = false;
+        paused = false;
+        player.resetAll();
+        enemyManager.resetAllEnemies();
     }
 
     public void checkEnemyHit(Rectangle2D.Float attackBox) {
