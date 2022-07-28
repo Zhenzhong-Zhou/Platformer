@@ -6,6 +6,41 @@ public class Constants {
     public static final float GRAVITY = 0.04f * SCALE;
     public static final float ANIMATE_SPEED = 25;
 
+    public static class GameObject {
+        public static final int RED_POTION = 0;
+        public static final int BLUE_POTION = 1;
+        public static final int BARREL = 2;
+        public static final int BOX = 3;
+
+        public static final int RED_POTION_VALUE = 15;
+        public static final int BLUE_POTION_VALUE = 10;
+
+        public static final int CONTAINER_DEFAULT_WIDTH = 40;
+        public static final int CONTAINER_DEFAULT_HEIGHT = 30;
+        public static final int CONTAINER_WIDTH = (int) (CONTAINER_DEFAULT_WIDTH * SCALE);
+        public static final int CONTAINER_HEIGHT = (int) (CONTAINER_DEFAULT_HEIGHT * SCALE);
+
+        public static final int POTION_DEFAULT_WIDTH = 40;
+        public static final int POTION_DEFAULT_HEIGHT = 30;
+        public static final int POTION_WIDTH = (int) (POTION_DEFAULT_WIDTH * SCALE);
+        public static final int POTION_HEIGHT = (int) (POTION_DEFAULT_HEIGHT * SCALE);
+
+
+        public static int GetSpriteAmount(int object_type) {
+            switch(object_type) {
+                case RED_POTION, BLUE_POTION -> {
+                    return 7;
+                }
+                case BARREL, BOX -> {
+                    return 8;
+                }
+                default -> {
+                }
+            }
+            return 1;
+        }
+    }
+
     public static class PlayerStatusBar {
         public static final int STATUS_BAR_DEFAULT_WIDTH = 192;
         public static final int STATUS_BAR_DEFAULT_HEIGHT = 58;
