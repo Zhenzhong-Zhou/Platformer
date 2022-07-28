@@ -5,7 +5,7 @@ import java.awt.geom.Rectangle2D;
 
 import static main.Game.SCALE;
 import static utilities.Constants.ANIMATE_SPEED;
-import static utilities.Constants.EnemyConstants.*;
+import static utilities.Constants.GameObject.*;
 
 public class GameObject {
     protected int x,y, objectType;
@@ -27,6 +27,10 @@ public class GameObject {
             animationIndex++;
             if(animationIndex >= GetSpriteAmount(objectType)) {
                 animationIndex = 0;
+                if(objectType == BARREL || objectType == BOX) {
+                    doAnimation = false;
+                    active = false;
+                }
             }
         }
     }
@@ -36,8 +40,7 @@ public class GameObject {
         animationTick=0;
         active=true;
 
-        // TODO: add
-        doAnimation =true;
+        doAnimation = objectType != BARREL && objectType != BOX;
     }
 
     protected void initHitbox(int width, int height) {
