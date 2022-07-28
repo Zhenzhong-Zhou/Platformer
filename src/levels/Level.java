@@ -3,6 +3,7 @@ package levels;
 import entities.Crab;
 import objects.Container;
 import objects.Potion;
+import objects.Spike;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,7 @@ public class Level {
     private ArrayList<Crab> crabs;
     private ArrayList<Potion> potions;
     private ArrayList<Container> containers;
+    private ArrayList<Spike> spikes;
     private int levelTileWidth;
     private int maxTilesOffset;
     private int maxLevelOffsetX;
@@ -29,6 +31,7 @@ public class Level {
         createEnemies();
         createPotions();
         createContainers();
+        createSpikes();
         calculateOffsets();
         calculatePlayerSpawn();
     }
@@ -39,6 +42,10 @@ public class Level {
 
     private void createContainers() {
         containers = GetContainers(image);
+    }
+
+    private void createSpikes() {
+        spikes = GetSpikes(image);
     }
 
     private void calculatePlayerSpawn() {
@@ -77,6 +84,10 @@ public class Level {
 
     public ArrayList<Container> getContainers() {
         return containers;
+    }
+
+    public ArrayList<Spike> getSpikes() {
+        return spikes;
     }
 
     public int getMaxLevelOffsetX() {

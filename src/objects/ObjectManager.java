@@ -14,8 +14,10 @@ import static utilities.LoadSave.*;
 public class ObjectManager {
     private final Play play;
     private BufferedImage[][] potionImages, containerImages;
+    private BufferedImage spikeImage;
     private ArrayList<Potion> potions;
     private ArrayList<Container> containers;
+    private ArrayList<Spike> spikes;
 
     public ObjectManager(Play play) {
         this.play = play;
@@ -61,6 +63,7 @@ public class ObjectManager {
     public void loadObjects(Level newLevel) {
         potions = new ArrayList<>(newLevel.getPotions());
         containers = new ArrayList<>(newLevel.getContainers());
+        spikes = newLevel.getSpikes();
     }
 
     private void loadImages() {
@@ -79,6 +82,8 @@ public class ObjectManager {
                 containerImages[j][i] = containerSprite.getSubimage(i * 40, j * 30, 40, 30);
             }
         }
+
+        spikeImage = GetSpriteAtlas(TRAP_SPRITE);
     }
 
     public void update() {
@@ -98,6 +103,15 @@ public class ObjectManager {
     public void draw(Graphics graphics, int xLevelOffset) {
         drawPotions(graphics, xLevelOffset);
         drawContainers(graphics, xLevelOffset);
+        drawTraps(graphics, xLevelOffset);
+    }
+
+    private void drawTraps(Graphics graphics, int xLevelOffset) {
+        for(Spike spike : spikes) {
+            graphics.drawImage(spikeImage,
+                    (int) (spike.getHitbox().x - xLevelOffset), (int) (spike.getHitbox().y - spike.getYDrawOffset()),
+                    SPIKE_WIDTH, SPIKE_HEIGHT, null);
+        }
     }
 
     private void drawPotions(Graphics graphics, int xLevelOffset) {

@@ -3,6 +3,7 @@ package utilities;
 import entities.Crab;
 import objects.Container;
 import objects.Potion;
+import objects.Spike;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -166,6 +167,20 @@ public class HelpMethods {
             }
         }
         return containerArrayList;
+    }
+
+    public static ArrayList<Spike> GetSpikes(BufferedImage image) {
+        ArrayList<Spike> spikeArrayList = new ArrayList<>();
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getBlue();
+                if(value == SPIKE) {
+                    spikeArrayList.add(new Spike(TILES_SIZE * i, TILES_SIZE * j, SPIKE));
+                }
+            }
+        }
+        return spikeArrayList;
     }
 
     public static Point GetPlayerSpawn(BufferedImage image) {
