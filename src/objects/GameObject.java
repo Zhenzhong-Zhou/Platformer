@@ -8,7 +8,7 @@ import static utilities.Constants.ANIMATE_SPEED;
 import static utilities.Constants.GameObject.*;
 
 public class GameObject {
-    protected int x,y, objectType;
+    protected int x, y, objectType;
     protected Rectangle2D.Float hitbox;
     protected boolean doAnimation, active = true;
     protected int animationTick, animationIndex;
@@ -36,9 +36,9 @@ public class GameObject {
     }
 
     public void reset() {
-        animationIndex =0 ;
-        animationTick=0;
-        active=true;
+        animationIndex = 0;
+        animationTick = 0;
+        active = true;
 
         doAnimation = objectType != BARREL && objectType != BOX;
     }
