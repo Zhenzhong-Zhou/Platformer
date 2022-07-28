@@ -43,7 +43,7 @@ public class ObjectManager {
 
     public void checkObjectHit(Rectangle2D.Float attackBox) {
         for(Container container : containers) {
-            if(container.isActive()) {
+            if(container.isActive() && !container.doAnimation) {
                 if(container.getHitbox().intersects(attackBox)) {
                     container.setAnimation(true);
                     int type = 0;
@@ -131,7 +131,6 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
-        System.out.println("Size of objects (start): " + potions.size() + " & " + containers.size());
         loadObjects(play.getLevelManager().getCurrentLevel());
         for(Potion potion : potions) {
             potion.reset();
@@ -139,6 +138,5 @@ public class ObjectManager {
         for(Container container : containers) {
             container.reset();
         }
-        System.out.println("Size of objects (end): " + potions.size() + " & " + containers.size());
     }
 }
