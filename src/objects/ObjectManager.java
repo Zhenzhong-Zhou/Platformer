@@ -131,13 +131,8 @@ public class ObjectManager {
 
     private boolean isPlayerInFrontOfCannon(Cannon cannon, Player player) {
         if(cannon.getObjectType() == CANNON_LEFT) {
-            if(cannon.getHitbox().x>player.getHitbox().x) {
-                return true;
-            }
-        } else if(cannon.getHitbox().x < player.getHitbox().x) {
-            return true;
-        }
-        return false;
+            return cannon.getHitbox().x > player.getHitbox().x;
+        } else return cannon.getHitbox().x < player.getHitbox().x;
     }
 
     private void updateCannon(int[][] levelData, Player player) {
@@ -230,7 +225,7 @@ public class ObjectManager {
         }
 
         for(Cannon cannon : cannons) {
-            cannon.reset();;
+            cannon.reset();
         }
     }
 }
