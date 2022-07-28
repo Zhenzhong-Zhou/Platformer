@@ -65,7 +65,7 @@ public class Player extends Entity {
         if(moving) {
             checkPotionTouched();
             checkSpikeTouched();
-            tileY = (int) (hitbox.y/TILES_SIZE);
+            tileY = (int) (hitbox.y / TILES_SIZE);
         }
         if(attacking) {
             checkAttack();

@@ -4,7 +4,9 @@ import static main.Game.SCALE;
 
 public class Potion extends GameObject {
     private float hoverOffset;
-    private int maxHoverOffset, hoverDirection = 1;
+    private final int maxHoverOffset;
+    private int hoverDirection = 1;
+
     public Potion(int x, int y, int objectType) {
         super(x, y, objectType);
         doAnimation = true;
@@ -12,7 +14,7 @@ public class Potion extends GameObject {
         xDrawOffset = (int) (3 * SCALE);
         yDrawOffset = (int) (2 * SCALE);
 
-        maxHoverOffset = (int) (10*SCALE);
+        maxHoverOffset = (int) (10 * SCALE);
     }
 
     public void update() {
@@ -21,13 +23,13 @@ public class Potion extends GameObject {
     }
 
     private void updateHover() {
-        hoverOffset += (0.065f * SCALE*hoverDirection);
+        hoverOffset += (0.065f * SCALE * hoverDirection);
 
-        if(hoverOffset>=maxHoverOffset) {
-            hoverDirection = -1;
-        }else if(hoverOffset<0){
-            hoverDirection =1;
+        if(hoverOffset >= maxHoverOffset) {
+            hoverDirection = - 1;
+        } else if(hoverOffset < 0) {
+            hoverDirection = 1;
         }
-        hitbox.y = y+hoverOffset;
+        hitbox.y = y + hoverOffset;
     }
 }

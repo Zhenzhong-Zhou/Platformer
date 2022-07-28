@@ -1,6 +1,7 @@
 package inputs;
 
 import main.Scene;
+import states.GameStates;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,10 +18,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        switch(gameStates) {
-            case PLAY -> scene.getGame().getPlay().mouseClicked(e);
-            default -> {
-            }
+        if(gameStates == GameStates.PLAY) {
+            scene.getGame().getPlay().mouseClicked(e);
         }
     }
 
@@ -56,10 +55,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        switch(gameStates) {
-            case PLAY -> scene.getGame().getPlay().mouseDragged(e);
-            default -> {
-            }
+        if(gameStates == GameStates.PLAY) {
+            scene.getGame().getPlay().mouseDragged(e);
         }
     }
 

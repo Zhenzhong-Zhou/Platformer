@@ -19,7 +19,7 @@ public class Container extends GameObject {
             xDrawOffset = (int) (8 * SCALE);
             yDrawOffset = (int) (5 * SCALE);
         }
-        hitbox.y += yDrawOffset + (int) (2*SCALE);
+        hitbox.y += yDrawOffset + (int) (2 * SCALE);
         hitbox.x += xDrawOffset / 2.0;
     }
 

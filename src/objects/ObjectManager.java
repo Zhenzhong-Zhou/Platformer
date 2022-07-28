@@ -58,15 +58,15 @@ public class ObjectManager {
 
     public void checkObjectHit(Rectangle2D.Float attackBox) {
         for(Container container : containers) {
-            if(container.isActive() && !container.doAnimation) {
+            if(container.isActive() && ! container.doAnimation) {
                 if(container.getHitbox().intersects(attackBox)) {
                     container.setAnimation(true);
                     int type = 0;
                     if(container.getObjectType() == BARREL) {
                         type = 1;
                     }
-                    potions.add(new Potion((int) (container.getHitbox().x + container.getHitbox().width/2),
-                            (int) (container.getHitbox().y - container.getHitbox().height/4), type));
+                    potions.add(new Potion((int) (container.getHitbox().x + container.getHitbox().width / 2),
+                            (int) (container.getHitbox().y - container.getHitbox().height / 4), type));
                     return;
                 }
             }
@@ -103,8 +103,8 @@ public class ObjectManager {
 
         cannonImages = new BufferedImage[7];
         BufferedImage cannonSprites = GetSpriteAtlas(CANNON_SPRITES);
-        for(int i=0; i<cannonImages.length;i++) {
-            cannonImages[i] = cannonSprites.getSubimage(i*CANNON_DEFAULT_WIDTH, 0, CANNON_DEFAULT_WIDTH, CANNON_DEFAULT_HEIGHT);
+        for(int i = 0; i < cannonImages.length; i++) {
+            cannonImages[i] = cannonSprites.getSubimage(i * CANNON_DEFAULT_WIDTH, 0, CANNON_DEFAULT_WIDTH, CANNON_DEFAULT_HEIGHT);
         }
     }
 
@@ -121,7 +121,7 @@ public class ObjectManager {
             }
         }
 
-       updateCannon(levelData, player);
+        updateCannon(levelData, player);
     }
 
     private boolean isPlayerInRange(Cannon cannon, Player player) {
@@ -137,9 +137,9 @@ public class ObjectManager {
 
     private void updateCannon(int[][] levelData, Player player) {
         for(Cannon cannon : cannons) {
-            if(!cannon.doAnimation) {
+            if(! cannon.doAnimation) {
                 if(cannon.getTileY() == player.getTileY()) {
-                    if(isPlayerInRange(cannon, player)){
+                    if(isPlayerInRange(cannon, player)) {
                         if(isPlayerInFrontOfCannon(cannon, player)) {
                             if(CanCannonSeePlayer(levelData, player.getHitbox(), cannon.getHitbox(), cannon.getTileY())) {
                                 cannonFire(cannon);
@@ -168,10 +168,10 @@ public class ObjectManager {
             int x = (int) (cannon.getHitbox().x - xLevelOffset);
             int width = CANNON_WIDTH;
             if(cannon.getObjectType() == CANNON_RIGHT) {
-                x+=width;
-                width*=-1;
+                x += width;
+                width *= - 1;
             }
-            graphics.drawImage(cannonImages[cannon.getAnimationIndex()], x, (int) (cannon.getHitbox().y ),
+            graphics.drawImage(cannonImages[cannon.getAnimationIndex()], x, (int) (cannon.getHitbox().y),
                     width, CANNON_HEIGHT, null);
         }
     }

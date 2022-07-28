@@ -103,24 +103,22 @@ public class Constants {
         public static final int CRAB_DRAW_OFFSET_Y = (int) (9 * SCALE);
 
         public static int GetSpriteAmount(int enemy_type, int enemy_state) {
-            switch(enemy_type) {
-                case CRAB -> {
-                    switch(enemy_state) {
-                        case IDLE -> {
-                            return 9;
-                        }
-                        case RUN -> {
-                            return 6;
-                        }
-                        case ATTACK -> {
-                            return 7;
-                        }
-                        case HIT -> {
-                            return 4;
-                        }
-                        case DEAD -> {
-                            return 5;
-                        }
+            if(enemy_type == CRAB) {
+                switch(enemy_state) {
+                    case IDLE -> {
+                        return 9;
+                    }
+                    case RUN -> {
+                        return 6;
+                    }
+                    case ATTACK -> {
+                        return 7;
+                    }
+                    case HIT -> {
+                        return 4;
+                    }
+                    case DEAD -> {
+                        return 5;
                     }
                 }
             }
@@ -128,25 +126,17 @@ public class Constants {
         }
 
         public static int GetMaxHealth(int enemy_type) {
-            switch(enemy_type) {
-                case CRAB -> {
-                    return 10;
-                }
-                default -> {
-                    return 1;
-                }
+            if(enemy_type == CRAB) {
+                return 10;
             }
+            return 1;
         }
 
         public static int GetEnemyDamageCheck(int enemy_type) {
-            switch(enemy_type) {
-                case CRAB -> {
-                    return 15;
-                }
-                default -> {
-                    return 0;
-                }
+            if(enemy_type == CRAB) {
+                return 15;
             }
+            return 0;
         }
     }
 
