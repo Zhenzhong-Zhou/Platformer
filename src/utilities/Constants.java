@@ -7,12 +7,16 @@ public class Constants {
     public static final float ANIMATE_SPEED = 25;
 
     public static class GameObject {
+        // Object Types
         public static final int RED_POTION = 0;
         public static final int BLUE_POTION = 1;
         public static final int BARREL = 2;
         public static final int BOX = 3;
         public static final int SPIKE = 4;
+        public static final int CANNON_LEFT = 5;
+        public static final int CANNON_RIGHT = 6;
 
+        // Potion Value
         public static final int RED_POTION_VALUE = 15;
         public static final int BLUE_POTION_VALUE = 10;
 
@@ -34,9 +38,15 @@ public class Constants {
         public static final int SPIKE_WIDTH = (int) (SPIKE_DEFAULT_WIDTH * SCALE);
         public static final int SPIKE_HEIGHT = (int) (SPIKE_DEFAULT_HEIGHT * SCALE);
 
+        // Cannon Sizes
+        public static final int CANNON_DEFAULT_WIDTH = 40;
+        public static final int CANNON_DEFAULT_HEIGHT = 26;
+        public static final int CANNON_WIDTH = (int) (CANNON_DEFAULT_WIDTH * SCALE);
+        public static final int CANNON_HEIGHT = (int) (CANNON_DEFAULT_HEIGHT * SCALE);
+
         public static int GetSpriteAmount(int object_type) {
             switch(object_type) {
-                case RED_POTION, BLUE_POTION -> {
+                case RED_POTION, BLUE_POTION, CANNON_LEFT, CANNON_RIGHT -> {
                     return 7;
                 }
                 case BARREL, BOX -> {
