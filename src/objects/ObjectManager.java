@@ -51,7 +51,7 @@ public class ObjectManager {
                         type = 1;
                     }
                     potions.add(new Potion((int) (container.getHitbox().x + container.getHitbox().width/2),
-                            (int) (container.getHitbox().y + container.getHitbox().height/4), type));
+                            (int) (container.getHitbox().y - container.getHitbox().height/4), type));
                     return;
                 }
             }
