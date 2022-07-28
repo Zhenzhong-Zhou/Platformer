@@ -15,15 +15,17 @@ public class Constants {
         public static final int RED_POTION_VALUE = 15;
         public static final int BLUE_POTION_VALUE = 10;
 
-        public static final int CONTAINER_DEFAULT_WIDTH = 40;
-        public static final int CONTAINER_DEFAULT_HEIGHT = 30;
-        public static final int CONTAINER_WIDTH = (int) (CONTAINER_DEFAULT_WIDTH * SCALE);
-        public static final int CONTAINER_HEIGHT = (int) (CONTAINER_DEFAULT_HEIGHT * SCALE);
-
+        // Potion Sizes
         public static final int POTION_DEFAULT_WIDTH = 12;
         public static final int POTION_DEFAULT_HEIGHT = 16;
         public static final int POTION_WIDTH = (int) (POTION_DEFAULT_WIDTH * SCALE);
         public static final int POTION_HEIGHT = (int) (POTION_DEFAULT_HEIGHT * SCALE);
+
+        // Container Sizes
+        public static final int CONTAINER_DEFAULT_WIDTH = 40;
+        public static final int CONTAINER_DEFAULT_HEIGHT = 30;
+        public static final int CONTAINER_WIDTH = (int) (CONTAINER_DEFAULT_WIDTH * SCALE);
+        public static final int CONTAINER_HEIGHT = (int) (CONTAINER_DEFAULT_HEIGHT * SCALE);
 
         public static int GetSpriteAmount(int object_type) {
             switch(object_type) {

@@ -65,21 +65,6 @@ public class ObjectManager {
         drawContainers(graphics, xLevelOffset);
     }
 
-    private void drawContainers(Graphics graphics, int xLevelOffset) {
-        for(Container container : containers) {
-            if(container.isActive()) {
-                int type = 0;
-                if(container.getObjectType() == BARREL) {
-                    type = 1;
-                }
-                graphics.drawImage(containerImages[type][container.getAnimationIndex()],
-                        (int) (container.getHitbox().x - container.getXDrawOffset() -xLevelOffset),
-                        (int) (container.getHitbox().y - container.getYDrawOffset()),
-                        CONTAINER_WIDTH, CONTAINER_HEIGHT, null);
-            }
-        }
-    }
-
     private void drawPotions(Graphics graphics, int xLevelOffset) {
         for(Potion potion : potions) {
             if(potion.isActive()) {
@@ -91,6 +76,21 @@ public class ObjectManager {
                         (int) (potion.getHitbox().x - potion.getXDrawOffset() -xLevelOffset),
                         (int) (potion.getHitbox().y - potion.getYDrawOffset()),
                         POTION_WIDTH, POTION_HEIGHT, null);
+            }
+        }
+    }
+
+    private void drawContainers(Graphics graphics, int xLevelOffset) {
+        for(Container container : containers) {
+            if(container.isActive()) {
+                int type = 0;
+                if(container.getObjectType() == BARREL) {
+                    type = 1;
+                }
+                graphics.drawImage(containerImages[type][container.getAnimationIndex()],
+                        (int) (container.getHitbox().x - container.getXDrawOffset() -xLevelOffset),
+                        (int) (container.getHitbox().y - container.getYDrawOffset()),
+                        CONTAINER_WIDTH, CONTAINER_HEIGHT, null);
             }
         }
     }
