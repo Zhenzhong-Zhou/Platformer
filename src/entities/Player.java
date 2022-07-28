@@ -7,6 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import static main.Game.SCALE;
+import static main.Game.TILES_SIZE;
 import static utilities.Constants.ANIMATE_SPEED;
 import static utilities.Constants.GRAVITY;
 import static utilities.Constants.PlayerActions.*;
@@ -20,6 +21,7 @@ public class Player extends Entity {
     private final float jumpSpeed = - 2.25f * SCALE;
     private final float fallSpeedAfterCollision = 0.5f * SCALE;
     private final Play play;
+    private int tileY = 0;
     private BufferedImage[][] animations;
     private boolean left, right, jump;
     private boolean moving = false, attacking = false;
@@ -63,6 +65,7 @@ public class Player extends Entity {
         if(moving) {
             checkPotionTouched();
             checkSpikeTouched();
+            tileY = (int) (hitbox.y/TILES_SIZE);
         }
         if(attacking) {
             checkAttack();
@@ -309,5 +312,9 @@ public class Player extends Entity {
         if(IsEntityOnFloor(hitbox, levelData)) {
             inAir = true;
         }
+    }
+
+    public int getTileY() {
+        return tileY;
     }
 }

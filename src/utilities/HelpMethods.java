@@ -90,13 +90,32 @@ public class HelpMethods {
         }
     }
 
-    public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] levelData) {
+    public static boolean CanCannonSeePlayer(int[][] levelData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int tileY) {
+        int firstTileX = (int) (firstHitbox.x / TILES_SIZE);
+        int secondTileX = (int) (secondHitbox.x / TILES_SIZE);
+
+        if(firstTileX > secondTileX) {
+            return IsAllTilesClear(secondTileX, firstTileX, tileY, levelData);
+        } else {
+            return IsAllTilesClear(firstTileX, secondTileX, tileY, levelData);
+        }
+    }
+
+    public static boolean IsAllTilesClear(int xStart, int xEnd, int y, int[][] levelData) {
         for(int i = 0; i < xEnd - xStart; i++) {
             if(IsTileSolid(xStart + i, y, levelData)) {
                 return false;
             }
-            if(! IsTileSolid(xStart + i, y + 1, levelData)) {
-                return false;
+        }
+        return true;
+    }
+
+    public static boolean IsAllTilesWalkable(int xStart, int xEnd, int y, int[][] levelData) {
+        if(IsAllTilesClear(xStart, xEnd,y, levelData)) {
+            for(int i = 0; i < xEnd - xStart; i++) {
+                if(! IsTileSolid(xStart + i, y + 1, levelData)) {
+                    return false;
+                }
             }
         }
         return true;

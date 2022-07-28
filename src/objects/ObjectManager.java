@@ -9,7 +9,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import static main.Game.TILES_SIZE;
 import static utilities.Constants.GameObject.*;
+import static utilities.HelpMethods.CanCannonSeePlayer;
 import static utilities.LoadSave.*;
 
 public class ObjectManager {
@@ -106,7 +108,7 @@ public class ObjectManager {
         }
     }
 
-    public void update() {
+    public void update(int[][] levelData, Player player) {
         for(Potion potion : potions) {
             if(potion.isActive()) {
                 potion.update();
@@ -119,13 +121,44 @@ public class ObjectManager {
             }
         }
 
-       updateCannon();
+       updateCannon(levelData, player);
     }
 
-    private void updateCannon() {
+    private boolean isPlayerInRange(Cannon cannon, Player player) {
+        int absValue = (int) Math.abs(player.getHitbox().x - cannon.getHitbox().x);
+        return absValue <= TILES_SIZE * 5;
+    }
+
+    private boolean isPlayerInFrontOfCannon(Cannon cannon, Player player) {
+        if(cannon.getObjectType() == CANNON_LEFT) {
+            if(cannon.getHitbox().x>player.getHitbox().x) {
+                return true;
+            }
+        } else if(cannon.getHitbox().x < player.getHitbox().x) {
+            return true;
+        }
+        return false;
+    }
+
+    private void updateCannon(int[][] levelData, Player player) {
         for(Cannon cannon : cannons) {
+            if(!cannon.doAnimation) {
+                if(cannon.getTileY() == player.getTileY()) {
+                    if(isPlayerInRange(cannon, player)){
+                        if(isPlayerInFrontOfCannon(cannon, player)) {
+                            if(CanCannonSeePlayer(levelData, player.getHitbox(), cannon.getHitbox(), cannon.getTileY())) {
+                                cannonFire(cannon);
+                            }
+                        }
+                    }
+                }
+            }
             cannon.update();
         }
+    }
+
+    private void cannonFire(Cannon cannon) {
+        cannon.setAnimation(true);
     }
 
     public void draw(Graphics graphics, int xLevelOffset) {
