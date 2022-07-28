@@ -31,8 +31,8 @@ public class LoadSave {
     public static final String LEVEL_COMPLETE = "gui/complete/completed_sprite.png";
 
     // Objects
-    public static final String BARREL_SPRITES = "objects/objects_sprites.png";
     public static final String POTIONS_SPRITES = "objects/potions_sprites.png";
+    public static final String BARREL_SPRITES = "objects/objects_sprites.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage image = null;

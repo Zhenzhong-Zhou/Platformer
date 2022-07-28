@@ -7,6 +7,7 @@ import gui.FinishedOverlay;
 import gui.PauseOverlay;
 import levels.LevelManager;
 import main.Game;
+import objects.ObjectManager;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,6 +32,7 @@ public class Play extends State implements StateMethods {
     private Player player;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
+    private ObjectManager objectManager;
     private PauseOverlay pauseOverlay;
     private DeathOverlay deathOverlay;
     private FinishedOverlay finishedOverlay;
@@ -70,6 +72,7 @@ public class Play extends State implements StateMethods {
     private void initClasses() {
         levelManager = new LevelManager(game);
         enemyManager = new EnemyManager(this);
+        objectManager = new ObjectManager(this);
 
         player = new Player(200, 200, (int) (64 * SCALE), (int) (40 * SCALE), this);
         player.loadLevelData(levelManager.getCurrentLevel().getLevelData());
@@ -90,6 +93,7 @@ public class Play extends State implements StateMethods {
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
+            objectManager.update();
             checkCloseToBorder();
         }
     }
@@ -118,6 +122,7 @@ public class Play extends State implements StateMethods {
         levelManager.draw(graphics, xLevelOffset);
         player.render(graphics, xLevelOffset);
         enemyManager.draw(graphics, xLevelOffset);
+        objectManager.draw(graphics, xLevelOffset);
 
         if(paused) {
             graphics.setColor(new Color(0, 0, 0, 150));
@@ -221,18 +226,6 @@ public class Play extends State implements StateMethods {
         }
     }
 
-    public void resume() {
-        paused = false;
-    }
-
-    public void windowFocusLost() {
-        player.resetDirectionBoolean();
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
     public void resetAll() {
         gameOver = false;
         paused = false;
@@ -257,7 +250,19 @@ public class Play extends State implements StateMethods {
         this.maxLevelOffsetX = maxLevelOffsetX;
     }
 
+    public void resume() {
+        paused = false;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public EnemyManager getEnemyManager() {
         return enemyManager;
+    }
+
+    public ObjectManager getObjectManager() {
+        return objectManager;
     }
 }
