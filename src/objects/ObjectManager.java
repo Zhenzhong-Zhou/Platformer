@@ -1,5 +1,6 @@
 package objects;
 
+import entities.Player;
 import levels.Level;
 import states.Play;
 
@@ -22,6 +23,14 @@ public class ObjectManager {
     public ObjectManager(Play play) {
         this.play = play;
         loadImages();
+    }
+
+    public void checkedSpikesTouched(Player player) {
+        for(Spike spike : spikes) {
+            if(spike.getHitbox().intersects(player.getHitbox())) {
+                player.kill();
+            }
+        }
     }
 
     public void checkObjectTouched(Rectangle2D.Float hitbox) {

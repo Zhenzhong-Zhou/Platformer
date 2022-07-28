@@ -248,6 +248,10 @@ public class Play extends State implements StateMethods {
         objectManager.checkObjectHit(attackBox);
     }
 
+    public void checkSpikeTouched(Player player) {
+        objectManager.checkedSpikesTouched(player);
+    }
+
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }

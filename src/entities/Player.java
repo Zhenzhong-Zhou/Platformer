@@ -62,12 +62,17 @@ public class Player extends Entity {
         updatePosition();
         if(moving) {
             checkPotionTouched();
+            checkSpikeTouched();
         }
         if(attacking) {
             checkAttack();
         }
         updateAnimationTick();
         setAnimation();
+    }
+
+    private void checkSpikeTouched() {
+        play.checkSpikeTouched(this);
     }
 
     private void checkPotionTouched() {
@@ -238,6 +243,10 @@ public class Player extends Entity {
         } else if(currentHealth >= maxHealth) {
             currentHealth = maxHealth;
         }
+    }
+
+    public void kill() {
+        currentHealth = 0;
     }
 
     public void changePower(int value) {
