@@ -1,6 +1,8 @@
 package utilities;
 
 import entities.Crab;
+import objects.Container;
+import objects.Potion;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import static main.Game.GAME_HEIGHT;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.EnemyConstants.CRAB;
+import static utilities.Constants.GameObject.*;
 
 public class HelpMethods {
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] levelData) {
@@ -135,6 +138,34 @@ public class HelpMethods {
             }
         }
         return crabArrayList;
+    }
+
+    public static ArrayList<Potion> GetPotions(BufferedImage image) {
+        ArrayList<Potion> potionArrayList = new ArrayList<>();
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getBlue();
+                if(value == RED_POTION || value == BLUE_POTION) {
+                    potionArrayList.add(new Potion(TILES_SIZE * i, TILES_SIZE * j, value));
+                }
+            }
+        }
+        return potionArrayList;
+    }
+
+    public static ArrayList<Container> GetContainers(BufferedImage image) {
+        ArrayList<Container> containerArrayList = new ArrayList<>();
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getBlue();
+                if(value == BARREL || value == BOX) {
+                    containerArrayList.add(new Container(TILES_SIZE * i, TILES_SIZE * j, value));
+                }
+            }
+        }
+        return containerArrayList;
     }
 
     public static Point GetPlayerSpawn(BufferedImage image) {

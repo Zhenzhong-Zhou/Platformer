@@ -1,5 +1,6 @@
 package objects;
 
+import levels.Level;
 import states.Play;
 
 import java.awt.*;
@@ -12,20 +13,17 @@ import static utilities.LoadSave.*;
 public class ObjectManager {
     private final Play play;
     private BufferedImage[][] potionImages, containerImages;
-    private final ArrayList<Potion> potions;
-    private final ArrayList<Container> containers;
+    private ArrayList<Potion> potions;
+    private ArrayList<Container> containers;
 
     public ObjectManager(Play play) {
         this.play = play;
         loadImages();
+    }
 
-        potions = new ArrayList<>();
-        potions.add(new Potion(300, 300, RED_POTION));
-        potions.add(new Potion(400, 300, BLUE_POTION));
-
-        containers = new ArrayList<>();
-        containers.add(new Container(500, 300, BARREL));
-        containers.add(new Container(600, 300, BOX));
+    public void loadObjects(Level newLevel) {
+        potions = newLevel.getPotions();
+        containers = newLevel.getContainers();
     }
 
     private void loadImages() {
