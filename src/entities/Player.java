@@ -34,7 +34,7 @@ public class Player extends Entity {
         this.play = play;
         this.state = IDLE;
         this.maxHealth = 100;
-        this.currentHealth = 35;
+        this.currentHealth = maxHealth;
         this.walkSpeed = 0.9f * SCALE;
         loadAnimations();
         initHitbox(20, 27);

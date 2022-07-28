@@ -16,9 +16,11 @@ public class ObjectManager {
     private final Play play;
     private BufferedImage[][] potionImages, containerImages;
     private BufferedImage spikeImage;
+    private BufferedImage[] cannonImages;
     private ArrayList<Potion> potions;
     private ArrayList<Container> containers;
     private ArrayList<Spike> spikes;
+    private ArrayList<Cannon> cannons;
 
     public ObjectManager(Play play) {
         this.play = play;
@@ -73,6 +75,7 @@ public class ObjectManager {
         potions = new ArrayList<>(newLevel.getPotions());
         containers = new ArrayList<>(newLevel.getContainers());
         spikes = newLevel.getSpikes();
+        cannons = newLevel.getCannons();
     }
 
     private void loadImages() {
@@ -80,7 +83,8 @@ public class ObjectManager {
         potionImages = new BufferedImage[2][7];
         for(int j = 0; j < potionImages.length; j++) {
             for(int i = 0; i < potionImages[j].length; i++) {
-                potionImages[j][i] = potionSprite.getSubimage(i * 12, j * 16, 12, 16);
+                potionImages[j][i] = potionSprite.getSubimage(i * POTION_DEFAULT_WIDTH, j * POTION_DEFAULT_HEIGHT,
+                        POTION_DEFAULT_WIDTH, POTION_DEFAULT_HEIGHT);
             }
         }
 
@@ -88,11 +92,18 @@ public class ObjectManager {
         containerImages = new BufferedImage[2][8];
         for(int j = 0; j < containerImages.length; j++) {
             for(int i = 0; i < containerImages[j].length; i++) {
-                containerImages[j][i] = containerSprite.getSubimage(i * 40, j * 30, 40, 30);
+                containerImages[j][i] = containerSprite.getSubimage(i * CONTAINER_DEFAULT_WIDTH,
+                        j * CONTAINER_DEFAULT_HEIGHT, CONTAINER_DEFAULT_WIDTH, CONTAINER_DEFAULT_HEIGHT);
             }
         }
 
         spikeImage = GetSpriteAtlas(TRAP_SPRITE);
+
+        cannonImages = new BufferedImage[7];
+        BufferedImage cannonSprites = GetSpriteAtlas(CANNON_SPRITES);
+        for(int i=0; i<cannonImages.length;i++) {
+            cannonImages[i] = cannonSprites.getSubimage(i*CANNON_DEFAULT_WIDTH, 0, CANNON_DEFAULT_WIDTH, CANNON_DEFAULT_HEIGHT);
+        }
     }
 
     public void update() {
@@ -107,12 +118,34 @@ public class ObjectManager {
                 container.update();
             }
         }
+
+       updateCannon();
+    }
+
+    private void updateCannon() {
+        for(Cannon cannon : cannons) {
+            cannon.update();
+        }
     }
 
     public void draw(Graphics graphics, int xLevelOffset) {
         drawPotions(graphics, xLevelOffset);
         drawContainers(graphics, xLevelOffset);
         drawTraps(graphics, xLevelOffset);
+        drawCannons(graphics, xLevelOffset);
+    }
+
+    private void drawCannons(Graphics graphics, int xLevelOffset) {
+        for(Cannon cannon : cannons) {
+            int x = (int) (cannon.getHitbox().x - xLevelOffset);
+            int width = CANNON_WIDTH;
+            if(cannon.getObjectType() == CANNON_LEFT) {
+                x+=width;
+                width*=-1;
+            }
+            graphics.drawImage(cannonImages[cannon.getAnimationIndex()], x, (int) (cannon.getHitbox().y ),
+                    width, CANNON_HEIGHT, null);
+        }
     }
 
     private void drawTraps(Graphics graphics, int xLevelOffset) {
@@ -158,8 +191,13 @@ public class ObjectManager {
         for(Potion potion : potions) {
             potion.reset();
         }
+
         for(Container container : containers) {
             container.reset();
+        }
+
+        for(Cannon cannon : cannons) {
+            cannon.reset();;
         }
     }
 }

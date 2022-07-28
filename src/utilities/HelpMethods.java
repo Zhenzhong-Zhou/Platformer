@@ -1,6 +1,7 @@
 package utilities;
 
 import entities.Crab;
+import objects.Cannon;
 import objects.Container;
 import objects.Potion;
 import objects.Spike;
@@ -181,6 +182,20 @@ public class HelpMethods {
             }
         }
         return spikeArrayList;
+    }
+
+    public static ArrayList<Cannon> GetCannons(BufferedImage image) {
+        ArrayList<Cannon> cannonArrayList = new ArrayList<>();
+        for(int j = 0; j < image.getHeight(); j++) {
+            for(int i = 0; i < image.getWidth(); i++) {
+                Color color = new Color(image.getRGB(i, j));
+                int value = color.getBlue();
+                if(value == CANNON_LEFT || value == CANNON_RIGHT) {
+                    cannonArrayList.add(new Cannon(TILES_SIZE * i, TILES_SIZE * j, value));
+                }
+            }
+        }
+        return cannonArrayList;
     }
 
     public static Point GetPlayerSpawn(BufferedImage image) {

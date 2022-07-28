@@ -1,6 +1,7 @@
 package levels;
 
 import entities.Crab;
+import objects.Cannon;
 import objects.Container;
 import objects.Potion;
 import objects.Spike;
@@ -20,6 +21,7 @@ public class Level {
     private ArrayList<Potion> potions;
     private ArrayList<Container> containers;
     private ArrayList<Spike> spikes;
+    private ArrayList<Cannon> cannons;
     private int levelTileWidth;
     private int maxTilesOffset;
     private int maxLevelOffsetX;
@@ -32,8 +34,13 @@ public class Level {
         createPotions();
         createContainers();
         createSpikes();
+        createCannons();
         calculateOffsets();
         calculatePlayerSpawn();
+    }
+
+    private void createCannons() {
+        cannons = GetCannons(image);
     }
 
     private void createPotions() {
@@ -88,6 +95,10 @@ public class Level {
 
     public ArrayList<Spike> getSpikes() {
         return spikes;
+    }
+
+    public ArrayList<Cannon> getCannons() {
+        return cannons;
     }
 
     public int getMaxLevelOffsetX() {

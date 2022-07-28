@@ -42,7 +42,7 @@ public class GameObject {
         animationTick = 0;
         active = true;
 
-        doAnimation = objectType != BARREL && objectType != BOX;
+        doAnimation = objectType != BARREL && objectType != BOX && objectType != CANNON_LEFT && objectType != CANNON_RIGHT;
     }
 
     protected void initHitbox(int width, int height) {
