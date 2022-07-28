@@ -268,6 +268,10 @@ public class Play extends State implements StateMethods {
         return player;
     }
 
+    public LevelManager getLevelManager() {
+        return levelManager;
+    }
+
     public EnemyManager getEnemyManager() {
         return enemyManager;
     }

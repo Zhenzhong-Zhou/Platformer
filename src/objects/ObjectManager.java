@@ -59,8 +59,8 @@ public class ObjectManager {
     }
 
     public void loadObjects(Level newLevel) {
-        potions = newLevel.getPotions();
-        containers = newLevel.getContainers();
+        potions = new ArrayList<>(newLevel.getPotions());
+        containers = new ArrayList<>(newLevel.getContainers());
     }
 
     private void loadImages() {
@@ -131,11 +131,14 @@ public class ObjectManager {
     }
 
     public void resetAllObjects() {
+        System.out.println("Size of objects (start): " + potions.size() + " & " + containers.size());
+        loadObjects(play.getLevelManager().getCurrentLevel());
         for(Potion potion : potions) {
             potion.reset();
         }
         for(Container container : containers) {
             container.reset();
         }
+        System.out.println("Size of objects (end): " + potions.size() + " & " + containers.size());
     }
 }
