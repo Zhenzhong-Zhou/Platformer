@@ -139,7 +139,7 @@ public class ObjectManager {
         for(Cannon cannon : cannons) {
             int x = (int) (cannon.getHitbox().x - xLevelOffset);
             int width = CANNON_WIDTH;
-            if(cannon.getObjectType() == CANNON_LEFT) {
+            if(cannon.getObjectType() == CANNON_RIGHT) {
                 x+=width;
                 width*=-1;
             }
