@@ -157,18 +157,20 @@ public class ObjectManager {
                     if(isPlayerInRange(cannon, player)) {
                         if(isPlayerInFrontOfCannon(cannon, player)) {
                             if(CanCannonSeePlayer(levelData, player.getHitbox(), cannon.getHitbox(), cannon.getTileY())) {
-                                cannonFire(cannon);
+                                cannon.setAnimation(true);
                             }
                         }
                     }
                 }
             }
             cannon.update();
+            if(cannon.getAnimationIndex() == 4 && cannon.getAnimationTick() == 0) {
+                cannonFire(cannon);
+            }
         }
     }
 
     private void cannonFire(Cannon cannon) {
-        cannon.setAnimation(true);
         int direction = 1;
         if(cannon.getObjectType() == CANNON_LEFT) {
             direction = -1;
