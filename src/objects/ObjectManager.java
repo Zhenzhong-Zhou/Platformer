@@ -14,6 +14,7 @@ import static utilities.Constants.GameObject.*;
 import static utilities.Constants.Projectiles.CANNON_BALL_HEIGHT;
 import static utilities.Constants.Projectiles.CANNON_BALL_WIDTH;
 import static utilities.HelpMethods.CanCannonSeePlayer;
+import static utilities.HelpMethods.IsProjectileHittingLevel;
 import static utilities.LoadSave.*;
 
 public class ObjectManager {
@@ -135,6 +136,12 @@ public class ObjectManager {
         for(Projectile cannonBall : cannon_balls) {
             if(cannonBall.isActive()) {
                 cannonBall.updatePosition();
+            }
+            if(cannonBall.getHitbox().intersects(player.getHitbox())) {
+                player.changeHealth(-25);
+                cannonBall.setActive(false);
+            } else if(IsProjectileHittingLevel(cannonBall, levelData)) {
+                cannonBall.setActive(false);
             }
         }
     }
