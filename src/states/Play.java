@@ -2,7 +2,7 @@ package states;
 
 import entities.EnemyManager;
 import entities.Player;
-import gui.DeathOverlay;
+import gui.DeadOverlay;
 import gui.FinishedOverlay;
 import gui.PauseOverlay;
 import levels.LevelManager;
@@ -34,7 +34,7 @@ public class Play extends State implements StateMethods {
     private EnemyManager enemyManager;
     private ObjectManager objectManager;
     private PauseOverlay pauseOverlay;
-    private DeathOverlay deathOverlay;
+    private DeadOverlay deadOverlay;
     private FinishedOverlay finishedOverlay;
     private boolean paused = false;
     private int xLevelOffset;
@@ -81,7 +81,7 @@ public class Play extends State implements StateMethods {
         player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 
         pauseOverlay = new PauseOverlay(this);
-        deathOverlay = new DeathOverlay(this);
+        deadOverlay = new DeadOverlay(this);
         finishedOverlay = new FinishedOverlay(this);
     }
 
@@ -136,7 +136,7 @@ public class Play extends State implements StateMethods {
             graphics.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
             pauseOverlay.draw(graphics);
         } else if(gameOver) {
-            deathOverlay.draw(graphics);
+            deadOverlay.draw(graphics);
         } else if(finishedLevel) {
             finishedOverlay.draw(graphics);
         }
@@ -207,7 +207,7 @@ public class Play extends State implements StateMethods {
     @Override
     public void keyPressed(KeyEvent e) {
         if(gameOver) {
-            deathOverlay.keyPressed(e);
+            deadOverlay.keyPressed(e);
         } else {
             switch(e.getKeyCode()) {
                 case KeyEvent.VK_A -> player.setLeft(true);

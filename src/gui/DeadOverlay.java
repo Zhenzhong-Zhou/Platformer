@@ -13,13 +13,13 @@ import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.DEAD_SCREEN;
 import static utilities.LoadSave.GetSpriteAtlas;
 
-public class DeathOverlay {
+public class DeadOverlay {
     private final Play play;
     private BufferedImage deadScreen;
     private int imageX, imageY,imageW,imageH;
     private UtilButtons menu, replay;
 
-    public DeathOverlay(Play play) {
+    public DeadOverlay(Play play) {
         this.play = play;
         createDeadScreenImage();
         createButtons();
