@@ -56,11 +56,7 @@ public class VolumeButtons extends PauseButtons {
     public void changeX(int x) {
         if(x < minX) {
             buttonX = minX;
-        } else if(x > maxX) {
-            buttonX = maxX;
-        } else {
-            buttonX = x;
-        }
+        } else buttonX = Math.min(x, maxX);
         updateFloatValue();
         bounds.x = buttonX - VOLUME_WIDTH / 2;
     }
