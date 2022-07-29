@@ -1,5 +1,7 @@
 package gui;
 
+import main.Game;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -11,8 +13,10 @@ import static utilities.Constants.GUI.PauseButtons.*;
 public class AudioOptions {
     private SoundButtons musicButton, sfxButton;
     private VolumeButtons volumeButtons;
+    private Game game;
 
-    public AudioOptions() {
+    public AudioOptions(Game game) {
+        this.game = game;
         createSoundButtons();
         createVolumeButtons();
     }
@@ -56,7 +60,12 @@ public class AudioOptions {
 
     public void mouseDragged(MouseEvent e) {
         if(volumeButtons.isMousePressed()) {
+            float valueBefore = volumeButtons.getFloatValue();
             volumeButtons.changeX(e.getX());
+            float valueAfter = volumeButtons.getFloatValue();
+            if(valueBefore != valueAfter) {
+                game.getAudioController().setVolume(valueAfter);
+            }
         }
     }
 
@@ -74,10 +83,12 @@ public class AudioOptions {
         if(isSelectedButton(e, musicButton)) {
             if(musicButton.isMousePressed()) {
                 musicButton.setMuted(musicButton.isMuted());
+                game.getAudioController().toggleSoundMute();
             }
         } else if(isSelectedButton(e, sfxButton)) {
             if(sfxButton.isMousePressed()) {
                 sfxButton.setMuted(sfxButton.isMuted());
+                game.getAudioController().toggleEffectMute();
             }
         }
 

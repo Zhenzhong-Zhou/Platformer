@@ -12,9 +12,10 @@ public class VolumeButtons extends PauseButtons {
     private final int maxX;
     private BufferedImage[] images;
     private BufferedImage slider;
-    private int index;
+    private int index = 0;
     private boolean mouseHover, mousePressed;
     private int buttonX;
+    private float floatValue = 0f;
 
     public VolumeButtons(int x, int y, int width, int height) {
         super(x + width / 2, y, VOLUME_WIDTH, height);
@@ -60,7 +61,14 @@ public class VolumeButtons extends PauseButtons {
         } else {
             buttonX = x;
         }
+        updateFloatValue();
         bounds.x = buttonX - VOLUME_WIDTH / 2;
+    }
+
+    private void updateFloatValue() {
+        float range = maxX - minX;
+        float value = buttonX - minX;
+        floatValue = value/range;
     }
 
     public void restBooleans() {
@@ -82,5 +90,9 @@ public class VolumeButtons extends PauseButtons {
 
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
+    }
+
+    public float getFloatValue() {
+        return floatValue;
     }
 }

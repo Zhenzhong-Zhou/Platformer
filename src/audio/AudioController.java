@@ -10,7 +10,7 @@ import static utilities.Constants.AudioPlayer.*;
 public class AudioController {
     private Clip[] sounds, effects;
     private int currentSoundId;
-    private float volume = 1f;
+    private float volume = 0.5f;
     private boolean soundMute, effectMute;
     private Random random = new Random();
 
