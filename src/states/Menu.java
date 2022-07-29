@@ -76,8 +76,11 @@ public class Menu extends State implements StateMethods {
             if(isSelectedButton(e, menuButton)) {
                 if(menuButton.isMousePressed()) {
                     menuButton.setGameStates();
-                    break;
                 }
+                if(menuButton.getGameStates() == PLAY) {
+                    game.getAudioController().setLevelSound(game.getPlay().getLevelManager().getLevelIndex());
+                }
+                break;
             }
         }
         restButtons();
