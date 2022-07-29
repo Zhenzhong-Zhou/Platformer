@@ -26,7 +26,7 @@ public class ObjectManager {
     private ArrayList<Container> containers;
     private ArrayList<Spike> spikes;
     private ArrayList<Cannon> cannons;
-    private ArrayList<Projectile> cannon_balls = new ArrayList<>();
+    private final ArrayList<Projectile> cannon_balls = new ArrayList<>();
 
     public ObjectManager(Play play) {
         this.play = play;
@@ -137,7 +137,7 @@ public class ObjectManager {
             if(cannonBall.isActive()) {
                 cannonBall.updatePosition();
                 if(cannonBall.getHitbox().intersects(player.getHitbox())) {
-                    player.changeHealth(-25);
+                    player.changeHealth(- 25);
                     cannonBall.setActive(false);
                 } else if(IsProjectileHittingLevel(cannonBall, levelData)) {
                     cannonBall.setActive(false);
@@ -180,7 +180,7 @@ public class ObjectManager {
     private void cannonFire(Cannon cannon) {
         int direction = 1;
         if(cannon.getObjectType() == CANNON_LEFT) {
-            direction = -1;
+            direction = - 1;
         }
         cannon_balls.add(new Projectile((int) cannon.getHitbox().x, (int) cannon.getHitbox().y, direction));
     }
@@ -197,7 +197,7 @@ public class ObjectManager {
         for(Projectile cannonBall : cannon_balls) {
             if(cannonBall.isActive()) {
                 graphics.drawImage(cannonBallImage,
-                        (int) (cannonBall.getHitbox().x - xLevelOffset),(int) cannonBall.getHitbox().y,
+                        (int) (cannonBall.getHitbox().x - xLevelOffset), (int) cannonBall.getHitbox().y,
                         CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT, null);
             }
         }

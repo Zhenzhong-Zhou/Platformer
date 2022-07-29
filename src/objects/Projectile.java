@@ -6,19 +6,19 @@ import static main.Game.SCALE;
 import static utilities.Constants.Projectiles.*;
 
 public class Projectile {
-    private Rectangle2D.Float hitbox;
-    private int direction;
+    private final Rectangle2D.Float hitbox;
+    private final int direction;
     private boolean active = true;
 
     public Projectile(int x, int y, int direction) {
-        int XOffset = (int) (-3 * SCALE);
+        int XOffset = (int) (- 3 * SCALE);
         int YOffset = (int) (5 * SCALE);
 
         if(direction == 1) {
-            XOffset = (int) (29*SCALE);
+            XOffset = (int) (29 * SCALE);
         }
         this.direction = direction;
-        hitbox = new Rectangle2D.Float(x+XOffset, y+YOffset, CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT);
+        hitbox = new Rectangle2D.Float(x + XOffset, y + YOffset, CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT);
     }
 
     public void updatePosition() {
@@ -26,8 +26,8 @@ public class Projectile {
     }
 
     public void setPosition(int x, int y) {
-        hitbox.x =x;
-        hitbox.y=y;
+        hitbox.x = x;
+        hitbox.y = y;
     }
 
     public Rectangle2D.Float getHitbox() {

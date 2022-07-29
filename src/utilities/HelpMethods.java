@@ -1,8 +1,8 @@
 package utilities;
 
 import entities.Crab;
-import objects.*;
 import objects.Container;
+import objects.*;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -42,8 +42,8 @@ public class HelpMethods {
     }
 
     public static boolean IsProjectileHittingLevel(Projectile projectile, int[][] levelData) {
-        return IsSolid(projectile.getHitbox().x + projectile.getHitbox().width/2,
-                projectile.getHitbox().y+projectile.getHitbox().height/2, levelData);
+        return IsSolid(projectile.getHitbox().x + projectile.getHitbox().width / 2,
+                projectile.getHitbox().y + projectile.getHitbox().height / 2, levelData);
     }
 
     public static boolean IsTileSolid(int xTile, int yTile, int[][] levelData) {

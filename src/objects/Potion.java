@@ -3,8 +3,8 @@ package objects;
 import static main.Game.SCALE;
 
 public class Potion extends GameObject {
-    private float hoverOffset;
     private final int maxHoverOffset;
+    private float hoverOffset;
     private int hoverDirection = 1;
 
     public Potion(int x, int y, int objectType) {
