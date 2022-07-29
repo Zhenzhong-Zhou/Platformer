@@ -11,18 +11,21 @@ import java.util.ArrayList;
 
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.GameObject.*;
+import static utilities.Constants.Projectiles.CANNON_BALL_HEIGHT;
+import static utilities.Constants.Projectiles.CANNON_BALL_WIDTH;
 import static utilities.HelpMethods.CanCannonSeePlayer;
 import static utilities.LoadSave.*;
 
 public class ObjectManager {
     private final Play play;
     private BufferedImage[][] potionImages, containerImages;
-    private BufferedImage spikeImage;
+    private BufferedImage spikeImage, cannonBallImage;
     private BufferedImage[] cannonImages;
     private ArrayList<Potion> potions;
     private ArrayList<Container> containers;
     private ArrayList<Spike> spikes;
     private ArrayList<Cannon> cannons;
+    private ArrayList<Projectile> cannon_balls = new ArrayList<>();
 
     public ObjectManager(Play play) {
         this.play = play;
@@ -78,6 +81,7 @@ public class ObjectManager {
         containers = new ArrayList<>(newLevel.getContainers());
         spikes = newLevel.getSpikes();
         cannons = newLevel.getCannons();
+        cannon_balls.clear();
     }
 
     private void loadImages() {
@@ -106,6 +110,8 @@ public class ObjectManager {
         for(int i = 0; i < cannonImages.length; i++) {
             cannonImages[i] = cannonSprites.getSubimage(i * CANNON_DEFAULT_WIDTH, 0, CANNON_DEFAULT_WIDTH, CANNON_DEFAULT_HEIGHT);
         }
+
+        cannonBallImage = GetSpriteAtlas(CANNON_BALL);
     }
 
     public void update(int[][] levelData, Player player) {
@@ -122,6 +128,15 @@ public class ObjectManager {
         }
 
         updateCannon(levelData, player);
+        updateProjectiles(levelData, player);
+    }
+
+    private void updateProjectiles(int[][] levelData, Player player) {
+        for(Projectile cannonBall : cannon_balls) {
+            if(cannonBall.isActive()) {
+                cannonBall.updatePosition();
+            }
+        }
     }
 
     private boolean isPlayerInRange(Cannon cannon, Player player) {
@@ -154,6 +169,11 @@ public class ObjectManager {
 
     private void cannonFire(Cannon cannon) {
         cannon.setAnimation(true);
+        int direction = 1;
+        if(cannon.getObjectType() == CANNON_LEFT) {
+            direction = -1;
+        }
+        cannon_balls.add(new Projectile((int) cannon.getHitbox().x, (int) cannon.getHitbox().y, direction));
     }
 
     public void draw(Graphics graphics, int xLevelOffset) {
@@ -161,6 +181,17 @@ public class ObjectManager {
         drawContainers(graphics, xLevelOffset);
         drawTraps(graphics, xLevelOffset);
         drawCannons(graphics, xLevelOffset);
+        drawProjectiles(graphics, xLevelOffset);
+    }
+
+    private void drawProjectiles(Graphics graphics, int xLevelOffset) {
+        for(Projectile cannonBall : cannon_balls) {
+            if(cannonBall.isActive()) {
+                graphics.drawImage(cannonBallImage,
+                        (int) (cannonBall.getHitbox().x - xLevelOffset),(int) cannonBall.getHitbox().y,
+                        CANNON_BALL_WIDTH, CANNON_BALL_HEIGHT, null);
+            }
+        }
     }
 
     private void drawCannons(Graphics graphics, int xLevelOffset) {
