@@ -30,8 +30,8 @@ public class DeadOverlay {
         int menuX = (int) (335 * SCALE);
         int replayX = (int) (440 * SCALE);
         int y = (int) (195 * SCALE);
-        menu = new UtilButtons(replayX, y, UTIL_SIZE, UTIL_SIZE, 1);
-        replay = new UtilButtons(menuX, y, UTIL_SIZE, UTIL_SIZE, 2);
+        menu = new UtilButtons(menuX, y, UTIL_SIZE, UTIL_SIZE, 2);
+        replay = new UtilButtons(replayX, y, UTIL_SIZE, UTIL_SIZE, 1);
     }
 
     private void createDeadScreenImage() {

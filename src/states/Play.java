@@ -178,9 +178,9 @@ public class Play extends State implements StateMethods {
                 pauseOverlay.mousePressed(e);
             } else if(finishedLevel) {
                 finishedOverlay.mousePressed(e);
-            } else {
-                deadOverlay.mousePressed(e);
             }
+        }else {
+            deadOverlay.mousePressed(e);
         }
     }
 
@@ -191,9 +191,9 @@ public class Play extends State implements StateMethods {
                 pauseOverlay.mouseReleased(e);
             } else if(finishedLevel) {
                 finishedOverlay.mouseReleased(e);
-            }else {
-                deadOverlay.mouseReleased(e);
             }
+        }else {
+            deadOverlay.mouseReleased(e);
         }
     }
 
@@ -204,9 +204,9 @@ public class Play extends State implements StateMethods {
                 pauseOverlay.mouseMoved(e);
             } else if(finishedLevel) {
                 finishedOverlay.mouseMoved(e);
-            }else {
-                deadOverlay.mouseMoved(e);
             }
+        }else {
+            deadOverlay.mouseMoved(e);
         }
     }
 
