@@ -40,6 +40,7 @@ public class Play extends State implements StateMethods {
     private int xLevelOffset;
     private boolean gameOver;
     private boolean finishedLevel;
+    private boolean playerDead;
 
     public Play(Game game) {
         super(game);
@@ -90,7 +91,12 @@ public class Play extends State implements StateMethods {
             pauseOverlay.update();
         } else if(finishedLevel) {
             finishedOverlay.update();
-        } else if(! gameOver) {
+        }
+        else if(gameOver) {
+//            deathOverlay.update();
+        } else if(playerDead) {
+            player.update();
+        } else {
             levelManager.update();
             player.update();
             enemyManager.update(levelManager.getCurrentLevel().getLevelData(), player);
@@ -231,6 +237,7 @@ public class Play extends State implements StateMethods {
         gameOver = false;
         paused = false;
         finishedLevel = false;
+        playerDead = false;
         player.resetAll();
         enemyManager.resetAllEnemies();
         objectManager.resetAllObjects();
@@ -254,6 +261,10 @@ public class Play extends State implements StateMethods {
 
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
+    }
+
+    public void setPlayerDead(boolean playerDead) {
+        this.playerDead = playerDead;
     }
 
     public void setLevelFinished(boolean levelFinished) {
