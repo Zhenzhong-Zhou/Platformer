@@ -95,7 +95,7 @@ public class DeadOverlay {
             }
         } else if(isSelectedButton(replay, e)) {
             if(replay.isMousePressed()) {
-//                play.loadNextLevel();
+                play.resetAll();
             }
         }
         menu.restBooleans();
