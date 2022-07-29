@@ -24,6 +24,7 @@ public class LoadSave {
     public static final String MENU_BUTTONS = "gui/menu/button_atlas.png";
     public static final String MENU_BACKGROUND = "gui/menu/menu_background.png";
     public static final String MENU_BACKGROUND_IMAGE = "gui/menu/background_menu.png";
+    public static final String OPTIONS_MENU = "gui/menu/options_background.png";
     public static final String PAUSE_BACKGROUND = "gui/pause/pause_background.png";
     public static final String SOUND_BUTTONS = "gui/pause/sound_button.png";
     public static final String UTIL_BUTTONS = "gui/pause/urm_buttons.png";

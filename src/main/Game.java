@@ -3,6 +3,7 @@ package main;
 import gui.AudioOptions;
 import states.Menu;
 import states.Play;
+import states.Settings;
 
 import java.awt.*;
 
@@ -25,6 +26,7 @@ public class Game implements Runnable {
     private Menu menu;
     private Play play;
     private AudioOptions audioOptions;
+    private Settings settings;
 
     public Game() {
         initClasses();
@@ -41,6 +43,7 @@ public class Game implements Runnable {
         audioOptions = new AudioOptions();
         menu = new Menu(this);
         play = new Play(this);
+        settings = new Settings(this);
     }
 
     private void start() {
@@ -52,7 +55,8 @@ public class Game implements Runnable {
         switch(gameStates) {
             case MENU -> menu.update();
             case PLAY -> play.update();
-            case OPTIONS, QUIT -> System.exit(0);
+            case OPTIONS -> settings.update();
+            case QUIT -> System.exit(0);
             default -> {
             }
         }
@@ -62,6 +66,7 @@ public class Game implements Runnable {
         switch(gameStates) {
             case MENU -> menu.draw(graphics);
             case PLAY -> play.draw(graphics);
+            case OPTIONS -> settings.draw(graphics);
             default -> {
             }
         }
