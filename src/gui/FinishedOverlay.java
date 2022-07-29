@@ -80,11 +80,13 @@ public class FinishedOverlay {
         if(isSelectedButton(nextButton, e)) {
             if(nextButton.isMousePressed()) {
                 play.loadNextLevel();
+                play.getGame().getAudioController().setLevelSound(play.getLevelManager().getLevelIndex());
             }
         } else if(isSelectedButton(menuButton, e)) {
             if(menuButton.isMousePressed()) {
                 play.resetAll();
                 GameStates.gameStates = MENU;
+                play.setGameStates(MENU);
             }
         }
         nextButton.restBooleans();

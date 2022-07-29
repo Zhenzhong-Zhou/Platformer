@@ -56,13 +56,6 @@ public class DeadOverlay {
         replay.update();
     }
 
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            play.resetAll();
-            GameStates.gameStates = MENU;
-        }
-    }
-
     private boolean isSelectedButton(UtilButtons utilButtons, MouseEvent e) {
         return utilButtons.getBounds().contains(e.getX(), e.getY());
     }
@@ -91,11 +84,12 @@ public class DeadOverlay {
             if(menu.isMousePressed()) {
                 play.resetAll();
                 GameStates.gameStates = MENU;
-
+                play.setGameStates(MENU);
             }
         } else if(isSelectedButton(replay, e)) {
             if(replay.isMousePressed()) {
                 play.resetAll();
+                play.getGame().getAudioController().setLevelSound(play.getLevelManager().getLevelIndex());
             }
         }
         menu.restBooleans();

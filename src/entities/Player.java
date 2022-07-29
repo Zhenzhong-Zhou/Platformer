@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.ANIMATE_SPEED;
+import static utilities.Constants.AudioPlayer.DIE;
+import static utilities.Constants.AudioPlayer.GAME_OVER;
+import static utilities.Constants.AudioPlayer.JUMP_SOUND_EFFECT;
 import static utilities.Constants.GRAVITY;
 import static utilities.Constants.PlayerActions.*;
 import static utilities.Constants.PlayerStatusBar.*;
@@ -62,8 +65,11 @@ public class Player extends Entity {
                 animationTick =0 ;
                 animationIndex = 0;
                 play.setPlayerDead(true);
+                play.getGame().getAudioController().playEffect(DIE);
             } else if(animationIndex == GetSpriteAmount(DEAD - 1) && animationTick >= ANIMATE_SPEED - 1) {
                 play.setGameOver(true);
+                play.getGame().getAudioController().stopSound();
+                play.getGame().getAudioController().playEffect(GAME_OVER);
             } else {
                 updateAnimationTick();
             }
@@ -98,6 +104,7 @@ public class Player extends Entity {
         attackChecked = true;
         play.checkEnemyHit(attackBox);
         play.checkObjectHit(attackBox);
+        play.getGame().getAudioController().playAttackSound();
     }
 
     private void updateAttackBox() {
@@ -229,6 +236,7 @@ public class Player extends Entity {
 
     private void jump() {
         if(inAir) return;
+        play.getGame().getAudioController().playEffect(JUMP_SOUND_EFFECT);
         inAir = true;
         airSpeed = jumpSpeed;
     }

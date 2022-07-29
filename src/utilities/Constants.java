@@ -12,7 +12,7 @@ public class Constants {
         public static final int LEVEL_2 = 2;
 
         public static final int DIE = 0;
-        public static final int JUMP = 1;
+        public static final int JUMP_SOUND_EFFECT = 1;
         public static final int GAME_OVER = 2;
         public static final int LVL_COMPLETED = 3;
         public static final int ATTACK_ONE = 4;

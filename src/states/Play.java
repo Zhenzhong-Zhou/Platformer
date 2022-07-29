@@ -212,16 +212,12 @@ public class Play extends State implements StateMethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(gameOver) {
-            deadOverlay.keyPressed(e);
-        } else {
-            switch(e.getKeyCode()) {
-                case KeyEvent.VK_A -> player.setLeft(true);
-                case KeyEvent.VK_D -> player.setRight(true);
-                case KeyEvent.VK_SPACE -> player.setJump(true);
-                case KeyEvent.VK_ESCAPE -> paused = ! paused;
-                default -> {
-                }
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_A -> player.setLeft(true);
+            case KeyEvent.VK_D -> player.setRight(true);
+            case KeyEvent.VK_SPACE -> player.setJump(true);
+            case KeyEvent.VK_ESCAPE -> paused = ! paused;
+            default -> {
             }
         }
     }
@@ -275,6 +271,9 @@ public class Play extends State implements StateMethods {
 
     public void setLevelFinished(boolean levelFinished) {
         this.finishedLevel = levelFinished;
+        if(levelFinished) {
+            game.getAudioController().levelCompleted();
+        }
     }
 
     public void setMaxLevelOffsetX(int maxLevelOffsetX) {

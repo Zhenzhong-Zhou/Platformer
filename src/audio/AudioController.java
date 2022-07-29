@@ -98,7 +98,7 @@ public class AudioController {
             booleanControl.setValue(effectMute);
         }
         if(!effectMute) {
-            playEffect(JUMP);
+            playEffect(JUMP_SOUND_EFFECT);
         }
     }
 
