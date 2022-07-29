@@ -29,6 +29,7 @@ public class LoadSave {
     public static final String UTIL_BUTTONS = "gui/pause/urm_buttons.png";
     public static final String VOLUME_BUTTONS = "gui/pause/volume_buttons.png";
     public static final String LEVEL_COMPLETE = "gui/complete/completed_sprite.png";
+    public static final String DEAD_SCREEN = "gui/dead/dead_screen.png";
 
     // Objects
     public static final String POTIONS_SPRITES = "objects/potions_sprites.png";
