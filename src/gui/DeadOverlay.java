@@ -5,6 +5,7 @@ import states.Play;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import static main.Game.*;
@@ -50,10 +51,54 @@ public class DeadOverlay {
         replay.draw(graphics);
     }
 
+    public void update() {
+        menu.update();
+        replay.update();
+    }
+
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             play.resetAll();
             GameStates.gameStates = MENU;
         }
+    }
+
+    private boolean isSelectedButton(UtilButtons utilButtons, MouseEvent e) {
+        return utilButtons.getBounds().contains(e.getX(), e.getY());
+    }
+
+    public void mouseMoved(MouseEvent e) {
+        menu.setMouseHover(false);
+        replay.setMouseHover(false);
+
+        if(isSelectedButton(menu, e)) {
+            menu.setMouseHover(true);
+        } else if(isSelectedButton(replay, e)) {
+            replay.setMouseHover(true);
+        }
+    }
+
+    public void mousePressed(MouseEvent e) {
+        if(isSelectedButton(menu, e)) {
+            menu.setMousePressed(true);
+        } else if(isSelectedButton(replay, e)) {
+            replay.setMousePressed(true);
+        }
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        if(isSelectedButton(menu, e)) {
+            if(menu.isMousePressed()) {
+                play.resetAll();
+                GameStates.gameStates = MENU;
+
+            }
+        } else if(isSelectedButton(replay, e)) {
+            if(replay.isMousePressed()) {
+//                play.loadNextLevel();
+            }
+        }
+        menu.restBooleans();
+        replay.restBooleans();
     }
 }
