@@ -129,4 +129,8 @@ public class Game implements Runnable {
     public AudioOptions getAudioOptions() {
         return audioOptions;
     }
+
+    public Settings getSettings() {
+        return settings;
+    }
 }

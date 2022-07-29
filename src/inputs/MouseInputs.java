@@ -28,6 +28,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         switch(gameStates) {
             case MENU -> scene.getGame().getMenu().mousePressed(e);
             case PLAY -> scene.getGame().getPlay().mousePressed(e);
+            case OPTIONS -> scene.getGame().getSettings().mousePressed(e);
             default -> {
             }
         }
@@ -38,6 +39,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         switch(gameStates) {
             case MENU -> scene.getGame().getMenu().mouseReleased(e);
             case PLAY -> scene.getGame().getPlay().mouseReleased(e);
+            case OPTIONS -> scene.getGame().getSettings().mouseReleased(e);
             default -> {
             }
         }
@@ -55,8 +57,10 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if(gameStates == GameStates.PLAY) {
-            scene.getGame().getPlay().mouseDragged(e);
+        switch(gameStates) {
+            case PLAY -> scene.getGame().getPlay().mouseDragged(e);
+            case OPTIONS -> scene.getGame().getSettings().mouseDragged(e);
+            default -> {}
         }
     }
 
@@ -65,6 +69,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         switch(gameStates) {
             case MENU -> scene.getGame().getMenu().mouseMoved(e);
             case PLAY -> scene.getGame().getPlay().mouseMoved(e);
+            case OPTIONS -> scene.getGame().getSettings().mouseMoved(e);
             default -> {
             }
         }

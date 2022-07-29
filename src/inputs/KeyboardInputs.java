@@ -24,6 +24,7 @@ public class KeyboardInputs implements KeyListener {
         switch(gameStates) {
             case MENU -> scene.getGame().getMenu().keyPressed(e);
             case PLAY -> scene.getGame().getPlay().keyPressed(e);
+            case OPTIONS -> scene.getGame().getSettings().keyPressed(e);
             default -> {
             }
         }
