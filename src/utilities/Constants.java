@@ -6,6 +6,20 @@ public class Constants {
     public static final float GRAVITY = 0.04f * SCALE;
     public static final float ANIMATE_SPEED = 25;
 
+    public static class AudioPlayer {
+        public static final int MENU_1 = 0;
+        public static final int LEVEL_1 = 1;
+        public static final int LEVEL_2 = 2;
+
+        public static final int DIE = 0;
+        public static final int JUMP = 1;
+        public static final int GAME_OVER = 2;
+        public static final int LVL_COMPLETED = 3;
+        public static final int ATTACK_ONE = 4;
+        public static final int ATTACK_TWO = 5;
+        public static final int ATTACK_THREE = 6;
+    }
+
     public static class Projectiles {
         public static final int CANNON_BALL_DEFAULT_WIDTH = 15;
         public static final int CANNON_BALL_DEFAULT_HEIGHT = 15;

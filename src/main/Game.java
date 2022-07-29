@@ -1,5 +1,6 @@
 package main;
 
+import audio.AudioController;
 import gui.AudioOptions;
 import states.Menu;
 import states.Play;
@@ -26,6 +27,7 @@ public class Game implements Runnable {
     private Menu menu;
     private Play play;
     private AudioOptions audioOptions;
+    private AudioController audioController;
     private Settings settings;
 
     public Game() {
@@ -41,6 +43,7 @@ public class Game implements Runnable {
 
     private void initClasses() {
         audioOptions = new AudioOptions();
+        audioController = new AudioController();
         menu = new Menu(this);
         play = new Play(this);
         settings = new Settings(this);
@@ -128,6 +131,10 @@ public class Game implements Runnable {
 
     public AudioOptions getAudioOptions() {
         return audioOptions;
+    }
+
+    public AudioController getAudioController() {
+        return audioController;
     }
 
     public Settings getSettings() {

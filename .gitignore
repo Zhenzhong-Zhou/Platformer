@@ -24,3 +24,4 @@ hs_err_pid*
 .idea
 Platformer.iml
 out
+res/META-INF
