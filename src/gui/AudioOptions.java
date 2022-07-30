@@ -6,14 +6,12 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 import static main.Game.SCALE;
-import static states.GameStates.MENU;
-import static states.GameStates.gameStates;
 import static utilities.Constants.GUI.PauseButtons.*;
 
 public class AudioOptions {
     private SoundButtons musicButton, sfxButton;
     private VolumeButtons volumeButtons;
-    private Game game;
+    private final Game game;
 
     public AudioOptions(Game game) {
         this.game = game;

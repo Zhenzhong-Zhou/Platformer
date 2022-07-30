@@ -9,9 +9,7 @@ import java.awt.image.BufferedImage;
 import static main.Game.SCALE;
 import static main.Game.TILES_SIZE;
 import static utilities.Constants.ANIMATE_SPEED;
-import static utilities.Constants.AudioPlayer.DIE;
-import static utilities.Constants.AudioPlayer.GAME_OVER;
-import static utilities.Constants.AudioPlayer.JUMP_SOUND_EFFECT;
+import static utilities.Constants.AudioPlayer.*;
 import static utilities.Constants.GRAVITY;
 import static utilities.Constants.PlayerActions.*;
 import static utilities.Constants.PlayerStatusBar.*;
@@ -62,7 +60,7 @@ public class Player extends Entity {
         if(currentHealth <= 0) {
             if(state != DEAD) {
                 state = DEAD;
-                animationTick =0 ;
+                animationTick = 0;
                 animationIndex = 0;
                 play.setPlayerDead(true);
                 play.getGame().getAudioController().playEffect(DIE);

@@ -16,7 +16,7 @@ import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.*;
 
 public class Settings extends State implements StateMethods {
-    private AudioOptions audioOptions;
+    private final AudioOptions audioOptions;
     private BufferedImage backgroundImage, optionsBackgroundImage;
     private int bgX, bgY, bgW, bgH;
     private UtilButtons menu;
@@ -53,7 +53,7 @@ public class Settings extends State implements StateMethods {
 
     @Override
     public void draw(Graphics graphics) {
-        graphics.drawImage(backgroundImage,0,0,GAME_WIDTH, GAME_HEIGHT, null);
+        graphics.drawImage(backgroundImage, 0, 0, GAME_WIDTH, GAME_HEIGHT, null);
         graphics.drawImage(optionsBackgroundImage, bgX, bgY, bgW, bgH, null);
 
         menu.draw(graphics);
@@ -68,9 +68,9 @@ public class Settings extends State implements StateMethods {
         audioOptions.mouseDragged(e);
     }
 
-        @Override
+    @Override
     public void mousePressed(MouseEvent e) {
-        if(isSelectedButton(e,menu)) {
+        if(isSelectedButton(e, menu)) {
             menu.setMousePressed(true);
         } else {
             audioOptions.mousePressed(e);
@@ -79,7 +79,7 @@ public class Settings extends State implements StateMethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if(isSelectedButton(e,menu)) {
+        if(isSelectedButton(e, menu)) {
             if(menu.isMousePressed()) {
                 GameStates.gameStates = MENU;
             }
@@ -94,8 +94,8 @@ public class Settings extends State implements StateMethods {
     public void mouseMoved(MouseEvent e) {
         menu.setMouseHover(false);
 
-        if(isSelectedButton(e,menu)) {
-          menu.setMouseHover(true);
+        if(isSelectedButton(e, menu)) {
+            menu.setMouseHover(true);
         } else {
             audioOptions.mouseMoved(e);
         }

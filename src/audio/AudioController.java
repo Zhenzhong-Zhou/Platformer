@@ -12,7 +12,7 @@ public class AudioController {
     private int currentSoundId;
     private float volume = 0.5f;
     private boolean soundMute, effectMute;
-    private Random random = new Random();
+    private final Random random = new Random();
 
     public AudioController() {
         loadSounds();
@@ -23,7 +23,7 @@ public class AudioController {
     public void loadSounds() {
         String[] soundNames = {"menu", "level1", "level2"};
         sounds = new Clip[soundNames.length];
-        for(int i=0; i<sounds.length;i++) {
+        for(int i = 0; i < sounds.length; i++) {
             sounds[i] = getClip(soundNames[i]);
         }
     }
@@ -31,7 +31,7 @@ public class AudioController {
     public void loadEffects() {
         String[] effectNames = {"die", "jump", "gameover", "lvlcompleted", "attack1", "attack2", "attack3"};
         effects = new Clip[effectNames.length];
-        for (int i = 0; i < effects.length; i++) {
+        for(int i = 0; i < effects.length; i++) {
             effects[i] = getClip(effectNames[i]);
         }
 
@@ -51,9 +51,9 @@ public class AudioController {
     }
 
     public void setLevelSound(int levelIndex) {
-        if(levelIndex%2==0) {
+        if(levelIndex % 2 == 0) {
             playSound(LEVEL_1);
-        }else {
+        } else {
             playSound(LEVEL_2);
         }
     }
@@ -83,8 +83,8 @@ public class AudioController {
         effects[effect].start();
     }
 
-    public void  toggleSoundMute() {
-        this.soundMute = !soundMute;
+    public void toggleSoundMute() {
+        this.soundMute = ! soundMute;
         for(Clip clip : sounds) {
             BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
             booleanControl.setValue(soundMute);
@@ -92,12 +92,12 @@ public class AudioController {
     }
 
     public void toggleEffectMute() {
-        this.effectMute = !effectMute;
+        this.effectMute = ! effectMute;
         for(Clip clip : effects) {
-            BooleanControl booleanControl =(BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+            BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
             booleanControl.setValue(effectMute);
         }
-        if(!effectMute) {
+        if(! effectMute) {
             playEffect(JUMP_SOUND_EFFECT);
         }
     }

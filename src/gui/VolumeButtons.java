@@ -64,7 +64,7 @@ public class VolumeButtons extends PauseButtons {
     private void updateFloatValue() {
         float range = maxX - minX;
         float value = buttonX - minX;
-        floatValue = value/range;
+        floatValue = value / range;
     }
 
     public void restBooleans() {

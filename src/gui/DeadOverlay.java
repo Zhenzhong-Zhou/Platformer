@@ -4,7 +4,6 @@ import states.GameStates;
 import states.Play;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
@@ -17,7 +16,7 @@ import static utilities.LoadSave.GetSpriteAtlas;
 public class DeadOverlay {
     private final Play play;
     private BufferedImage deadScreen;
-    private int imageX, imageY,imageW,imageH;
+    private int imageX, imageY, imageW, imageH;
     private UtilButtons menu, replay;
 
     public DeadOverlay(Play play) {
@@ -46,7 +45,7 @@ public class DeadOverlay {
         graphics.setColor(new Color(0, 0, 0, 200));
         graphics.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-        graphics.drawImage(deadScreen, imageX, imageY,imageW,imageH, null);
+        graphics.drawImage(deadScreen, imageX, imageY, imageW, imageH, null);
         menu.draw(graphics);
         replay.draw(graphics);
     }

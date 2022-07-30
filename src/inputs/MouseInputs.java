@@ -60,7 +60,8 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
         switch(gameStates) {
             case PLAY -> scene.getGame().getPlay().mouseDragged(e);
             case OPTIONS -> scene.getGame().getSettings().mouseDragged(e);
-            default -> {}
+            default -> {
+            }
         }
     }
 

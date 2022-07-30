@@ -19,6 +19,7 @@ import static utilities.LoadSave.*;
 
 public class ObjectManager {
     private final Play play;
+    private final ArrayList<Projectile> cannon_balls = new ArrayList<>();
     private BufferedImage[][] potionImages, containerImages;
     private BufferedImage spikeImage, cannonBallImage;
     private BufferedImage[] cannonImages;
@@ -26,7 +27,6 @@ public class ObjectManager {
     private ArrayList<Container> containers;
     private ArrayList<Spike> spikes;
     private ArrayList<Cannon> cannons;
-    private final ArrayList<Projectile> cannon_balls = new ArrayList<>();
 
     public ObjectManager(Play play) {
         this.play = play;

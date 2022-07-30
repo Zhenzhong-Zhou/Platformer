@@ -10,7 +10,7 @@ import static main.Game.GAME_WIDTH;
 import static main.Game.SCALE;
 import static states.GameStates.MENU;
 import static states.GameStates.gameStates;
-import static utilities.Constants.GUI.PauseButtons.*;
+import static utilities.Constants.GUI.PauseButtons.UTIL_SIZE;
 import static utilities.LoadSave.GetSpriteAtlas;
 import static utilities.LoadSave.PAUSE_BACKGROUND;
 
@@ -18,7 +18,7 @@ public class PauseOverlay {
     private final Play play;
     private BufferedImage backgroundImage;
     private int bgX, bgY, bgW, bgH;
-    private AudioOptions audioOptions;
+    private final AudioOptions audioOptions;
     private UtilButtons resumeButton, replayButton, menuButton;
 
     public PauseOverlay(Play play) {
