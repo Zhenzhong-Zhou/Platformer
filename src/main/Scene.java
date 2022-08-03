@@ -25,6 +25,7 @@ public class Scene extends JPanel {
     private void setSceneSize() {
         Dimension size = new Dimension(GAME_WIDTH, GAME_HEIGHT);
         setPreferredSize(size);
+        setDoubleBuffered(true);
         System.out.println("Size: " + GAME_WIDTH + ", " + GAME_HEIGHT);
     }
 
@@ -34,6 +35,7 @@ public class Scene extends JPanel {
     public void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         game.render(graphics);
+        graphics.dispose();
     }
 
     public Game getGame() {
